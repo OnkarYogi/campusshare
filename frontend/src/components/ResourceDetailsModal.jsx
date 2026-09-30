@@ -132,6 +132,7 @@ const ResourceDetailsModal = ({
               Academic Commons Certified
             </span>
             <button
+              data-testid="modal-close-btn"
               onClick={onClose}
               className="p-1 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-200 transition-colors"
             >
@@ -155,7 +156,7 @@ const ResourceDetailsModal = ({
                     Condition: {resource.condition.replace('_', ' ')}
                   </span>
                 </div>
-                <h2 className="font-headline text-2xl font-extrabold text-slate-900 leading-tight">
+                <h2 data-testid="modal-resource-title" className="font-headline text-2xl font-extrabold text-slate-900 leading-tight">
                   {resource.title}
                 </h2>
               </div>
@@ -295,13 +296,13 @@ const ResourceDetailsModal = ({
                 </div>
 
                 {error && (
-                  <div className="p-3 rounded-lg bg-red-50 border border-red-200 text-xs text-error font-medium">
+                  <div data-testid="borrow-error" className="p-3 rounded-lg bg-red-50 border border-red-200 text-xs text-error font-medium">
                     {error}
                   </div>
                 )}
 
                 {successMsg && (
-                  <div className="p-3 rounded-lg bg-emerald-50 border border-emerald-200 text-xs text-emerald-800 font-semibold flex items-center gap-1.5">
+                  <div data-testid="borrow-success" className="p-3 rounded-lg bg-emerald-50 border border-emerald-200 text-xs text-emerald-800 font-semibold flex items-center gap-1.5">
                     <span className="material-symbols-outlined text-[18px]">check_circle</span>
                     {successMsg}
                   </div>
@@ -327,7 +328,7 @@ const ResourceDetailsModal = ({
 
                 {isSteward ? (
                   <div className="space-y-4">
-                    <div className="p-4 rounded-xl bg-blue-50/80 border border-blue-200 text-blue-900 text-xs font-medium space-y-1.5">
+                    <div data-testid="steward-notice" className="p-4 rounded-xl bg-blue-50/80 border border-blue-200 text-blue-900 text-xs font-medium space-y-1.5">
                       <div className="flex items-center gap-2 font-bold text-primary">
                         <span className="material-symbols-outlined text-[18px]">verified_user</span>
                         <span>You are the Steward of this Resource</span>
@@ -362,7 +363,7 @@ const ResourceDetailsModal = ({
                       </div>
 
                       {withdrawError && (
-                        <div className="p-2.5 rounded-lg bg-red-50 border border-red-200 text-xs text-error font-medium flex items-center gap-1.5">
+                        <div data-testid="withdraw-error" className="p-2.5 rounded-lg bg-red-50 border border-red-200 text-xs text-error font-medium flex items-center gap-1.5">
                           <span className="material-symbols-outlined text-[16px]">error</span>
                           <span>{withdrawError}</span>
                         </div>
@@ -376,6 +377,7 @@ const ResourceDetailsModal = ({
 
                       {!showWithdrawConfirm ? (
                         <button
+                          data-testid="steward-withdraw-trigger"
                           type="button"
                           onClick={() => {
                             setWithdrawError('');
@@ -396,6 +398,7 @@ const ResourceDetailsModal = ({
                           </p>
                           <div className="flex items-center gap-2 pt-1">
                             <button
+                              data-testid="confirm-withdraw-btn"
                               type="button"
                               disabled={withdrawing}
                               onClick={handleWithdrawResource}
@@ -457,6 +460,7 @@ const ResourceDetailsModal = ({
                         Academic Purpose / Project Note *
                       </label>
                       <textarea
+                        data-testid="borrow-purpose"
                         rows={3}
                         required
                         disabled={isBorrowed}
@@ -483,6 +487,7 @@ const ResourceDetailsModal = ({
                         </button>
                       ) : (
                         <button
+                          data-testid="borrow-submit-btn"
                           type="submit"
                           disabled={loading || !!successMsg}
                           className="w-full py-2.5 px-4 rounded-lg bg-primary hover:bg-slate-900 text-white font-bold text-xs transition-colors shadow-sm flex items-center justify-center gap-1.5 disabled:opacity-50"

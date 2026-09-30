@@ -1,0 +1,2212 @@
+{
+  "id": "f5eef934-2fe4-44f9-91a4-69cd056f565a",
+  "version": "2.0",
+  "name": "Community Resource Exchange Platform - Selenium Test Suite",
+  "url": "http://localhost:5173",
+  "tests": [
+    {
+      "id": "ccba023a-7770-4f2a-8a6c-ccc32d3b7245",
+      "name": "BB-01 Valid Login",
+      "commands": [
+        {
+          "id": "9068849e-d77b-4a86-84bc-03bc1f415aa6",
+          "comment": "",
+          "command": "open",
+          "target": "/",
+          "targets": [
+            [
+              "/",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "352fc074-014e-4f0a-9a81-8503923071b0",
+          "comment": "",
+          "command": "setWindowSize",
+          "target": "1280x800",
+          "targets": [
+            [
+              "1280x800",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "6d7792b4-a280-4947-92c0-f168f95ad4b9",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"navbar-signin\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"navbar-signin\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "65e6eaf4-7283-49d1-94b0-38fd9c0f0b04",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"login-email\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"login-email\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "5000"
+        },
+        {
+          "id": "3dfc3996-c5c2-4995-984b-f0fe602d6d19",
+          "comment": "",
+          "command": "type",
+          "target": "css=[data-testid=\"login-email\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"login-email\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "marcus.vance@campus.edu"
+        },
+        {
+          "id": "08a32866-9274-44de-bb3e-3a997222c5fe",
+          "comment": "",
+          "command": "type",
+          "target": "css=[data-testid=\"login-password\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"login-password\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "Password123!"
+        },
+        {
+          "id": "503c8348-fb19-4025-a762-dd1c2a361906",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"login-submit\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"login-submit\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "e477588d-cc61-4a1d-845d-a9199062c615",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"navbar-user-name\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"navbar-user-name\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "5000"
+        },
+        {
+          "id": "3601b56a-3d7d-48fc-8462-40721baedf76",
+          "comment": "",
+          "command": "assertText",
+          "target": "css=[data-testid=\"navbar-user-name\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"navbar-user-name\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "Rohan Deshmukh"
+        },
+        {
+          "id": "0c8418b9-9ce8-43ce-a842-ff33d5d3673f",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"navbar-user-menu\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"navbar-user-menu\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "ee821889-ec0f-4b37-8d01-247dffa94415",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"navbar-signout\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"navbar-signout\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        }
+      ]
+    },
+    {
+      "id": "24e28656-8731-4ae6-b57e-809bf75ee28d",
+      "name": "BB-02 Invalid Login",
+      "commands": [
+        {
+          "id": "55a1e589-cdec-4ab4-b980-ba70a44e1c25",
+          "comment": "",
+          "command": "open",
+          "target": "/",
+          "targets": [
+            [
+              "/",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "6f6f93ca-51da-487b-afce-04494573e504",
+          "comment": "",
+          "command": "setWindowSize",
+          "target": "1280x800",
+          "targets": [
+            [
+              "1280x800",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "c5c20881-24ab-4f3a-943f-8b4969cdf4a3",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"navbar-signin\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"navbar-signin\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "c5a2c6ec-8f33-44d9-adc4-87b5a25ee9b6",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"login-email\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"login-email\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "5000"
+        },
+        {
+          "id": "122e94d8-d46d-4a57-9fb1-42182aaf5ce7",
+          "comment": "",
+          "command": "type",
+          "target": "css=[data-testid=\"login-email\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"login-email\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "marcus.vance@campus.edu"
+        },
+        {
+          "id": "184cca0c-0e86-4358-a8fb-4fbbb8e74fbb",
+          "comment": "",
+          "command": "type",
+          "target": "css=[data-testid=\"login-password\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"login-password\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "WrongPassword999!"
+        },
+        {
+          "id": "b85a170a-99b1-4079-a786-7681980d29af",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"login-submit\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"login-submit\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "c6b16f7f-7fb8-4d41-bd5c-e4c05696ac16",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"auth-error\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"auth-error\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "5000"
+        },
+        {
+          "id": "5a5f5c6f-dbdf-4a75-afbb-d060907a7945",
+          "comment": "",
+          "command": "assertText",
+          "target": "css=[data-testid=\"auth-error\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"auth-error\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "Invalid institutional credentials."
+        }
+      ]
+    },
+    {
+      "id": "3eed8345-381d-4f33-952c-dc0848e0cc68",
+      "name": "BB-03 Resource Search",
+      "commands": [
+        {
+          "id": "d9b2cf52-c318-4e2d-946a-2b76469017df",
+          "comment": "",
+          "command": "open",
+          "target": "/",
+          "targets": [
+            [
+              "/",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "1d237eae-4ef8-4d16-906c-5cc538f5768e",
+          "comment": "",
+          "command": "setWindowSize",
+          "target": "1280x800",
+          "targets": [
+            [
+              "1280x800",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "251f37bf-2652-4cac-a47d-b1f65e100db5",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"catalog-search-input\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"catalog-search-input\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "5000"
+        },
+        {
+          "id": "7ec88a58-2fc8-4d77-b393-c6e717764ca3",
+          "comment": "",
+          "command": "type",
+          "target": "css=[data-testid=\"catalog-search-input\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"catalog-search-input\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "Oscilloscope"
+        },
+        {
+          "id": "7218821e-834f-402b-9187-18f71a3e86f6",
+          "comment": "",
+          "command": "pause",
+          "target": "500",
+          "targets": [
+            [
+              "500",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "cabb6496-a28b-408c-8655-c71fd068fcce",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"resource-title\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"resource-title\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "5000"
+        },
+        {
+          "id": "14cd14c2-49e6-4f0c-b401-444ea93c0510",
+          "comment": "",
+          "command": "assertText",
+          "target": "css=[data-testid=\"resource-title\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"resource-title\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "Rigol DS1054Z 50MHz 4-Channel Digital Oscilloscope with 4 Probes & Calibration Cert"
+        }
+      ]
+    },
+    {
+      "id": "4d2b42b8-1b11-4c43-b27e-9cc118aa2a8c",
+      "name": "BB-04 Borrow Available Resource",
+      "commands": [
+        {
+          "id": "13854e40-a4d8-4843-aeab-230fcd671dd3",
+          "comment": "",
+          "command": "open",
+          "target": "/",
+          "targets": [
+            [
+              "/",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "dd308b2c-46a9-4307-833d-e3220c4d7091",
+          "comment": "",
+          "command": "setWindowSize",
+          "target": "1280x800",
+          "targets": [
+            [
+              "1280x800",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "72a77358-5e67-4394-87a3-eab7b10bb835",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"navbar-signin\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"navbar-signin\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "4966cd97-47ba-42a1-9683-118d69be232b",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"login-email\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"login-email\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "5000"
+        },
+        {
+          "id": "5c8ca1d9-6b8f-4d54-926e-5983e52e19d3",
+          "comment": "",
+          "command": "type",
+          "target": "css=[data-testid=\"login-email\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"login-email\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "marcus.vance@campus.edu"
+        },
+        {
+          "id": "49df7fae-edb7-4ed0-a0f9-b9b602808fcc",
+          "comment": "",
+          "command": "type",
+          "target": "css=[data-testid=\"login-password\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"login-password\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "Password123!"
+        },
+        {
+          "id": "4bb7971f-6abe-40b0-a1e5-cb2043f3b826",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"login-submit\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"login-submit\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "c4bc1e5e-d06d-41b5-a4bf-d8d55b3e3aec",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"navbar-user-name\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"navbar-user-name\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "5000"
+        },
+        {
+          "id": "53581c9f-616b-4bbd-8856-fb6a49745d5b",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"catalog-search-input\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"catalog-search-input\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "5000"
+        },
+        {
+          "id": "dffed09a-3358-4b79-862f-6ab8ba91028e",
+          "comment": "",
+          "command": "type",
+          "target": "css=[data-testid=\"catalog-search-input\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"catalog-search-input\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "Physical Chemistry"
+        },
+        {
+          "id": "2586f760-bf7c-451c-b99e-9390ca555034",
+          "comment": "",
+          "command": "pause",
+          "target": "500",
+          "targets": [
+            [
+              "500",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "1b0d6eb5-bffa-4c8a-b7de-6d4019b70d29",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"resource-card-action\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"resource-card-action\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "e8a8f8c4-fe58-41ab-aa24-c04031396179",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"modal-resource-title\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"modal-resource-title\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "5000"
+        },
+        {
+          "id": "ebb8c2d0-73a1-45d6-bbcb-a5a8f0d51670",
+          "comment": "",
+          "command": "type",
+          "target": "css=[data-testid=\"borrow-purpose\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"borrow-purpose\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "Laboratory coursework thermodynamics study."
+        },
+        {
+          "id": "fd36ee05-a128-47c9-8fa0-bcb33cd48da0",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"borrow-submit-btn\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"borrow-submit-btn\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "17c38578-f48c-453f-8ce5-58741f8d1542",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"borrow-success\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"borrow-success\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "5000"
+        },
+        {
+          "id": "3a75fda8-ccbe-418b-9499-262d81ff32b0",
+          "comment": "",
+          "command": "assertText",
+          "target": "css=[data-testid=\"borrow-success\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"borrow-success\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "Borrow request submitted successfully."
+        },
+        {
+          "id": "634de99e-a763-409d-a3f3-7af9930d2169",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"modal-close-btn\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"modal-close-btn\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "b669fa48-1b90-4812-a73a-aa0da4165274",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"navbar-user-menu\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"navbar-user-menu\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "cc3e6379-bf00-4e0f-8370-850f2086b283",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"navbar-signout\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"navbar-signout\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        }
+      ]
+    },
+    {
+      "id": "ae4a1579-e7b9-402d-8aa0-a8fcc897476e",
+      "name": "BB-05 Resource Withdrawal",
+      "commands": [
+        {
+          "id": "a726d61a-88bc-48c5-bc1c-60c6e6d79ccf",
+          "comment": "",
+          "command": "open",
+          "target": "/",
+          "targets": [
+            [
+              "/",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "c05b3651-2159-4da7-a72f-ed8708869566",
+          "comment": "",
+          "command": "setWindowSize",
+          "target": "1280x800",
+          "targets": [
+            [
+              "1280x800",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "c60764c4-1731-4b8c-9160-feff1ba0bc5c",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"navbar-signin\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"navbar-signin\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "ba24f2e0-326d-4222-a41b-91a964108c1f",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"login-email\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"login-email\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "5000"
+        },
+        {
+          "id": "49d03c12-b585-4283-a7f6-d8c0cf063b1e",
+          "comment": "",
+          "command": "type",
+          "target": "css=[data-testid=\"login-email\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"login-email\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "elena.rostova@campus.edu"
+        },
+        {
+          "id": "11760b5f-36c8-4690-9787-ac341f2ae393",
+          "comment": "",
+          "command": "type",
+          "target": "css=[data-testid=\"login-password\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"login-password\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "Password123!"
+        },
+        {
+          "id": "a4e3404d-a9d2-4d3a-aac8-96991a6f9331",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"login-submit\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"login-submit\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "5b4dd756-bf8b-4e0a-8e2d-5f716976b358",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"navbar-user-name\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"navbar-user-name\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "5000"
+        },
+        {
+          "id": "ced76c81-2be3-45c3-af4c-656c9e845d7d",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"catalog-search-input\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"catalog-search-input\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "5000"
+        },
+        {
+          "id": "df827c99-9911-4e9e-8f41-8a342c4c2286",
+          "comment": "",
+          "command": "type",
+          "target": "css=[data-testid=\"catalog-search-input\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"catalog-search-input\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "Mitutoyo"
+        },
+        {
+          "id": "5e13acd9-3e07-49d6-84fe-4647b680a3e0",
+          "comment": "",
+          "command": "pause",
+          "target": "500",
+          "targets": [
+            [
+              "500",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "63d65f1f-2eae-494c-be6e-f650d0b7a9f4",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"resource-card-action\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"resource-card-action\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "67c2525b-ce0a-47ac-b771-e47a1a384a6e",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"steward-withdraw-trigger\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"steward-withdraw-trigger\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "5000"
+        },
+        {
+          "id": "eb882cef-afee-49af-a851-d8309cf6c6e8",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"steward-withdraw-trigger\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"steward-withdraw-trigger\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "5ae9d957-f608-415a-a178-13548c7ebebe",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"confirm-withdraw-btn\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"confirm-withdraw-btn\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "5000"
+        },
+        {
+          "id": "6890d3f2-558f-48a1-ae61-85e09d1f0f87",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"confirm-withdraw-btn\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"confirm-withdraw-btn\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "fc451432-24f1-4f44-a3d5-9715a506f622",
+          "comment": "",
+          "command": "pause",
+          "target": "1000",
+          "targets": [
+            [
+              "1000",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "6f53edc3-de2b-4338-9148-bf417a10c659",
+          "comment": "",
+          "command": "assertElementNotPresent",
+          "target": "css=[data-testid=\"modal-resource-title\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"modal-resource-title\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "573912ba-8df7-4b5c-9be4-6c45f5d60e68",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"navbar-user-menu\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"navbar-user-menu\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "5af84f64-3690-4c58-b562-a595a3fb8877",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"navbar-signout\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"navbar-signout\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        }
+      ]
+    },
+    {
+      "id": "d63cc7ea-ce5f-48c5-9425-c1a30c84960d",
+      "name": "WB-01 Unverified User Borrow",
+      "commands": [
+        {
+          "id": "719c89c8-1e15-4e54-9530-46606c87c290",
+          "comment": "",
+          "command": "open",
+          "target": "/",
+          "targets": [
+            [
+              "/",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "80018b84-1ce6-4e38-931e-48c3ea7b2e35",
+          "comment": "",
+          "command": "setWindowSize",
+          "target": "1280x800",
+          "targets": [
+            [
+              "1280x800",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "e4e831ac-9dca-4303-8df2-3cdcba644205",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"navbar-signin\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"navbar-signin\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "79935487-c932-4b2d-ae57-db084f39ed94",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"login-email\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"login-email\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "5000"
+        },
+        {
+          "id": "bcf57d0f-e4d1-4301-b872-1bb8f8be1217",
+          "comment": "",
+          "command": "type",
+          "target": "css=[data-testid=\"login-email\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"login-email\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "aarav.sharma@campus.edu"
+        },
+        {
+          "id": "9b0cab40-6052-4144-a5ec-2c6a5e44a490",
+          "comment": "",
+          "command": "type",
+          "target": "css=[data-testid=\"login-password\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"login-password\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "Password123!"
+        },
+        {
+          "id": "c629a60e-0941-41d6-bfa2-987372f9a277",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"login-submit\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"login-submit\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "ce6bda18-5657-4754-b1b4-d6ab94913731",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"navbar-user-name\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"navbar-user-name\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "5000"
+        },
+        {
+          "id": "670f0dd4-202b-4809-a38b-efd07ed76529",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"catalog-search-input\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"catalog-search-input\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "5000"
+        },
+        {
+          "id": "16574650-c999-49a6-be4c-18daa521ffa2",
+          "comment": "",
+          "command": "type",
+          "target": "css=[data-testid=\"catalog-search-input\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"catalog-search-input\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "Oscilloscope"
+        },
+        {
+          "id": "8a654fda-8e14-4e72-9a45-72c1fd5dc09f",
+          "comment": "",
+          "command": "pause",
+          "target": "500",
+          "targets": [
+            [
+              "500",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "40482ba8-2190-45aa-a55f-e9052653b58e",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"resource-card-action\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"resource-card-action\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "4cd05ffd-ae45-40fc-8359-66e81aa17cf0",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"borrow-purpose\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"borrow-purpose\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "5000"
+        },
+        {
+          "id": "7e43e3a5-0849-4950-b85c-21da21328b65",
+          "comment": "",
+          "command": "type",
+          "target": "css=[data-testid=\"borrow-purpose\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"borrow-purpose\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "Capacitor transient response measurement."
+        },
+        {
+          "id": "d8ce0241-6b7a-48bf-a61d-5e96336021ac",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"borrow-submit-btn\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"borrow-submit-btn\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "26aefd9c-317a-49ac-87b6-452fa87bb9c4",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"borrow-error\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"borrow-error\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "5000"
+        },
+        {
+          "id": "05df1f82-d2e5-4b44-bb01-638dd5b0e8cb",
+          "comment": "",
+          "command": "assertText",
+          "target": "css=[data-testid=\"borrow-error\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"borrow-error\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "Institutional verification required to perform this action."
+        },
+        {
+          "id": "aa9f2fad-c7d7-4984-ac02-4f2cd0443fd2",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"modal-close-btn\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"modal-close-btn\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "5e8aa910-4250-4152-bfd3-2074de90760d",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"navbar-user-menu\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"navbar-user-menu\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "d622cdf7-0b66-4a44-a5eb-d535b6f2e58d",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"navbar-signout\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"navbar-signout\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        }
+      ]
+    },
+    {
+      "id": "720016cf-6087-4a5e-853c-2832ff92620b",
+      "name": "WB-02 Self Borrow",
+      "commands": [
+        {
+          "id": "565e960c-6350-4438-b0c6-231113a22610",
+          "comment": "",
+          "command": "open",
+          "target": "/",
+          "targets": [
+            [
+              "/",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "fe841ae8-3ed4-4a14-bc91-3fe6b6d4d5bb",
+          "comment": "",
+          "command": "setWindowSize",
+          "target": "1280x800",
+          "targets": [
+            [
+              "1280x800",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "21436845-792f-43e5-a4c4-09bcdca9a5a8",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"navbar-signin\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"navbar-signin\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "bac004c1-51ab-41f9-8cd8-c32f8811e743",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"login-email\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"login-email\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "5000"
+        },
+        {
+          "id": "cb96c04e-d66b-48e0-8da3-e67c9822d095",
+          "comment": "",
+          "command": "type",
+          "target": "css=[data-testid=\"login-email\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"login-email\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "elena.rostova@campus.edu"
+        },
+        {
+          "id": "4d89bad4-2dde-4997-adaa-27a2e52c727f",
+          "comment": "",
+          "command": "type",
+          "target": "css=[data-testid=\"login-password\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"login-password\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "Password123!"
+        },
+        {
+          "id": "a812debd-ee8c-4187-90e8-658a420badff",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"login-submit\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"login-submit\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "1dbe803d-018a-4b36-aff4-f793fb486c8e",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"navbar-user-name\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"navbar-user-name\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "5000"
+        },
+        {
+          "id": "35b41eca-6701-4047-bfc3-1cd856911219",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"catalog-search-input\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"catalog-search-input\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "5000"
+        },
+        {
+          "id": "8a62a3c7-4cac-47a9-9ef5-06a12d695150",
+          "comment": "",
+          "command": "type",
+          "target": "css=[data-testid=\"catalog-search-input\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"catalog-search-input\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "Oscilloscope"
+        },
+        {
+          "id": "6edb92e2-4cc1-46be-b9f9-11d770b9ce45",
+          "comment": "",
+          "command": "pause",
+          "target": "500",
+          "targets": [
+            [
+              "500",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "1e181942-07fd-41dd-b463-8b39a3685014",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"resource-card-action\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"resource-card-action\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "67c74f5d-494d-4fb9-bc67-920e7ff1fe22",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"steward-notice\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"steward-notice\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "5000"
+        },
+        {
+          "id": "22621c43-8ad6-4330-8518-b1fa971e9af3",
+          "comment": "",
+          "command": "assertElementPresent",
+          "target": "css=[data-testid=\"steward-notice\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"steward-notice\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "59aab79f-da3b-4326-aca2-1b238c400b2f",
+          "comment": "",
+          "command": "assertElementNotPresent",
+          "target": "css=[data-testid=\"borrow-submit-btn\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"borrow-submit-btn\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "e98fa0b5-8368-47c8-8912-dca83fcb2830",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"modal-close-btn\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"modal-close-btn\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "801df23c-24f2-43a5-96e5-8afe7433512a",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"navbar-user-menu\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"navbar-user-menu\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "82912b69-5bd7-4f9c-8ba3-13d1bc616b04",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"navbar-signout\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"navbar-signout\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        }
+      ]
+    },
+    {
+      "id": "b7a3c6b1-c547-4683-8a66-5695b6d29964",
+      "name": "WB-03 Maximum Active Borrowings",
+      "commands": [
+        {
+          "id": "47304f58-bd67-4cc6-8d83-120579a8f6b8",
+          "comment": "",
+          "command": "open",
+          "target": "/",
+          "targets": [
+            [
+              "/",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "6a8311b9-4f74-4e05-81e7-dbe11a7f06f5",
+          "comment": "",
+          "command": "setWindowSize",
+          "target": "1280x800",
+          "targets": [
+            [
+              "1280x800",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "ff7a1b5b-5e25-42b3-af92-03c3709091bc",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"navbar-signin\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"navbar-signin\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "b06d540e-0767-41fd-a484-16ba8766525f",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"login-email\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"login-email\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "5000"
+        },
+        {
+          "id": "b75f41bb-95e4-48af-9e69-d5db945192ad",
+          "comment": "",
+          "command": "type",
+          "target": "css=[data-testid=\"login-email\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"login-email\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "aditya.patil@campus.edu"
+        },
+        {
+          "id": "fc98a7ac-7bc4-4e59-9d19-522bcad8a92c",
+          "comment": "",
+          "command": "type",
+          "target": "css=[data-testid=\"login-password\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"login-password\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "Password123!"
+        },
+        {
+          "id": "386ab251-5d63-460e-a893-2eda05c60631",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"login-submit\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"login-submit\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "baac2f2c-25f9-4c3b-a6be-f371cb67ac66",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"navbar-user-name\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"navbar-user-name\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "5000"
+        },
+        {
+          "id": "d99e7333-866f-4621-92c8-e042a4bd3bbb",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"catalog-search-input\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"catalog-search-input\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "5000"
+        },
+        {
+          "id": "d88374bb-56b2-4d53-8076-1f44b9723cc2",
+          "comment": "",
+          "command": "type",
+          "target": "css=[data-testid=\"catalog-search-input\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"catalog-search-input\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "Oscilloscope"
+        },
+        {
+          "id": "73a3c46c-728c-4276-951d-155f3296ccad",
+          "comment": "",
+          "command": "pause",
+          "target": "500",
+          "targets": [
+            [
+              "500",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "c1399f57-2be5-439c-a68a-bf85294c8977",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"resource-card-action\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"resource-card-action\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "0c5d1c64-7be1-41e2-9d97-4d5890c831dc",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"borrow-purpose\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"borrow-purpose\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "5000"
+        },
+        {
+          "id": "73bc598a-c11c-48fe-a7e5-d4234ba91746",
+          "comment": "",
+          "command": "type",
+          "target": "css=[data-testid=\"borrow-purpose\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"borrow-purpose\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "Robotics motor testing."
+        },
+        {
+          "id": "153a21d9-29fd-48dc-ab2b-697df986c36c",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"borrow-submit-btn\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"borrow-submit-btn\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "d3260314-c5fc-4be5-bcac-db80df69d74c",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"borrow-error\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"borrow-error\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "5000"
+        },
+        {
+          "id": "f4492749-be18-4693-ad85-86570da03172",
+          "comment": "",
+          "command": "assertText",
+          "target": "css=[data-testid=\"borrow-error\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"borrow-error\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "Business Rule Violation: Maximum limit of 3 active borrowings reached. Return an item before borrowing more."
+        },
+        {
+          "id": "b6792f99-d553-4379-bef7-64730c436c2d",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"modal-close-btn\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"modal-close-btn\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "94151e0e-4c11-4058-959a-5fe74f975a51",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"navbar-user-menu\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"navbar-user-menu\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "8a5f75e7-c97d-4f06-b4dd-24feddd59e4d",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"navbar-signout\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"navbar-signout\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        }
+      ]
+    },
+    {
+      "id": "1f0f3cb8-394d-4583-acbb-aa70d21626bb",
+      "name": "WB-04 Withdrawal With Active Request",
+      "commands": [
+        {
+          "id": "0a6230e1-a504-4b1b-9e03-952b62bdc49b",
+          "comment": "",
+          "command": "open",
+          "target": "/",
+          "targets": [
+            [
+              "/",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "d05c17e6-2ace-4f8d-a50c-afdc21b2db87",
+          "comment": "",
+          "command": "setWindowSize",
+          "target": "1280x800",
+          "targets": [
+            [
+              "1280x800",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "3a7c370e-c8c6-47f5-99b9-76a1678f86b8",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"navbar-signin\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"navbar-signin\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "d0d84599-11eb-42d6-934e-103e2923a7e7",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"login-email\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"login-email\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "5000"
+        },
+        {
+          "id": "162fb9fa-124d-40d6-b97c-430ea899f21b",
+          "comment": "",
+          "command": "type",
+          "target": "css=[data-testid=\"login-email\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"login-email\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "elena.rostova@campus.edu"
+        },
+        {
+          "id": "b97f4aed-3e81-4bfc-8f07-3e53ed745ad1",
+          "comment": "",
+          "command": "type",
+          "target": "css=[data-testid=\"login-password\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"login-password\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "Password123!"
+        },
+        {
+          "id": "dce63a93-e1e7-4e41-acd1-d069fad9bc6c",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"login-submit\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"login-submit\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "737904f1-e4d2-40d2-ae52-d3c41c059240",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"navbar-user-name\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"navbar-user-name\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "5000"
+        },
+        {
+          "id": "444b5a68-d8c3-426d-8653-4c2d05182395",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"catalog-search-input\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"catalog-search-input\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "5000"
+        },
+        {
+          "id": "12d37f1d-27e6-4bee-aa97-8148a13d4db5",
+          "comment": "",
+          "command": "type",
+          "target": "css=[data-testid=\"catalog-search-input\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"catalog-search-input\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "Arduino Mega"
+        },
+        {
+          "id": "e126ffd0-5555-42d1-a177-446a4f7948b3",
+          "comment": "",
+          "command": "pause",
+          "target": "500",
+          "targets": [
+            [
+              "500",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "df5509e4-d107-4444-ab6a-c82b1579b5be",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"resource-card-action\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"resource-card-action\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "d3ad4f3f-ec7e-44ca-b2a8-0d7c6b258e44",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"steward-withdraw-trigger\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"steward-withdraw-trigger\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "5000"
+        },
+        {
+          "id": "be853999-55d9-4232-9f5f-05979e3a198b",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"steward-withdraw-trigger\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"steward-withdraw-trigger\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "4932b947-0a10-4832-a650-1bdc9d2071f8",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"confirm-withdraw-btn\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"confirm-withdraw-btn\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "5000"
+        },
+        {
+          "id": "20713dcb-0761-4773-8e12-9caf321f2475",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"confirm-withdraw-btn\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"confirm-withdraw-btn\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "07b1b273-1262-4ec9-9463-39cd08dc82eb",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"withdraw-error\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"withdraw-error\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "5000"
+        },
+        {
+          "id": "24fe438d-0784-4863-93ca-d4f28e23ba23",
+          "comment": "",
+          "command": "assertText",
+          "target": "css=[data-testid=\"withdraw-error\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"withdraw-error\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "Cannot delete, withdraw, or archive resource while there are pending, approved, or active borrow requests."
+        },
+        {
+          "id": "6b499994-5917-4fc9-999d-3d6e75f7d7e0",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"modal-close-btn\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"modal-close-btn\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "3331be0f-dce8-45c0-9619-168d25388a9d",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"navbar-user-menu\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"navbar-user-menu\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "de95ae94-10ed-4d95-8407-b24f1be29ff5",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"navbar-signout\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"navbar-signout\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        }
+      ]
+    },
+    {
+      "id": "cc31237f-76ea-40b7-888a-1c70a9f6a918",
+      "name": "WB-05 Rating Before Return",
+      "commands": [
+        {
+          "id": "8e53db6d-24d1-48eb-aff3-730f6b16a8bd",
+          "comment": "",
+          "command": "open",
+          "target": "/",
+          "targets": [
+            [
+              "/",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "a0efbabc-c07e-4ff4-bab3-8cf9b532b469",
+          "comment": "",
+          "command": "setWindowSize",
+          "target": "1280x800",
+          "targets": [
+            [
+              "1280x800",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "6bd6d6f7-f41b-4c7f-a664-e0e0037f55b7",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"navbar-signin\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"navbar-signin\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "14bc1966-1057-41d7-8e4f-26b78c63521b",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"login-email\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"login-email\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "5000"
+        },
+        {
+          "id": "9c7a1c6b-1e3d-4010-bd98-36b84a88c375",
+          "comment": "",
+          "command": "type",
+          "target": "css=[data-testid=\"login-email\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"login-email\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "marcus.vance@campus.edu"
+        },
+        {
+          "id": "afb32bb4-25c0-4c8a-bed6-717cf87e2d50",
+          "comment": "",
+          "command": "type",
+          "target": "css=[data-testid=\"login-password\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"login-password\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "Password123!"
+        },
+        {
+          "id": "5ed1e4ba-1f0e-4af3-86e3-45e27e73dcb4",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"login-submit\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"login-submit\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "b880067e-b401-4605-94e9-468739dc8165",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"navbar-user-name\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"navbar-user-name\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "5000"
+        },
+        {
+          "id": "1682bbc4-dbcc-4666-9681-35eb4892e63e",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"navbar-tab-loans\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"navbar-tab-loans\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "475f888a-e800-43bf-b6c6-9bc723ec5249",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"tab-outgoing\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"tab-outgoing\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "5000"
+        },
+        {
+          "id": "33ca13e6-a700-4dbb-a16f-2b0fc43f2b88",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"tab-outgoing\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"tab-outgoing\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "0df5ff23-247c-4b34-89f3-589d8ab32d29",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"loan-card\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"loan-card\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "5000"
+        },
+        {
+          "id": "6ce51226-347d-49d0-91bb-b1effcfd4abd",
+          "comment": "",
+          "command": "assertElementPresent",
+          "target": "css=[data-testid=\"loan-status-badge\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"loan-status-badge\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "26d49e6e-b458-4a48-a8bb-63824432d291",
+          "comment": "",
+          "command": "assertText",
+          "target": "css=[data-testid=\"loan-status-badge\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"loan-status-badge\"]",
+              "css:finder"
+            ]
+          ],
+          "value": "In Custody / Checked Out"
+        },
+        {
+          "id": "4f38f1f7-8383-41e1-9f77-76ec99196e7a",
+          "comment": "",
+          "command": "assertElementNotPresent",
+          "target": "css=[data-testid=\"rate-steward-btn\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"rate-steward-btn\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "cfd3d7fb-8eae-4f92-bdce-105156f3e109",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"navbar-user-menu\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"navbar-user-menu\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        },
+        {
+          "id": "fde3bce7-4a0e-448e-a57a-c48b29df0354",
+          "comment": "",
+          "command": "click",
+          "target": "css=[data-testid=\"navbar-signout\"]",
+          "targets": [
+            [
+              "css=[data-testid=\"navbar-signout\"]",
+              "css:finder"
+            ]
+          ],
+          "value": ""
+        }
+      ]
+    }
+  ],
+  "suites": [
+    {
+      "id": "7ba19939-8ce2-4150-a56c-4d5873e03a83",
+      "name": "Community Resource Exchange - All 10 Tests",
+      "persistSession": false,
+      "parallel": false,
+      "timeout": 300,
+      "tests": [
+        "ccba023a-7770-4f2a-8a6c-ccc32d3b7245",
+        "24e28656-8731-4ae6-b57e-809bf75ee28d",
+        "3eed8345-381d-4f33-952c-dc0848e0cc68",
+        "4d2b42b8-1b11-4c43-b27e-9cc118aa2a8c",
+        "ae4a1579-e7b9-402d-8aa0-a8fcc897476e",
+        "d63cc7ea-ce5f-48c5-9425-c1a30c84960d",
+        "720016cf-6087-4a5e-853c-2832ff92620b",
+        "b7a3c6b1-c547-4683-8a66-5695b6d29964",
+        "1f0f3cb8-394d-4583-acbb-aa70d21626bb",
+        "cc31237f-76ea-40b7-888a-1c70a9f6a918"
+      ]
+    }
+  ],
+  "urls": [
+    "http://localhost:5173/"
+  ],
+  "plugins": []
+}

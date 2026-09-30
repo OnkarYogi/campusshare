@@ -72,6 +72,7 @@ const Navbar = ({ activeTab, setActiveTab, onOpenAuth, onOpenAddResource }) => {
         {/* Center Navigation Links */}
         <nav className="hidden lg:flex items-center gap-1">
           <button
+            data-testid="navbar-tab-catalog"
             onClick={() => setActiveTab('catalog')}
             className={`px-4 py-2 font-body font-semibold text-sm rounded-lg transition-colors ${
               activeTab === 'catalog'
@@ -83,6 +84,7 @@ const Navbar = ({ activeTab, setActiveTab, onOpenAuth, onOpenAddResource }) => {
           </button>
 
           <button
+            data-testid="navbar-tab-loans"
             onClick={() => {
               if (!isAuthenticated) onOpenAuth();
               else setActiveTab('loans');
@@ -97,6 +99,7 @@ const Navbar = ({ activeTab, setActiveTab, onOpenAuth, onOpenAddResource }) => {
           </button>
 
           <button
+            data-testid="navbar-add-resource"
             onClick={() => {
               if (!isAuthenticated) onOpenAuth();
               else onOpenAddResource();
@@ -109,6 +112,7 @@ const Navbar = ({ activeTab, setActiveTab, onOpenAuth, onOpenAddResource }) => {
 
           {user?.role === 'admin' && (
             <button
+              data-testid="navbar-tab-admin"
               onClick={() => setActiveTab('admin')}
               className={`px-4 py-2 font-body font-semibold text-sm rounded-lg transition-colors ${
                 activeTab === 'admin'
@@ -210,6 +214,7 @@ const Navbar = ({ activeTab, setActiveTab, onOpenAuth, onOpenAddResource }) => {
           {isAuthenticated ? (
             <div className="relative" ref={profileRef}>
               <button
+                data-testid="navbar-user-menu"
                 onClick={() => setShowProfileMenu(!showProfileMenu)}
                 className="flex items-center gap-2 pl-1 py-1 pr-2 rounded-full hover:bg-slate-100 transition-colors border border-transparent hover:border-slate-200"
               >
@@ -226,7 +231,7 @@ const Navbar = ({ activeTab, setActiveTab, onOpenAuth, onOpenAddResource }) => {
                   }}
                 />
                 <div className="hidden sm:flex flex-col text-left">
-                  <span className="text-xs font-bold text-slate-900 leading-tight">
+                  <span data-testid="navbar-user-name" className="text-xs font-bold text-slate-900 leading-tight">
                     {user.name}
                   </span>
                   <span className="text-[11px] text-slate-500 font-medium capitalize leading-tight">
@@ -294,6 +299,7 @@ const Navbar = ({ activeTab, setActiveTab, onOpenAuth, onOpenAddResource }) => {
                   </div>
 
                   <button
+                    data-testid="navbar-signout"
                     onClick={() => {
                       logout();
                       setShowProfileMenu(false);
@@ -315,6 +321,7 @@ const Navbar = ({ activeTab, setActiveTab, onOpenAuth, onOpenAddResource }) => {
                 Demo Login
               </button>
               <button
+                data-testid="navbar-signin"
                 onClick={onOpenAuth}
                 className="px-4 py-2 text-xs font-bold text-white bg-primary hover:bg-slate-900 rounded-lg shadow-sm transition-colors"
               >

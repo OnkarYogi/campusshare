@@ -103,7 +103,7 @@ const AuthModal = ({ isOpen, onClose }) => {
         </div>
 
         {error && (
-          <div className="mx-6 mt-4 p-3 rounded-lg bg-red-50 text-xs text-error font-medium">
+          <div data-testid="auth-error" className="mx-6 mt-4 p-3 rounded-lg bg-red-50 text-xs text-error font-medium">
             {error}
           </div>
         )}
@@ -111,6 +111,7 @@ const AuthModal = ({ isOpen, onClose }) => {
         <form onSubmit={handleSubmit} className="p-6 space-y-4">
           <div className="flex border-b border-slate-200 mb-2">
             <button
+              data-testid="tab-signin"
               type="button"
               onClick={() => setIsRegister(false)}
               className={`pb-2 text-xs font-bold w-1/2 transition-colors ${
@@ -120,6 +121,7 @@ const AuthModal = ({ isOpen, onClose }) => {
               Sign In
             </button>
             <button
+              data-testid="tab-register"
               type="button"
               onClick={() => setIsRegister(true)}
               className={`pb-2 text-xs font-bold w-1/2 transition-colors ${
@@ -134,6 +136,7 @@ const AuthModal = ({ isOpen, onClose }) => {
             <div>
               <label className="block text-xs font-bold text-slate-700 mb-1">Full Name *</label>
               <input
+                data-testid="register-name"
                 type="text"
                 required
                 placeholder="e.g. Alex Morgan"
@@ -149,6 +152,7 @@ const AuthModal = ({ isOpen, onClose }) => {
               Institutional Email *
             </label>
             <input
+              data-testid="login-email"
               type="email"
               required
               placeholder="e.g. name@campus.edu or .edu address"
@@ -161,6 +165,7 @@ const AuthModal = ({ isOpen, onClose }) => {
           <div>
             <label className="block text-xs font-bold text-slate-700 mb-1">Password *</label>
             <input
+              data-testid="login-password"
               type="password"
               required
               placeholder="Minimum 6 characters"
@@ -220,6 +225,7 @@ const AuthModal = ({ isOpen, onClose }) => {
             </button>
 
             <button
+              data-testid="login-submit"
               type="submit"
               disabled={loading}
               className="px-5 py-2 rounded-lg bg-primary hover:bg-slate-900 text-white font-bold text-xs transition-colors shadow-sm disabled:opacity-50"

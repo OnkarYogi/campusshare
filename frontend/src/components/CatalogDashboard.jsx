@@ -80,6 +80,7 @@ const CatalogDashboard = ({ onSelectResource, onOpenAddResource }) => {
             search
           </span>
           <input
+            data-testid="catalog-search-input"
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}

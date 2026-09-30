@@ -23,7 +23,7 @@ const seedDatabaseInternal = async () => {
 
   console.log('[Seeder] Creating demo users...');
 
-  // Demo Steward — engineering student who lists equipment
+  // 1. Demo Steward — engineering student who lists equipment
   const elena = await User.create({
     name: 'Ananya Kulkarni',
     email: 'elena.rostova@campus.edu',
@@ -31,8 +31,7 @@ const seedDatabaseInternal = async () => {
     role: 'student',
     department: 'Electronics & Mechatronics Lab',
     campusId: 'MIT-ENG-8492',
-    avatarUrl:
-      'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
+    avatarUrl: '/avatar-placeholder.svg',
     bio: 'Final year Electronics student specialising in embedded systems and IoT at MIT-WPU.',
     isVerified: true,
     trustScore: 4.9,
@@ -41,7 +40,7 @@ const seedDatabaseInternal = async () => {
     averageRating: 4.9,
   });
 
-  // Demo Borrower — CS student who borrows equipment
+  // 2. Demo Borrower — CS student who borrows equipment
   const marcus = await User.create({
     name: 'Rohan Deshmukh',
     email: 'marcus.vance@campus.edu',
@@ -49,8 +48,7 @@ const seedDatabaseInternal = async () => {
     role: 'student',
     department: 'Computer Engineering',
     campusId: 'MIT-CS-9104',
-    avatarUrl:
-      'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=400&q=80',
+    avatarUrl: '/avatar-placeholder.svg',
     bio: 'Third year CS student working on autonomous navigation and ML projects.',
     isVerified: true,
     trustScore: 4.8,
@@ -59,7 +57,7 @@ const seedDatabaseInternal = async () => {
     averageRating: 4.8,
   });
 
-  // Demo Faculty
+  // 3. Demo Faculty
   const drChen = await User.create({
     name: 'Dr. Priya Joshi',
     email: 'dr.chen@campus.edu',
@@ -67,8 +65,7 @@ const seedDatabaseInternal = async () => {
     role: 'faculty',
     department: 'Applied Sciences & Chemistry',
     campusId: 'MIT-FAC-4011',
-    avatarUrl:
-      'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80',
+    avatarUrl: '/avatar-placeholder.svg',
     bio: 'Faculty advisor for undergraduate biochemistry and materials science laboratory research at MIT-WPU.',
     isVerified: true,
     trustScore: 5.0,
@@ -77,7 +74,7 @@ const seedDatabaseInternal = async () => {
     averageRating: 5.0,
   });
 
-  // Demo Club Coordinator
+  // 4. Demo Club Coordinator
   const club = await User.create({
     name: 'MIT-WPU Robotics Club',
     email: 'robotics.club@campus.edu',
@@ -85,8 +82,7 @@ const seedDatabaseInternal = async () => {
     role: 'club_coordinator',
     department: 'Mechanical & Robotics Eng',
     campusId: 'MIT-CLUB-0042',
-    avatarUrl:
-      'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=400&q=80',
+    avatarUrl: '/avatar-placeholder.svg',
     bio: 'Shared robotics and rapid prototyping resource pool for all MIT-WPU campus makers.',
     isVerified: true,
     trustScore: 4.9,
@@ -95,7 +91,7 @@ const seedDatabaseInternal = async () => {
     averageRating: 4.9,
   });
 
-  // Admin
+  // 5. Admin
   const admin = await User.create({
     name: 'MIT-WPU System Administrator',
     email: 'admin@campus.edu',
@@ -103,11 +99,41 @@ const seedDatabaseInternal = async () => {
     role: 'admin',
     department: 'Campus IT & Resource Services',
     campusId: 'MIT-ADMIN-001',
-    avatarUrl:
-      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80',
+    avatarUrl: '/avatar-placeholder.svg',
     bio: 'Overseeing MIT-WPU institutional resource sharing safety and compliance.',
     isVerified: true,
     trustScore: 5.0,
+  });
+
+  // 6. Demo Unverified Student (WB-01)
+  const unverified = await User.create({
+    name: 'Aarav Sharma',
+    email: 'aarav.sharma@campus.edu',
+    password: 'Password123!',
+    role: 'student',
+    department: 'Civil Engineering',
+    campusId: 'MIT-CE-1002',
+    avatarUrl: '/avatar-placeholder.svg',
+    bio: 'First year engineering student pending institutional verification.',
+    isVerified: false,
+    trustScore: 5.0,
+  });
+
+  // 7. Demo Student with Max (3) Active Borrowings (WB-03)
+  const maxBorrower = await User.create({
+    name: 'Aditya Patil',
+    email: 'aditya.patil@campus.edu',
+    password: 'Password123!',
+    role: 'student',
+    department: 'Mechanical Engineering',
+    campusId: 'MIT-ME-3031',
+    avatarUrl: '/avatar-placeholder.svg',
+    bio: 'Mechanical engineering researcher working on multi-stage robotics prototyping.',
+    isVerified: true,
+    trustScore: 4.8,
+    totalCompletedLoans: 9,
+    totalReviews: 5,
+    averageRating: 4.8,
   });
 
   console.log('[Seeder] Creating realistic academic resources matching Stitch designs...');
@@ -124,10 +150,7 @@ const seedDatabaseInternal = async () => {
     maxLoanDurationDays: 7,
     steward: elena._id,
     status: 'available',
-    images: [
-      'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80',
-    ],
+    images: ['/resource-placeholder.svg'],
     specifications: [
       { label: 'Bandwidth', value: '50 MHz (4 Analog Channels)' },
       { label: 'Sampling Rate', value: '1 GSa/s Real-time' },
@@ -148,9 +171,7 @@ const seedDatabaseInternal = async () => {
     maxLoanDurationDays: 14,
     steward: drChen._id,
     status: 'available',
-    images: [
-      'https://images.unsplash.com/photo-1532012164546-f432f2e3777f?auto=format&fit=crop&w=800&q=80',
-    ],
+    images: ['/resource-placeholder.svg'],
     specifications: [
       { label: 'Edition', value: '11th International Edition' },
       { label: 'Publisher', value: 'Oxford University Press' },
@@ -169,10 +190,8 @@ const seedDatabaseInternal = async () => {
     location: 'MIT-WPU Media Lab • Equipment Cage, Room 12',
     maxLoanDurationDays: 3,
     steward: club._id,
-    status: 'available',
-    images: [
-      'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=800&q=80',
-    ],
+    status: 'borrowed',
+    images: ['/resource-placeholder.svg'],
     specifications: [
       { label: 'Sensor', value: '33MP Full-Frame Exmor R CMOS' },
       { label: 'Video', value: '4K 60p 10-Bit 4:2:2 All-Intra' },
@@ -192,15 +211,14 @@ const seedDatabaseInternal = async () => {
     maxLoanDurationDays: 10,
     steward: marcus._id,
     status: 'available',
-    images: [
-      'https://images.unsplash.com/photo-1594980596870-8aa52a78d8cd?auto=format&fit=crop&w=800&q=80',
-    ],
+    images: ['/resource-placeholder.svg'],
     specifications: [
       { label: 'Screen', value: '3.2 inch Backlit Color 320x240' },
       { label: 'CAS Engine', value: 'Symbolic Algebra & Calculus' },
     ],
   });
 
+  // Resource stewarded by Ananya with an ACTIVE PENDING REQUEST (WB-04)
   const r5 = await Resource.create({
     title: 'Arduino Mega 2560 R3 Advanced Sensor & Actuator Kit (65 Modules)',
     description:
@@ -208,20 +226,19 @@ const seedDatabaseInternal = async () => {
     category: 'project_kits',
     identifiers: 'Kit #ROB-K21',
     condition: 'good',
-    department: 'Mechanical & Robotics Eng',
+    department: 'Electronics & Mechatronics Lab',
     location: 'MIT-WPU MakerSpace • Workbench Locker 5',
     maxLoanDurationDays: 14,
-    steward: club._id,
-    status: 'available',
-    images: [
-      'https://images.unsplash.com/photo-1553406830-ef2513450d76?auto=format&fit=crop&w=800&q=80',
-    ],
+    steward: elena._id,
+    status: 'requested',
+    images: ['/resource-placeholder.svg'],
     specifications: [
       { label: 'Microcontroller', value: 'ATmega2560 (16MHz, 256KB Flash)' },
       { label: 'Digital I/O', value: '54 Pins (15 PWM outputs)' },
     ],
   });
 
+  // Resource stewarded by Ananya with NO ACTIVE REQUESTS (BB-05)
   const r6 = await Resource.create({
     title: 'Mitutoyo 500-196-30 Advanced Digital Vernier Caliper (0-6" / 0.01mm)',
     description:
@@ -229,15 +246,69 @@ const seedDatabaseInternal = async () => {
     category: 'lab_gear',
     identifiers: 'Tool Tag #MECH-109',
     condition: 'like_new',
-    department: 'Mechanical & Robotics Eng',
+    department: 'Electronics & Mechatronics Lab',
     location: 'MIT-WPU Precision Lab • Tool Room A',
     maxLoanDurationDays: 5,
     steward: elena._id,
     status: 'available',
-    images: [
-      'https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?auto=format&fit=crop&w=800&q=80',
-    ],
+    images: ['/resource-placeholder.svg'],
   });
+
+  // Active pending request on r5 (blocks Ananya from withdrawing r5) -> WB-04
+  await BorrowRequest.create({
+    resource: r5._id,
+    borrower: marcus._id,
+    steward: elena._id,
+    startDate: new Date(Date.now() + 24 * 3600 * 1000),
+    endDate: new Date(Date.now() + 6 * 24 * 3600 * 1000),
+    durationDays: 5,
+    purpose: 'Senior capstone IoT sensor integration testing.',
+    status: 'pending',
+  });
+
+  // Active borrowed item for Rohan (marcus) stewarded by Robotics Club -> WB-05
+  await BorrowRequest.create({
+    resource: r3._id,
+    borrower: marcus._id,
+    steward: club._id,
+    startDate: new Date(Date.now() - 2 * 24 * 3600 * 1000),
+    endDate: new Date(Date.now() + 2 * 24 * 3600 * 1000),
+    durationDays: 4,
+    purpose: 'Campus documentary recording',
+    status: 'borrowed',
+    approvedAt: new Date(Date.now() - 2 * 24 * 3600 * 1000),
+    borrowedAt: new Date(Date.now() - 2 * 24 * 3600 * 1000),
+  });
+
+  // 3 Active Borrowings for Aditya Patil -> WB-03
+  for (let i = 1; i <= 3; i++) {
+    const quotaRes = await Resource.create({
+      title: `Lab Prototyping Module #${i} (Active Custody)`,
+      description: `Modular testing apparatus currently checked out by student researcher.`,
+      category: 'project_kits',
+      identifiers: `TOOL-MOD-00${i}`,
+      condition: 'good',
+      department: 'Mechanical & Robotics Eng',
+      location: 'MIT-WPU MakerSpace • Storage C',
+      maxLoanDurationDays: 14,
+      steward: club._id,
+      status: 'borrowed',
+      images: ['/resource-placeholder.svg'],
+    });
+
+    await BorrowRequest.create({
+      resource: quotaRes._id,
+      borrower: maxBorrower._id,
+      steward: club._id,
+      startDate: new Date(Date.now() - 4 * 24 * 3600 * 1000),
+      endDate: new Date(Date.now() + 6 * 24 * 3600 * 1000),
+      durationDays: 10,
+      purpose: 'Robotics lab testing',
+      status: 'borrowed',
+      approvedAt: new Date(Date.now() - 4 * 24 * 3600 * 1000),
+      borrowedAt: new Date(Date.now() - 4 * 24 * 3600 * 1000),
+    });
+  }
 
   console.log('[Seeder] Creating sample completed transactions and reviews...');
 

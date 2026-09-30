@@ -19,7 +19,7 @@ const ResourceCard = ({ resource, onSelect }) => {
   const displayImage = resource.images && resource.images.length > 0 ? resource.images[0] : defaultImage;
 
   return (
-    <div className="group bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md hover:border-slate-300 transition-all flex flex-col h-full">
+    <div data-testid="resource-card" className="group bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md hover:border-slate-300 transition-all flex flex-col h-full">
       {/* 16:10 Aspect Ratio Image Container */}
       <div className="relative aspect-[16/10] bg-slate-100 overflow-hidden">
         <img
@@ -79,7 +79,7 @@ const ResourceCard = ({ resource, onSelect }) => {
           </div>
 
           {/* Title */}
-          <h3 className="font-headline font-bold text-slate-900 text-base leading-snug line-clamp-2 group-hover:text-primary transition-colors">
+          <h3 data-testid="resource-title" className="font-headline font-bold text-slate-900 text-base leading-snug line-clamp-2 group-hover:text-primary transition-colors">
             {resource.title}
           </h3>
 
@@ -129,6 +129,7 @@ const ResourceCard = ({ resource, onSelect }) => {
 
           {/* Action Button */}
           <button
+            data-testid="resource-card-action"
             onClick={() => onSelect(resource)}
             className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-colors shadow-sm flex items-center gap-1 whitespace-nowrap ${
               isSteward
