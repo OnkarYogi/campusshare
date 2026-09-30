@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { adminService } from '../services/api';
+import { adminService, resourceService } from '../services/api';
 
 const AdminPortalView = () => {
   const [metrics, setMetrics] = useState(null);
@@ -65,6 +65,17 @@ const AdminPortalView = () => {
       await loadAdminData();
     } catch (err) {
       alert(err.message);
+    }
+  };
+
+  const handleAdminWithdraw = async (resourceId, title) => {
+    if (!window.confirm(`Are you sure you want to withdraw "${title}" from the catalog? This will deactivate the listing while preserving audit history.`)) return;
+    try {
+      await resourceService.withdrawResource(resourceId);
+      setMsg(`Listing "${title}" has been safely withdrawn.`);
+      await loadAdminData();
+    } catch (err) {
+      alert(err.message || 'Failed to withdraw resource.');
     }
   };
 
@@ -303,17 +314,29 @@ const AdminPortalView = () => {
                       <td className="py-3 px-4">{r.steward?.name}</td>
                       <td className="py-3 px-4">{r.department}</td>
                       <td className="py-3 px-4 capitalize font-semibold">{r.status}</td>
-                      <td className="py-3 px-4 text-right">
+                      <td className="py-3 px-4 text-right space-x-2">
                         <button
                           onClick={() => handleToggleModerate(r._id, r.isModerated)}
-                          className={`px-3 py-1 rounded text-[11px] font-bold transition-colors ${
+                          className={`px-2.5 py-1 rounded text-[11px] font-bold transition-colors ${
                             r.isModerated
                               ? 'bg-amber-100 text-amber-800'
-                              : 'bg-slate-100 hover:bg-red-50 text-slate-600 hover:text-error'
+                              : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
                           }`}
                         >
-                          {r.isModerated ? 'Hidden (Flagged)' : 'Hide / Moderate'}
+                          {r.isModerated ? 'Hidden' : 'Hide'}
                         </button>
+                        {r.status !== 'archived' ? (
+                          <button
+                            onClick={() => handleAdminWithdraw(r._id, r.title)}
+                            className="px-2.5 py-1 rounded text-[11px] font-bold bg-red-50 hover:bg-red-100 text-error border border-red-200 transition-colors"
+                          >
+                            Withdraw
+                          </button>
+                        ) : (
+                          <span className="text-[10px] text-slate-400 font-medium px-2 py-0.5 bg-slate-100 rounded">
+                            Archived
+                          </span>
+                        )}
                       </td>
                     </tr>
                   ))}

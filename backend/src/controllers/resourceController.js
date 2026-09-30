@@ -233,8 +233,8 @@ const updateResource = async (req, res, next) => {
   }
 };
 
-// @desc    Delete/Archive a resource (guarded by SRS active borrowing rule)
-// @route   DELETE /api/resources/:id
+// @desc    Withdraw/Archive a resource (guarded by SRS active borrowing rule)
+// @route   DELETE /api/resources/:id or PATCH /api/resources/:id/withdraw
 // @access  Private (Owner or Admin)
 const deleteResource = async (req, res, next) => {
   try {
@@ -243,7 +243,7 @@ const deleteResource = async (req, res, next) => {
     if (!resource || resource.status === 'archived') {
       return res.status(404).json({
         success: false,
-        message: 'Resource not found.',
+        message: 'Resource not found or already withdrawn.',
       });
     }
 
@@ -253,21 +253,21 @@ const deleteResource = async (req, res, next) => {
     ) {
       return res.status(403).json({
         success: false,
-        message: 'Not authorized to delete this resource listing.',
+        message: 'Not authorized to withdraw this resource listing.',
       });
     }
 
-    // SRS Business Rule: Resources with active requests cannot be deleted
+    // SRS Business Rule: Resources with active requests cannot be deleted/withdrawn
     const activeRequests = await BorrowRequest.countDocuments({
       resource: resource._id,
       status: { $in: ['pending', 'approved', 'borrowed'] },
     });
 
-    if (activeRequests > 0) {
+    if (activeRequests > 0 || ['borrowed', 'requested'].includes(resource.status)) {
       return res.status(400).json({
         success: false,
         message:
-          'Cannot delete or archive resource while there are pending, approved, or active borrow requests.',
+          'Cannot delete, withdraw, or archive resource while there are pending, approved, or active borrow requests.',
       });
     }
 
@@ -285,12 +285,15 @@ const deleteResource = async (req, res, next) => {
 
     res.status(200).json({
       success: true,
-      message: 'Resource listing has been safely archived.',
+      message: 'Resource listing has been safely withdrawn.',
+      resource,
     });
   } catch (error) {
     next(error);
   }
 };
+
+const withdrawResource = deleteResource;
 
 // @desc    Get resources listed by current authenticated user
 // @route   GET /api/resources/my-listings
@@ -318,5 +321,6 @@ module.exports = {
   createResource,
   updateResource,
   deleteResource,
+  withdrawResource,
   getMyListings,
 };

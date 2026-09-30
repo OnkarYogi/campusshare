@@ -6,6 +6,7 @@ const {
   createResource,
   updateResource,
   deleteResource,
+  withdrawResource,
   getMyListings,
 } = require('../controllers/resourceController');
 const { auth, requireVerified } = require('../middleware/auth');
@@ -16,5 +17,6 @@ router.get('/:id', getResourceById);
 router.post('/', auth, requireVerified, createResource);
 router.put('/:id', auth, updateResource);
 router.delete('/:id', auth, deleteResource);
+router.patch('/:id/withdraw', auth, withdrawResource);
 
 module.exports = router;

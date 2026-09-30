@@ -50,6 +50,7 @@ export const resourceService = {
   createResource: (data) => api.post('/resources', data),
   updateResource: (id, data) => api.put(`/resources/${id}`, data),
   deleteResource: (id) => api.delete(`/resources/${id}`),
+  withdrawResource: (id) => api.patch(`/resources/${id}/withdraw`),
   getMyListings: () => api.get('/resources/my-listings'),
 };
 

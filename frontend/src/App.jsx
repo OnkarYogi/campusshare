@@ -14,6 +14,9 @@ const AppContent = () => {
   const [selectedResource, setSelectedResource] = useState(null);
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [isAuthOpen, setIsAuthOpen] = useState(false);
+  const [refreshKey, setRefreshKey] = useState(0);
+
+  const handleRefresh = () => setRefreshKey((k) => k + 1);
 
   return (
     <div className="min-h-screen flex flex-col bg-surface">
@@ -32,6 +35,7 @@ const AppContent = () => {
       <main className="flex-1 pt-16">
         {activeTab === 'catalog' && (
           <CatalogDashboard
+            key={`catalog-${refreshKey}`}
             onSelectResource={(res) => setSelectedResource(res)}
             onOpenAddResource={() => {
               if (!isAuthenticated) setIsAuthOpen(true);
@@ -42,12 +46,13 @@ const AppContent = () => {
 
         {activeTab === 'loans' && (
           <MyLoansView
+            key={`loans-${refreshKey}`}
             onSelectResource={(res) => setSelectedResource(res)}
             onOpenAddResource={() => setIsAddOpen(true)}
           />
         )}
 
-        {activeTab === 'admin' && <AdminPortalView />}
+        {activeTab === 'admin' && <AdminPortalView key={`admin-${refreshKey}`} />}
       </main>
 
       {/* Institutional Civic Footer */}
@@ -73,7 +78,12 @@ const AppContent = () => {
         isOpen={!!selectedResource}
         onClose={() => setSelectedResource(null)}
         onRequestSuccess={() => {
+          handleRefresh();
           setActiveTab('loans');
+        }}
+        onResourceWithdrawn={() => {
+          handleRefresh();
+          setSelectedResource(null);
         }}
         onOpenAuth={() => setIsAuthOpen(true)}
       />
@@ -82,6 +92,7 @@ const AppContent = () => {
         isOpen={isAddOpen}
         onClose={() => setIsAddOpen(false)}
         onResourceAdded={() => {
+          handleRefresh();
           setActiveTab('loans');
         }}
       />

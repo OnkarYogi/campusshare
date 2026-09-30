@@ -13,6 +13,24 @@ const MyLoansView = ({ onSelectResource, onOpenAddResource }) => {
   const [actionLoading, setActionLoading] = useState(null);
   const [ratingTransaction, setRatingTransaction] = useState(null);
   const [feedbackMsg, setFeedbackMsg] = useState('');
+  const [resourceToWithdraw, setResourceToWithdraw] = useState(null);
+  const [withdrawModalError, setWithdrawModalError] = useState('');
+
+  const handleConfirmWithdraw = async () => {
+    if (!resourceToWithdraw) return;
+    try {
+      setActionLoading(resourceToWithdraw._id);
+      setWithdrawModalError('');
+      await resourceService.withdrawResource(resourceToWithdraw._id);
+      setFeedbackMsg(`"${resourceToWithdraw.title}" has been safely withdrawn from the campus catalog.`);
+      setResourceToWithdraw(null);
+      await loadAllData();
+    } catch (err) {
+      setWithdrawModalError(err.message || 'Failed to withdraw resource.');
+    } finally {
+      setActionLoading(null);
+    }
+  };
 
   useEffect(() => {
     loadAllData();
@@ -526,14 +544,24 @@ const MyLoansView = ({ onSelectResource, onOpenAddResource }) => {
                         </div>
 
                         <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
-                          <span className="text-slate-500 font-medium">
-                            Max {res.maxLoanDurationDays} days
-                          </span>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setWithdrawModalError('');
+                              setResourceToWithdraw(res);
+                            }}
+                            className="text-error hover:text-red-700 font-semibold flex items-center gap-1 transition-colors"
+                            title="Withdraw listing from campus catalog"
+                          >
+                            <span className="material-symbols-outlined text-[15px]">archive</span>
+                            <span>Withdraw</span>
+                          </button>
                           <button
                             onClick={() => onSelectResource(res)}
-                            className="text-primary hover:underline font-bold"
+                            className="text-primary hover:underline font-bold flex items-center gap-0.5"
                           >
-                            View Details
+                            <span>View Details</span>
+                            <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
                           </button>
                         </div>
                       </div>
@@ -557,6 +585,77 @@ const MyLoansView = ({ onSelectResource, onOpenAddResource }) => {
             setFeedbackMsg('Thank you! Your rating has updated the community trust score.');
           }}
         />
+      )}
+
+      {/* Withdraw Listing Confirmation Modal */}
+      {resourceToWithdraw && (
+        <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-white w-full max-w-md rounded-2xl shadow-2xl border border-slate-200 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+            <div className="p-6 space-y-4">
+              <div className="w-12 h-12 rounded-full bg-red-100 text-error flex items-center justify-center mx-auto">
+                <span className="material-symbols-outlined text-[26px]">archive</span>
+              </div>
+
+              <div className="text-center space-y-1">
+                <h3 className="font-headline font-bold text-base text-slate-900">
+                  Withdraw Listing from Catalog?
+                </h3>
+                <p className="text-xs text-slate-600 font-medium">
+                  "{resourceToWithdraw.title}"
+                </p>
+              </div>
+
+              {withdrawModalError && (
+                <div className="p-3 rounded-lg bg-red-50 border border-red-200 text-xs text-error font-medium flex items-center gap-2">
+                  <span className="material-symbols-outlined text-[18px] flex-shrink-0">error</span>
+                  <span>{withdrawModalError}</span>
+                </div>
+              )}
+
+              {['borrowed', 'requested'].includes(resourceToWithdraw.status) ? (
+                <div className="p-3 rounded-lg bg-amber-50 border border-amber-200 text-xs text-amber-800 space-y-1">
+                  <p className="font-bold flex items-center gap-1">
+                    <span className="material-symbols-outlined text-[16px]">warning</span>
+                    Active Hold / Loan Restriction
+                  </p>
+                  <p className="text-[11px] leading-relaxed">
+                    This item currently has pending holds or is in borrower custody. In compliance with <strong>SRS Business Rule 5.5</strong>, resources with active requests or ongoing loans cannot be withdrawn until returned.
+                  </p>
+                </div>
+              ) : (
+                <p className="text-xs text-slate-500 text-center leading-relaxed">
+                  Withdrawing will deactivate this resource listing, preventing other students or faculty from sending new borrow requests. Completed exchange history and audit trails will remain preserved.
+                </p>
+              )}
+
+              <div className="flex items-center gap-3 pt-2">
+                <button
+                  type="button"
+                  disabled={actionLoading === resourceToWithdraw._id}
+                  onClick={() => setResourceToWithdraw(null)}
+                  className="flex-1 py-2.5 px-4 rounded-xl border border-slate-300 text-slate-700 font-semibold text-xs hover:bg-slate-100 transition-colors"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="button"
+                  disabled={actionLoading === resourceToWithdraw._id}
+                  onClick={handleConfirmWithdraw}
+                  className="flex-1 py-2.5 px-4 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs transition-colors shadow-sm disabled:opacity-50 flex items-center justify-center gap-1.5"
+                >
+                  {actionLoading === resourceToWithdraw._id ? (
+                    'Withdrawing...'
+                  ) : (
+                    <>
+                      <span className="material-symbols-outlined text-[16px]">archive</span>
+                      Confirm Withdraw
+                    </>
+                  )}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );

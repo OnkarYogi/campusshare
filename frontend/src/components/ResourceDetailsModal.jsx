@@ -1,8 +1,15 @@
 import React, { useState } from 'react';
-import { borrowService } from '../services/api';
+import { borrowService, resourceService } from '../services/api';
 import { useAuth } from '../context/AuthContext';
 
-const ResourceDetailsModal = ({ resource, isOpen, onClose, onRequestSuccess, onOpenAuth }) => {
+const ResourceDetailsModal = ({
+  resource,
+  isOpen,
+  onClose,
+  onRequestSuccess,
+  onResourceWithdrawn,
+  onOpenAuth,
+}) => {
   const { user, isAuthenticated } = useAuth();
   const [selectedPhotoIndex, setSelectedPhotoIndex] = useState(0);
 
@@ -14,6 +21,9 @@ const ResourceDetailsModal = ({ resource, isOpen, onClose, onRequestSuccess, onO
   const [endDate, setEndDate] = useState(defaultReturn);
   const [purpose, setPurpose] = useState('');
   const [loading, setLoading] = useState(false);
+  const [withdrawing, setWithdrawing] = useState(false);
+  const [showWithdrawConfirm, setShowWithdrawConfirm] = useState(false);
+  const [withdrawError, setWithdrawError] = useState('');
   const [error, setError] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
 
@@ -72,6 +82,25 @@ const ResourceDetailsModal = ({ resource, isOpen, onClose, onRequestSuccess, onO
       setError(err.message || 'Failed to submit borrow request.');
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleWithdrawResource = async () => {
+    try {
+      setWithdrawing(true);
+      setWithdrawError('');
+      const res = await resourceService.withdrawResource(resource._id || resource.id);
+      if (res.success) {
+        setSuccessMsg('Resource listing has been safely withdrawn from the campus catalog.');
+        setTimeout(() => {
+          if (onResourceWithdrawn) onResourceWithdrawn();
+          onClose();
+        }, 1200);
+      }
+    } catch (err) {
+      setWithdrawError(err.message || 'Failed to withdraw resource.');
+    } finally {
+      setWithdrawing(false);
     }
   };
 
@@ -262,9 +291,95 @@ const ResourceDetailsModal = ({ resource, isOpen, onClose, onRequestSuccess, onO
                 )}
 
                 {isSteward ? (
-                  <div className="p-4 rounded-lg bg-blue-50 text-blue-900 text-xs font-medium text-center">
-                    You are the steward of this resource. You can manage incoming requests from the{' '}
-                    <strong>My Borrowings & Lending</strong> tab.
+                  <div className="space-y-4">
+                    <div className="p-4 rounded-xl bg-blue-50/80 border border-blue-200 text-blue-900 text-xs font-medium space-y-1.5">
+                      <div className="flex items-center gap-2 font-bold text-primary">
+                        <span className="material-symbols-outlined text-[18px]">verified_user</span>
+                        <span>You are the Steward of this Resource</span>
+                      </div>
+                      <p className="text-slate-600">
+                        Incoming loan requests, handoffs, and return confirmations are managed from your{' '}
+                        <strong>My Borrowings & Lending</strong> desk.
+                      </p>
+                    </div>
+
+                    {/* Withdrawal Management Card */}
+                    <div className="p-4 rounded-xl border border-slate-200 bg-slate-50/80 space-y-3">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <h4 className="font-bold text-xs text-slate-800">Listing Status</h4>
+                          <p className="text-[11px] text-slate-500">
+                            Current state:{' '}
+                            <span className="capitalize font-semibold text-slate-700">
+                              {resource.status}
+                            </span>
+                          </p>
+                        </div>
+                        <span
+                          className={`px-2.5 py-0.5 rounded-full text-xs font-semibold ${
+                            isAvailable
+                              ? 'bg-emerald-100 text-emerald-800'
+                              : 'bg-amber-100 text-amber-800'
+                          }`}
+                        >
+                          {isAvailable ? 'Active & Available' : 'Active (Hold / On Loan)'}
+                        </span>
+                      </div>
+
+                      {withdrawError && (
+                        <div className="p-2.5 rounded-lg bg-red-50 border border-red-200 text-xs text-error font-medium flex items-center gap-1.5">
+                          <span className="material-symbols-outlined text-[16px]">error</span>
+                          <span>{withdrawError}</span>
+                        </div>
+                      )}
+
+                      {!isAvailable && (
+                        <div className="p-2.5 rounded-lg bg-amber-50 border border-amber-200 text-[11px] text-amber-800 font-medium">
+                          Note: This resource has active holds or is currently checked out. In accordance with SRS Rule 5.5, resources with active requests or ongoing loans cannot be withdrawn until returned.
+                        </div>
+                      )}
+
+                      {!showWithdrawConfirm ? (
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setWithdrawError('');
+                            setShowWithdrawConfirm(true);
+                          }}
+                          className="w-full py-2.5 px-4 rounded-lg border border-red-200 text-error hover:bg-red-50 text-xs font-bold transition-colors flex items-center justify-center gap-1.5"
+                        >
+                          <span className="material-symbols-outlined text-[16px]">archive</span>
+                          Withdraw Listing from Campus Catalog
+                        </button>
+                      ) : (
+                        <div className="p-3 bg-red-50/70 rounded-xl border border-red-200 space-y-2.5">
+                          <p className="text-xs font-semibold text-slate-900">
+                            Confirm Listing Withdrawal?
+                          </p>
+                          <p className="text-[11px] text-slate-600 leading-relaxed">
+                            Withdrawing will deactivate this resource listing so it is no longer visible in the catalog for new borrowing. Historical transaction logs and audit records will remain preserved.
+                          </p>
+                          <div className="flex items-center gap-2 pt-1">
+                            <button
+                              type="button"
+                              disabled={withdrawing}
+                              onClick={handleWithdrawResource}
+                              className="flex-1 py-2 px-3 rounded-lg bg-red-600 hover:bg-red-700 text-white font-bold text-xs transition-colors flex items-center justify-center gap-1 disabled:opacity-50"
+                            >
+                              {withdrawing ? 'Withdrawing...' : 'Yes, Withdraw Listing'}
+                            </button>
+                            <button
+                              type="button"
+                              disabled={withdrawing}
+                              onClick={() => setShowWithdrawConfirm(false)}
+                              className="py-2 px-3 rounded-lg border border-slate-300 bg-white hover:bg-slate-100 text-slate-700 font-semibold text-xs transition-colors"
+                            >
+                              Cancel
+                            </button>
+                          </div>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 ) : (
                   <form onSubmit={handleBorrowSubmit} className="space-y-3">

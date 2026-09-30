@@ -1,9 +1,19 @@
 import React from 'react';
+import { useAuth } from '../context/AuthContext';
 
 const ResourceCard = ({ resource, onSelect }) => {
+  const { user } = useAuth();
   const isAvailable = resource.status === 'available';
   const isRequested = resource.status === 'requested';
   const isBorrowed = resource.status === 'borrowed';
+
+  const isSteward =
+    user &&
+    resource.steward &&
+    (user._id === resource.steward._id ||
+      user.id === resource.steward._id ||
+      user._id === resource.steward ||
+      user.email === resource.steward.email);
 
   const defaultImage =
     'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80';
@@ -113,10 +123,16 @@ const ResourceCard = ({ resource, onSelect }) => {
           {/* Action Button */}
           <button
             onClick={() => onSelect(resource)}
-            className="px-3.5 py-1.5 rounded-lg bg-primary hover:bg-slate-900 text-white text-xs font-semibold transition-colors shadow-sm flex items-center gap-1 whitespace-nowrap"
+            className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-colors shadow-sm flex items-center gap-1 whitespace-nowrap ${
+              isSteward
+                ? 'bg-blue-50 hover:bg-blue-100 text-primary border border-blue-200'
+                : 'bg-primary hover:bg-slate-900 text-white'
+            }`}
           >
-            <span>Borrow Resource</span>
-            <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
+            <span>{isSteward ? 'Manage Listing' : 'Borrow Resource'}</span>
+            <span className="material-symbols-outlined text-[14px]">
+              {isSteward ? 'tune' : 'arrow_forward'}
+            </span>
           </button>
         </div>
       </div>

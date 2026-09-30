@@ -162,6 +162,93 @@ describe('Resource Management API (SRS 4.3)', () => {
 
     expect(delRes.status).toBe(400);
     expect(delRes.body.success).toBe(false);
-    expect(delRes.body.message).toContain('Cannot delete or archive resource while there are pending, approved, or active');
+    expect(delRes.body.message).toContain('Cannot delete, withdraw, or archive resource while there are pending, approved, or active');
+  });
+
+  it('FR-11: Should allow steward to successfully withdraw their resource listing when no active requests exist', async () => {
+    const resource = await Resource.create({
+      title: 'Arduino Mega 2560 Rev3 Microcontroller',
+      description: 'Microcontroller board based on the ATmega2560.',
+      category: 'project_kits',
+      condition: 'good',
+      department: 'Robotics & Mechatronics Lab',
+      location: 'North MakerSpace Station • Room 204',
+      maxLoanDurationDays: 14,
+      steward: stewardUser._id,
+      status: 'available',
+    });
+
+    const res = await request(app)
+      .delete(`/api/resources/${resource._id}`)
+      .set('Authorization', `Bearer ${stewardToken}`);
+
+    expect(res.status).toBe(200);
+    expect(res.body.success).toBe(true);
+    expect(res.body.message).toContain('safely withdrawn');
+
+    // Verify database state: status changed to 'archived', record preserved
+    const updated = await Resource.findById(resource._id);
+    expect(updated).not.toBeNull();
+    expect(updated.status).toBe('archived');
+
+    // Verify it is excluded from public search and from my-listings
+    const catalogRes = await request(app).get('/api/resources');
+    const catalogTitles = catalogRes.body.resources.map((r) => r.title);
+    expect(catalogTitles).not.toContain('Arduino Mega 2560 Rev3 Microcontroller');
+
+    const myListingsRes = await request(app)
+      .get('/api/resources/my-listings')
+      .set('Authorization', `Bearer ${stewardToken}`);
+    const myListingsTitles = myListingsRes.body.resources.map((r) => r.title);
+    expect(myListingsTitles).not.toContain('Arduino Mega 2560 Rev3 Microcontroller');
+  });
+
+  it('FR-11: Should forbid unauthorized user from withdrawing another steward resource listing', async () => {
+    const resource = await Resource.create({
+      title: 'Calculus: Early Transcendentals 8th Ed',
+      description: 'James Stewart calculus textbook.',
+      category: 'textbooks',
+      condition: 'good',
+      department: 'Mathematics',
+      location: 'Science Library',
+      maxLoanDurationDays: 14,
+      steward: stewardUser._id,
+      status: 'available',
+    });
+
+    // Marcus tries to withdraw Dr. Chen's resource
+    const res = await request(app)
+      .delete(`/api/resources/${resource._id}`)
+      .set('Authorization', `Bearer ${otherToken}`);
+
+    expect(res.status).toBe(403);
+    expect(res.body.success).toBe(false);
+    expect(res.body.message).toContain('Not authorized to withdraw');
+
+    // Ensure status is unchanged
+    const unchanged = await Resource.findById(resource._id);
+    expect(unchanged.status).toBe('available');
+  });
+
+  it('FR-11: Should support withdrawal via PATCH /api/resources/:id/withdraw', async () => {
+    const resource = await Resource.create({
+      title: 'Vernier Photogate Sensor Kit',
+      description: 'High accuracy photogate for mechanics lab.',
+      category: 'lab_gear',
+      condition: 'like_new',
+      department: 'Robotics & Mechatronics Lab',
+      location: 'Physics Lab 3',
+      maxLoanDurationDays: 5,
+      steward: stewardUser._id,
+      status: 'available',
+    });
+
+    const res = await request(app)
+      .patch(`/api/resources/${resource._id}/withdraw`)
+      .set('Authorization', `Bearer ${stewardToken}`);
+
+    expect(res.status).toBe(200);
+    expect(res.body.success).toBe(true);
+    expect(res.body.resource.status).toBe('archived');
   });
 });

@@ -68,6 +68,36 @@ describe('Borrowing Workflow Engine (SRS 4.4 & Business Rules 5.5)', () => {
     expect(res.body.message).toContain('cannot borrow your own resource');
   });
 
+  it('SRS 5.5: Should prevent unverified users from borrowing resources', async () => {
+    const unverifiedUser = await User.create({
+      name: 'Unverified Student',
+      email: 'unverified@campus.edu',
+      password: 'Password123!',
+      role: 'student',
+      isVerified: false,
+    });
+
+    const unverifiedLogin = await request(app).post('/api/auth/login').send({
+      email: 'unverified@campus.edu',
+      password: 'Password123!',
+    });
+    const unverifiedToken = unverifiedLogin.body.token;
+
+    const res = await request(app)
+      .post('/api/borrow')
+      .set('Authorization', `Bearer ${unverifiedToken}`)
+      .send({
+        resourceId: testResource._id,
+        startDate: new Date(),
+        endDate: new Date(Date.now() + 5 * 24 * 3600 * 1000),
+        purpose: 'Attempting to borrow without verification',
+      });
+
+    expect(res.status).toBe(403);
+    expect(res.body.success).toBe(false);
+    expect(res.body.message).toContain('Institutional verification required');
+  });
+
   it('FR-15: Should allow borrower to submit a borrow request and update resource state', async () => {
     const start = new Date();
     const end = new Date(Date.now() + 5 * 24 * 3600 * 1000);
