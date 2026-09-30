@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-surface-variant": "#444651", "on-error-container": "#93000a", "tertiary-container": "#364154", "secondary-container": "#86f2e4", "surface-variant": "#d3e4fe", "surface-dim": "#cbdbf5", "inverse-primary": "#b6c4ff", "primary-fixed": "#dce1ff", "surface": "#f8f9ff", "tertiary-fixed-dim": "#bcc7de", "on-primary-fixed-variant": "#264191", "tertiary-fixed": "#d8e3fb", "on-tertiary": "#ffffff", "primary": "#00236f", "on-error": "#ffffff", "on-secondary-fixed-variant": "#005049", "inverse-on-surface": "#eaf1ff", "tertiary": "#202b3d", "on-primary": "#ffffff", "error-container": "#ffdad6", "surface-container-highest": "#d3e4fe", "on-secondary": "#ffffff", "on-background": "#0b1c30", "on-primary-container": "#90a8ff", "on-tertiary-fixed": "#111c2d", "surface-container": "#e5eeff", "secondary-fixed": "#89f5e7", "surface-tint": "#4059aa", "surface-container-high": "#dce9ff", "secondary-fixed-dim": "#6bd8cb", "on-secondary-container": "#006f66", "on-tertiary-container": "#a2adc4", "error": "#ba1a1a", "inverse-surface": "#213145", "on-secondary-fixed": "#00201d", "on-surface": "#0b1c30", "surface-container-low": "#eff4ff", "on-primary-fixed": "#00164e", "on-tertiary-fixed-variant": "#3c475a", "outline-variant": "#c5c5d3", "secondary": "#006a61", "surface-bright": "#f8f9ff", "background": "#f8f9ff", "primary-container": "#1e3a8a", "outline": "#757682", "primary-fixed-dim": "#b6c4ff", "surface-container-lowest": "#ffffff" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-xs": "0.25rem", "gutter": "1.5rem", "space-sm": "0.5rem", "space-xl": "2rem", "space-lg": "1.5rem", "margin-mobile": "1rem", "margin": "2rem", "space-md": "1rem", "gutter-mobile": "1rem" }, "fontFamily": { "headline-sm": ["Plus Jakarta Sans"], "label-md": ["Inter"], "label-sm": ["Inter"], "label-lg": ["Inter"], "headline-md": ["Plus Jakarta Sans"], "display-lg-mobile": ["Plus Jakarta Sans"], "body-sm": ["Inter"], "display-lg": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "body-lg": ["Inter"], "headline-lg-mobile": ["Plus Jakarta Sans"], "body-md": ["Inter"] }, "fontSize": { "headline-sm": ["16px", { "lineHeight": "24px", "fontWeight": "600" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.03em", "fontWeight": "500" }], "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }], "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "headline-lg": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.015em", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }], "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 z-50 bg-surface-container-lowest/95 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 max-w-7xl mx-auto px-margin flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md"><a class="flex items-center gap-space-sm" data-path="dashboard" href="#"><img alt="CampusShare Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XLSjgLSqSjRpIQbHocA7ilX2PkY44CR-39FxlX4XHYhfY0Y0yrHsMQvp5VWWkWnszZDE-Du9x5gxUGEe5iYBrp1tLaZrVyiBij_juQGmesjVcLuXewUG2Mns_gGt5MWAaqO4zswkLzQrehCiM8uD7XMgIjmOZBCILapnsxgLFeqYAEY4PDZrJQP5DLfYxnvNT0vxgHTbnWudQa0XLiRBF-xnDO0m2LcU3Ij8JMfXeXkjLVgAU0R5T6BxPS"/><span class="font-headline-md text-headline-md text-primary font-bold tracking-tight">CampusShare</span></a><div class="hidden xl:flex items-center gap-space-xs bg-surface-container-low px-space-sm py-1 rounded-full text-on-surface-variant"><span class="material-symbols-outlined text-secondary text-[16px]">school</span><span class="font-label-sm text-label-sm font-medium">Apex State University • North Campus</span><span class="inline-block w-2 h-2 rounded-full bg-secondary ml-1" title="Campus Hub Open"></span></div></div><nav class="hidden lg:flex items-center gap-space-xs" data-active-classes="bg-primary text-on-primary font-label-lg rounded-lg"><a aria-current="page" class="px-space-md py-space-sm transition-colors bg-primary text-on-primary font-label-lg rounded-lg" data-path="dashboard" href="#">Explore Catalog</a><a class="px-space-md py-space-sm font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low rounded-lg transition-colors" data-path="requests" href="#">My Borrowings &amp; Lending</a><a class="px-space-md py-space-sm font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low rounded-lg transition-colors" data-path="add-resource" href="#">Add Resource</a><a class="px-space-md py-space-sm font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low rounded-lg transition-colors" data-path="admin-portal" href="#">Admin Portal</a></nav><div class="flex items-center gap-space-sm"><button aria-label="Search Catalog" class="flex items-center gap-space-xs px-space-sm py-1.5 rounded-lg bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" type="button"><span class="material-symbols-outlined text-[18px]">search</span><span class="hidden sm:inline font-label-sm text-label-sm">Search (Cmd+K)</span></button><div class="hidden md:flex items-center gap-1 px-space-sm py-1 rounded-full bg-secondary-container/40 text-on-secondary-container"><span class="material-symbols-outlined text-[16px]">verified</span><span class="font-label-sm text-label-sm font-semibold">Institutional Verified</span></div><div class="relative"><button aria-label="Notifications" class="p-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors relative" type="button"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-1 right-1 w-4 h-4 bg-error text-on-error rounded-full flex items-center justify-center font-label-sm text-[10px] font-bold leading-none">3</span></button></div><a class="flex items-center gap-space-sm pl-space-xs py-1 pr-space-sm rounded-full hover:bg-surface-container-low transition-colors" data-path="profile" href="#"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjyAWUuuTM7MAGT31-16880CtvR3nnEEcjnk6ZHztdo8E7xucy8Bo8Tv2XQ3G-KRWMT82fmgs9IrYIHuguDX5fmiaqgWKnSrZlSALm7z8UO0Ugkumy0h7XZxX-HIq0e1qt88YhbsC3rOs-Z21-6Mo-8tIXV49w17Fb2_CDF8ARIY1MW3nZPfcxED-zIEl4R-TReyLHVntUNHHZvrnQ2eUXKqXKUK91Hv5KX6RCJIZTVMaXLYY0hSDwJg"/><div class="hidden 2xl:flex flex-col text-left"><span class="font-label-md text-label-md text-on-surface">Elena Rostova</span><span class="font-label-sm text-label-sm text-on-surface-variant">Engineering Dept</span></div></a></div></div></header><main class="w-full pt-16 bg-surface min-h-[calc(100vh-16rem)]"><div class="flex flex-col w-full">
+<!-- Dynamic Campus Ambient Gradient Background Layer -->
+<div class="relative w-full overflow-hidden pb-12">
+<!-- Ambient organic light spots -->
+<div class="absolute -top-32 left-1/4 w-96 h-96 bg-primary-fixed/40 rounded-full blur-3xl pointer-events-none -z-10"></div>
+<div class="absolute top-20 right-10 w-80 h-80 bg-secondary-container/30 rounded-full blur-3xl pointer-events-none -z-10"></div>
+<div class="max-w-7xl mx-auto px-margin space-y-8">
+<!-- Institutional Announcement / Fall Semester Active Ribbon -->
+<section class="relative overflow-hidden rounded-xl bg-gradient-to-r from-primary via-primary-container to-tertiary text-on-primary shadow-xl p-6 sm:p-8 lg:p-10">
+<div class="absolute right-0 top-0 bottom-0 w-1/3 opacity-10 pointer-events-none hidden md:block">
+<svg class="w-full h-full" fill="none" viewbox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+<circle cx="200" cy="200" r="160" stroke="currentColor" stroke-dasharray="20 12" stroke-width="40"></circle>
+<path d="M120 200L180 260L280 140" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></path>
+</svg>
+</div>
+<div class="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+<div class="max-w-2xl space-y-3">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary-container/20 text-secondary-fixed text-label-sm font-label-sm uppercase tracking-wider backdrop-blur-sm">
+<span class="inline-block w-2 h-2 rounded-full bg-secondary-fixed animate-pulse"></span>
+              Fall Semester Active Circle • Apex State
+            </div>
+<h1 class="font-headline-lg text-headline-lg font-bold tracking-tight text-on-primary">
+              Campus Lending Circle
+            </h1>
+<p class="font-body-lg text-body-lg text-primary-fixed text-opacity-95 leading-relaxed">
+              Share academic textbooks, lab instrument kits, and digital production gear across departments for free. Zero rental fees, 100% student and faculty sustained.
+            </p>
+</div>
+<!-- Quick Campus Metrics Visualizer -->
+<div class="grid grid-cols-3 gap-3 sm:gap-4 bg-surface-container-lowest/10 backdrop-blur-md rounded-xl p-4 lg:p-5">
+<div class="flex flex-col">
+<span class="font-display-lg text-display-lg-mobile sm:text-display-lg text-secondary-fixed leading-none font-bold">1,420</span>
+<span class="font-label-sm text-label-sm text-surface-variant font-medium mt-1">Active Listings</span>
+<span class="font-body-sm text-[11px] text-surface-tint mt-0.5">↑ 14% this week</span>
+</div>
+<div class="flex flex-col border-l border-surface-variant/20 pl-3 sm:pl-4">
+<span class="font-display-lg text-display-lg-mobile sm:text-display-lg text-surface-bright leading-none font-bold">98%</span>
+<span class="font-label-sm text-label-sm text-surface-variant font-medium mt-1">On-Time Returns</span>
+<span class="font-body-sm text-[11px] text-surface-tint mt-0.5">Campus Locker Hubs</span>
+</div>
+<div class="flex flex-col border-l border-surface-variant/20 pl-3 sm:pl-4">
+<span class="font-display-lg text-display-lg-mobile sm:text-display-lg text-secondary-fixed-dim leading-none font-bold">42</span>
+<span class="font-label-sm text-label-sm text-surface-variant font-medium mt-1">Student Clubs</span>
+<span class="font-body-sm text-[11px] text-surface-tint mt-0.5">Autonomous Pools</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Search & Interactive Filter Control Deck -->
+<section class="bg-surface-container-lowest rounded-xl p-5 lg:p-6 shadow-md space-y-4">
+<!-- Main Search Bar -->
+<div class="relative flex items-center w-full">
+<span class="material-symbols-outlined absolute left-4 text-on-surface-variant text-[24px]">search</span>
+<input class="w-full pl-12 pr-28 py-3.5 rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md placeholder:text-outline focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-secondary transition-all" id="resourceSearchInput" placeholder="Search textbooks, TI-84 calculators, lab microscopes, camera gear..." type="text"/>
+<div class="absolute right-3 flex items-center gap-1.5">
+<span class="hidden sm:inline-block px-2 py-1 rounded bg-surface-container font-label-sm text-label-sm text-on-surface-variant font-medium">Cmd+K</span>
+<button class="p-1.5 rounded-md hover:bg-surface-container text-on-surface-variant transition-colors" id="clearSearchBtn" title="Clear Search">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+</div>
+<!-- Horizontal Quick Filters & Toggles -->
+<div class="flex flex-wrap items-center justify-between gap-4 pt-1">
+<!-- Department Pills -->
+<div class="flex flex-wrap items-center gap-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-semibold uppercase tracking-wider mr-1">Dept:</span>
+<button class="dept-filter-btn px-3 py-1.5 rounded-full font-label-sm text-label-sm font-medium transition-all bg-primary text-on-primary shadow-sm" data-dept="all">
+              All Departments
+            </button>
+<button class="dept-filter-btn px-3 py-1.5 rounded-full font-label-sm text-label-sm font-medium transition-all bg-surface-container text-on-surface hover:bg-surface-container-high" data-dept="Computer Science">
+              Computer Science
+            </button>
+<button class="dept-filter-btn px-3 py-1.5 rounded-full font-label-sm text-label-sm font-medium transition-all bg-surface-container text-on-surface hover:bg-surface-container-high" data-dept="Biology">
+              Biology &amp; Chem
+            </button>
+<button class="dept-filter-btn px-3 py-1.5 rounded-full font-label-sm text-label-sm font-medium transition-all bg-surface-container text-on-surface hover:bg-surface-container-high" data-dept="Mechanical Eng">
+              Mechanical Eng
+            </button>
+<button class="dept-filter-btn px-3 py-1.5 rounded-full font-label-sm text-label-sm font-medium transition-all bg-surface-container text-on-surface hover:bg-surface-container-high" data-dept="Film &amp; Media">
+              Film &amp; Media
+            </button>
+<button class="dept-filter-btn px-3 py-1.5 rounded-full font-label-sm text-label-sm font-medium transition-all bg-surface-container text-on-surface hover:bg-surface-container-high" data-dept="Athletics">
+              Athletics &amp; Rec
+            </button>
+</div>
+<!-- Availability & Condition Controls -->
+<div class="flex flex-wrap items-center gap-3">
+<!-- Available Now Switch -->
+<label class="flex items-center gap-2 cursor-pointer bg-surface-container-low px-3 py-1.5 rounded-lg select-none hover:bg-surface-container transition-colors">
+<input checked="" class="w-4 h-4 rounded text-secondary focus:ring-0 accent-secondary cursor-pointer" id="availToggle" type="checkbox"/>
+<span class="font-label-sm text-label-sm font-medium text-on-surface flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+                Available Now
+              </span>
+</label>
+<!-- Condition Dropdown Selection -->
+<div class="relative inline-block text-left">
+<select class="appearance-none bg-surface-container-low pl-3 pr-8 py-1.5 rounded-lg font-label-sm text-label-sm text-on-surface font-medium focus:outline-none focus:ring-2 focus:ring-secondary cursor-pointer" id="conditionFilter">
+<option value="any">Condition: All Tiers</option>
+<option value="Like New">Like New</option>
+<option value="Excellent">Excellent</option>
+<option value="Good">Good</option>
+<option value="Acceptable">Acceptable</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-2 pointer-events-none text-on-surface-variant text-[16px]">expand_more</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Resource Categories Grid -->
+<section class="space-y-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[22px]">category</span>
+<h2 class="font-headline-md text-headline-md font-bold text-on-surface">Explore Resource Categories</h2>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">6 Specialized Hubs</span>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+<!-- Cat 1 -->
+<button class="category-card group flex flex-col items-center justify-center p-4 rounded-xl bg-surface-container-lowest hover:bg-surface-container-low transition-all duration-200 text-center shadow-sm hover:shadow-md" data-category="books">
+<div class="w-12 h-12 rounded-full bg-primary-fixed flex items-center justify-center mb-2.5 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-[24px]">menu_book</span>
+</div>
+<span class="font-label-md text-label-md font-semibold text-on-surface group-hover:text-primary transition-colors">Textbooks &amp; Books</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant mt-0.5">540 Available</span>
+</button>
+<!-- Cat 2 -->
+<button class="category-card group flex flex-col items-center justify-center p-4 rounded-xl bg-surface-container-lowest hover:bg-surface-container-low transition-all duration-200 text-center shadow-sm hover:shadow-md" data-category="electronics">
+<div class="w-12 h-12 rounded-full bg-surface-variant flex items-center justify-center mb-2.5 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary-container text-[24px]">calculate</span>
+</div>
+<span class="font-label-md text-label-md font-semibold text-on-surface group-hover:text-primary transition-colors">Calculators &amp; Tech</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant mt-0.5">218 Available</span>
+</button>
+<!-- Cat 3 -->
+<button class="category-card group flex flex-col items-center justify-center p-4 rounded-xl bg-surface-container-lowest hover:bg-surface-container-low transition-all duration-200 text-center shadow-sm hover:shadow-md" data-category="laboratory">
+<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center mb-2.5 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-on-secondary-container text-[24px]">science</span>
+</div>
+<span class="font-label-md text-label-md font-semibold text-on-surface group-hover:text-primary transition-colors">Lab &amp; Glassware</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant mt-0.5">142 Available</span>
+</button>
+<!-- Cat 4 -->
+<button class="category-card group flex flex-col items-center justify-center p-4 rounded-xl bg-surface-container-lowest hover:bg-surface-container-low transition-all duration-200 text-center shadow-sm hover:shadow-md" data-category="robotics">
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center mb-2.5 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-tertiary text-[24px]">smart_toy</span>
+</div>
+<span class="font-label-md text-label-md font-semibold text-on-surface group-hover:text-primary transition-colors">Robotics &amp; Hardware</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant mt-0.5">189 Kits</span>
+</button>
+<!-- Cat 5 -->
+<button class="category-card group flex flex-col items-center justify-center p-4 rounded-xl bg-surface-container-lowest hover:bg-surface-container-low transition-all duration-200 text-center shadow-sm hover:shadow-md" data-category="sports">
+<div class="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center mb-2.5 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-on-secondary-fixed-variant text-[24px]">sports_basketball</span>
+</div>
+<span class="font-label-md text-label-md font-semibold text-on-surface group-hover:text-primary transition-colors">Sports &amp; Outdoors</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant mt-0.5">95 Gears</span>
+</button>
+<!-- Cat 6 -->
+<button class="category-card group flex flex-col items-center justify-center p-4 rounded-xl bg-surface-container-lowest hover:bg-surface-container-low transition-all duration-200 text-center shadow-sm hover:shadow-md" data-category="media">
+<div class="w-12 h-12 rounded-full bg-tertiary-fixed flex items-center justify-center mb-2.5 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-on-tertiary-fixed text-[24px]">videocam</span>
+</div>
+<span class="font-label-md text-label-md font-semibold text-on-surface group-hover:text-primary transition-colors">Audio/Visual Media</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant mt-0.5">236 Available</span>
+</button>
+</div>
+</section>
+<!-- Main Resources Grid & Real-time Live Catalog -->
+<section class="space-y-4">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+<div>
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary animate-ping"></span>
+<h2 class="font-headline-md text-headline-md font-bold text-on-surface">Featured &amp; Recently Listed Resources</h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Authentic academic resources verified for student &amp; faculty pickup</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Sorted by:</span>
+<span class="px-2.5 py-1 rounded bg-surface-container-low font-label-sm text-label-sm text-on-surface font-semibold flex items-center gap-1">
+              Nearest Campus Locker
+              <span class="material-symbols-outlined text-[14px]">near_me</span>
+</span>
+</div>
+</div>
+<!-- 6 High-Fidelity Listing Cards (Asymmetrical / Bento Balanced) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="resourceCardsGrid">
+<!-- Card 1: Organic Chemistry Textbook -->
+<article class="resource-item bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group" data-avail="true" data-condition="Like New" data-dept="Biology">
+<div>
+<!-- Visual Header with Overlaid Badges -->
+<div class="relative w-full h-48 bg-surface-container-low overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="An Organic Chemistry 8th Edition Vollhardt textbook resting neatly on a clean oak library desk alongside molecular model spheres, highlighters, and soft natural study room lighting in deep navy and warm academic tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLPrcT9dmfpv7vTKsxCbQ4jb0f8kDv2VhjMi-DIorRQ7O0XvprnT-Iw78tjDSADxCtgob_XFPgMPqcFadJl4bx3Y4m5kWN592MxgFaOhAfZbH25AAWneU07GnxB4g4UNCxQPxyxF-ABhM_JSIRUKRRpg1XKCYQk-RuGpIY7DSjb0GZqRqiKEN787GT3BgwoaMbc5qdClYHoOu1p8xQUZNdlAh6i59VUc0rk_AWZTalFVLiLiTdZxixzA"/>
+<!-- Availability Pill -->
+<div class="absolute top-3 left-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-secondary shadow-sm">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-label-sm font-bold">Available Now</span>
+</div>
+<!-- Department Badge -->
+<div class="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-tertiary-container/85 backdrop-blur-md text-on-tertiary text-label-sm font-label-sm font-medium">
+                  Chemistry Dept
+                </div>
+</div>
+<!-- Body Details -->
+<div class="p-5 space-y-3">
+<div class="flex items-start justify-between gap-2">
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface line-clamp-2">
+                    Organic Chemistry Structure &amp; Function (8th Ed.) - Vollhardt
+                  </h3>
+</div>
+<div class="space-y-1.5 font-body-sm text-body-sm text-on-surface-variant">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">lock</span>
+<span class="truncate"><strong class="font-medium text-on-surface">Location:</strong> SciTech Library Locker #14</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">schedule</span>
+<span><strong class="font-medium text-on-surface">Max Loan:</strong> 14 Days</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">person</span>
+<span class="truncate"><strong class="font-medium text-on-surface">Custodian:</strong> Prof. David Vance</span>
+</div>
+</div>
+<!-- Condition & Verification -->
+<div class="pt-2 flex items-center justify-between">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-container font-label-sm text-label-sm font-semibold text-primary">
+<span class="material-symbols-outlined text-[14px]">thumb_up</span>
+                    Condition: Like New
+                  </span>
+<span class="inline-flex items-center gap-1 text-[11px] font-label-sm text-secondary font-medium">
+<span class="material-symbols-outlined text-[14px]">verified</span> Faculty Verified
+                  </span>
+</div>
+</div>
+</div>
+<!-- Action footer -->
+<div class="p-5 pt-0">
+<button class="borrow-modal-trigger w-full py-2.5 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg transition-colors flex items-center justify-center gap-2 shadow-sm" data-custodian="Prof. David Vance" data-location="SciTech Library Locker #14" data-max="14 Days" data-title="Organic Chemistry Structure &amp; Function (8th Ed.)">
+<span>View &amp; Borrow</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</article>
+<!-- Card 2: Digital Oscilloscope -->
+<article class="resource-item bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group" data-avail="true" data-condition="Excellent" data-dept="Mechanical Eng">
+<div>
+<div class="relative w-full h-48 bg-surface-container-low overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A clean Rigol DS1054Z 50MHz digital bench oscilloscope displaying crisp green waveforms on a test bench surrounded by probe cables, clean circuit boards, and modern electronics lab lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB675Dr-kP-2F5Vs7eZJV9aQ6NV1QmPXh7iUldpA0XVrcBF0BWIDaXro0qw3OyJpN5uFiZzlU4ci8UqX_-YyHQwnZv_jCGWIhtG003XqJVtzVnzdDrdJVkb6D5ZjeHMpMQWVZpqI8jgV1viuJsuEb0nXEjSSa52-c3tJoHWqM0cN9XPkRljc43ubdB1FeRpYdWmmgchkOmRe5x8TQdm9YaIHaeMZsI4i_wEDP5vgn96cI-GSV4JXVp08g"/>
+<div class="absolute top-3 left-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-secondary shadow-sm">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-label-sm font-bold">Available Now</span>
+</div>
+<div class="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-tertiary-container/85 backdrop-blur-md text-on-tertiary text-label-sm font-label-sm font-medium">
+                  Electrical Eng
+                </div>
+</div>
+<div class="p-5 space-y-3">
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface line-clamp-2">
+                  Rigol DS1054Z 50MHz Digital Oscilloscope
+                </h3>
+<div class="space-y-1.5 font-body-sm text-body-sm text-on-surface-variant">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">meeting_room</span>
+<span class="truncate"><strong class="font-medium text-on-surface">Location:</strong> MakerSpace Lab 204 (Bench 3)</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">schedule</span>
+<span><strong class="font-medium text-on-surface">Max Loan:</strong> 7 Days</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">groups</span>
+<span class="truncate"><strong class="font-medium text-on-surface">Custodian:</strong> Robotics Club</span>
+</div>
+</div>
+<div class="pt-2 flex items-center justify-between">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-container font-label-sm text-label-sm font-semibold text-primary">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                    Condition: Excellent
+                  </span>
+<span class="inline-flex items-center gap-1 text-[11px] font-label-sm text-on-surface-variant font-medium">
+<span class="material-symbols-outlined text-[14px] text-secondary">cable</span> 4 Probes Included
+                  </span>
+</div>
+</div>
+</div>
+<div class="p-5 pt-0">
+<button class="borrow-modal-trigger w-full py-2.5 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg transition-colors flex items-center justify-center gap-2 shadow-sm" data-custodian="Robotics Club" data-location="MakerSpace Lab 204" data-max="7 Days" data-title="Rigol DS1054Z 50MHz Digital Oscilloscope">
+<span>View &amp; Borrow</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</article>
+<!-- Card 3: Sony Mirrorless Camera -->
+<article class="resource-item bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group" data-avail="false" data-condition="Good" data-dept="Film &amp; Media">
+<div>
+<div class="relative w-full h-48 bg-surface-container-low overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A Sony Alpha a6400 4K mirrorless camera body attached to a 16-50mm lens, placed securely inside an open black protective camera bag with extra batteries and SD card case on a studio table." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrSJEoGBFqRp7b95wVQZE8OPjNLtrr8dX1LbMfSSZroGPoS0BxH_JYunex6wVXY8dhqT86JHlVaRzl8FV3w8zvZxwGPT1HRoGYeGR8YwOxwLhY3Fogxoo85zSodbR6U6Ldk8LrVc5uVzdwcl-lhUkCOVKYFV6zmUqMNsFKvGsnkVO3jn2MjHLUQPhDn3FzLJg7OV33CSYawOor54oFtOcrVdyEoPLPPyEXppdE9dE6hrNMNR9K7PIaTA"/>
+<!-- Reserved Pill -->
+<div class="absolute top-3 left-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-error shadow-sm">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span class="font-label-sm text-label-sm font-bold">Reserved until Oct 28</span>
+</div>
+<div class="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-tertiary-container/85 backdrop-blur-md text-on-tertiary text-label-sm font-label-sm font-medium">
+                  Film &amp; Media Arts
+                </div>
+</div>
+<div class="p-5 space-y-3">
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface line-clamp-2">
+                  Sony Alpha a6400 4K Mirrorless Camera Kit + 16-50mm
+                </h3>
+<div class="space-y-1.5 font-body-sm text-body-sm text-on-surface-variant">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">videocam</span>
+<span class="truncate"><strong class="font-medium text-on-surface">Location:</strong> Fine Arts Hall Rm 110 (Equipment Cage)</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">schedule</span>
+<span><strong class="font-medium text-on-surface">Max Loan:</strong> 3 Days</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">school</span>
+<span class="truncate"><strong class="font-medium text-on-surface">Custodian:</strong> Maya Chen (MFA Fellow)</span>
+</div>
+</div>
+<div class="pt-2 flex items-center justify-between">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-container font-label-sm text-label-sm font-semibold text-primary">
+<span class="material-symbols-outlined text-[14px]">auto_fix_high</span>
+                    Condition: Good
+                  </span>
+<span class="inline-flex items-center gap-1 text-[11px] font-label-sm text-on-surface-variant font-medium">
+                    2 Battery Packs • SD Card
+                  </span>
+</div>
+</div>
+</div>
+<div class="p-5 pt-0">
+<button class="borrow-modal-trigger w-full py-2.5 rounded-lg bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-lg text-label-lg transition-colors flex items-center justify-center gap-2" data-custodian="Maya Chen (MFA)" data-location="Fine Arts Hall Rm 110" data-max="3 Days" data-reserved="true" data-title="Sony Alpha a6400 4K Mirrorless Camera Kit">
+<span class="material-symbols-outlined text-[18px]">event_busy</span>
+<span>Place Next Hold</span>
+</button>
+</div>
+</article>
+<!-- Card 4: Arduino Mega Sensor Kit -->
+<article class="resource-item bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group" data-avail="true" data-condition="Acceptable" data-dept="Computer Science">
+<div>
+<div class="relative w-full h-48 bg-surface-container-low overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="An organized transparent component case containing an Arduino Mega 2560 board, servo motors, ultrasonic sensors, jumper wires, and breadboards on an engineering laboratory work surface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDg8jHu07Xx0tENcKsOF9YlqU4be-ZmSWkCracvm7S2V0ksthUL7WshJVOSN0n-Glgd5F3f5NrUgtUEhtGlSKBcsDYS_QHM1nH48pz_RdR42gLK8IleEBWtZlpOXO7rKcW01L1e1lyjXYsdTKSV4726IxJnKBx5Cw3KfxNeDa1vR0tkExbHQloaR5fuabQx_9GnEqfyQZ8xJ_12o7GkaY56LA16yFLuth0XEvGSa_IvB8o0eVTaIgmsdw"/>
+<div class="absolute top-3 left-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-secondary shadow-sm">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-label-sm font-bold">Available Now</span>
+</div>
+<div class="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-tertiary-container/85 backdrop-blur-md text-on-tertiary text-label-sm font-label-sm font-medium">
+                  Robotics &amp; Mechatronics
+                </div>
+</div>
+<div class="p-5 space-y-3">
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface line-clamp-2">
+                  Arduino Mega 2560 Sensor &amp; Actuator Project Kit
+                </h3>
+<div class="space-y-1.5 font-body-sm text-body-sm text-on-surface-variant">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">inventory_2</span>
+<span class="truncate"><strong class="font-medium text-on-surface">Location:</strong> Engineering Hall 3B (Locker 08)</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">schedule</span>
+<span><strong class="font-medium text-on-surface">Max Loan:</strong> 21 Days</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">group_work</span>
+<span class="truncate"><strong class="font-medium text-on-surface">Custodian:</strong> IEEE Student Branch</span>
+</div>
+</div>
+<div class="pt-2 flex items-center justify-between">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-container font-label-sm text-label-sm font-semibold text-primary">
+<span class="material-symbols-outlined text-[14px]">inventory</span>
+                    Condition: Complete Kit
+                  </span>
+<span class="inline-flex items-center gap-1 text-[11px] font-label-sm text-secondary font-medium">
+                    Verified Checklist
+                  </span>
+</div>
+</div>
+</div>
+<div class="p-5 pt-0">
+<button class="borrow-modal-trigger w-full py-2.5 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg transition-colors flex items-center justify-center gap-2 shadow-sm" data-custodian="IEEE Student Branch" data-location="Engineering Hall 3B" data-max="21 Days" data-title="Arduino Mega 2560 Sensor &amp; Actuator Kit">
+<span>View &amp; Borrow</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</article>
+<!-- Card 5: Wilson Evolution Basketball -->
+<article class="resource-item bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group" data-avail="true" data-condition="Good" data-dept="Athletics">
+<div>
+<div class="relative w-full h-48 bg-surface-container-low overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A clean Wilson Evolution official size 7 composite leather basketball resting next to a compact dual-action hand pump on polished hardwood university basketball court gym floor." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfzccf6gMZY942ZT4ZGXpAkistEAvr0DxQEJR_YWVqM2av-PTa6i3YU7x-neddBudYHKgLPscz1K7Ngit0zjYAz3hI2XY-yFd_0JvHwGYn5xAbsQ8CHRgGG1dy6Vc_SdMmSdB0_KgcBiUiusJ4ms8MmC3Z515Ib5bdX8VAUrVH6_oo79Zb2OuBtPO1oMM8UrGJGaFdnbN3d-C-qkW3J4Q5oUkDpm9LfGKGTZdlUioiLW3Z9vajkknwcg"/>
+<div class="absolute top-3 left-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-secondary shadow-sm">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-label-sm font-bold">Available Now</span>
+</div>
+<div class="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-tertiary-container/85 backdrop-blur-md text-on-tertiary text-label-sm font-label-sm font-medium">
+                  Campus Recreation
+                </div>
+</div>
+<div class="p-5 space-y-3">
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface line-clamp-2">
+                  Wilson Evolution Indoor Basketball (Size 7) + Hand Pump
+                </h3>
+<div class="space-y-1.5 font-body-sm text-body-sm text-on-surface-variant">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">sports</span>
+<span class="truncate"><strong class="font-medium text-on-surface">Location:</strong> Student Rec Center Front Desk</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">schedule</span>
+<span><strong class="font-medium text-on-surface">Max Loan:</strong> 2 Days</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">maps_ar</span>
+<span class="truncate"><strong class="font-medium text-on-surface">Custodian:</strong> Intramural Sports Club</span>
+</div>
+</div>
+<div class="pt-2 flex items-center justify-between">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-container font-label-sm text-label-sm font-semibold text-primary">
+<span class="material-symbols-outlined text-[14px]">done</span>
+                    Condition: Good
+                  </span>
+<span class="inline-flex items-center gap-1 text-[11px] font-label-sm text-on-surface-variant font-medium">
+                    Includes Pressure Gauge
+                  </span>
+</div>
+</div>
+</div>
+<div class="p-5 pt-0">
+<button class="borrow-modal-trigger w-full py-2.5 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg transition-colors flex items-center justify-center gap-2 shadow-sm" data-custodian="Intramural Sports Club" data-location="Student Rec Center Front Desk" data-max="2 Days" data-title="Wilson Evolution Indoor Basketball (Size 7)">
+<span>View &amp; Borrow</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</article>
+<!-- Card 6: Compound Microscope -->
+<article class="resource-item bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group" data-avail="false" data-condition="Excellent" data-dept="Biology">
+<div>
+<div class="relative w-full h-48 bg-surface-container-low overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A high precision binocular compound medical laboratory microscope with LED illumination and rotating objective lenses on a black epoxy chemical-resistant biology workstation." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcbUloisyZd5R08lsIJN1FaE1xdFh_2dB3aE_4FRQzfGmAM3K6_SA_DHQ5IZAJKSOQoDc8TGbFatXcA4Vd5UoanNwCpcXQDp_JIPo_dzDYtvbAEzs0sW1V8xwL8aKMEhQ6VlnGZ9wR7AY2pXFBKJYbopjrWeF2u96FAyvIsd-kqydUiRzx_3IfkMu1qgkSm_8hs0Si5mR2wBKTocVe05T9DfO4R_EjPpO8FVZxuudavO5M0fB3fuu0Iw"/>
+<!-- Special Approval Pill -->
+<div class="absolute top-3 left-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-primary-container shadow-sm">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+<span class="font-label-sm text-label-sm font-bold">Faculty Approval Req.</span>
+</div>
+<div class="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-tertiary-container/85 backdrop-blur-md text-on-tertiary text-label-sm font-label-sm font-medium">
+                  Cellular Biology
+                </div>
+</div>
+<div class="p-5 space-y-3">
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface line-clamp-2">
+                  Binocular Compound Microscope 40X-1000X LED
+                </h3>
+<div class="space-y-1.5 font-body-sm text-body-sm text-on-surface-variant">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">biotech</span>
+<span class="truncate"><strong class="font-medium text-on-surface">Location:</strong> Bio Sciences Bldg 402</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">schedule</span>
+<span><strong class="font-medium text-on-surface">Max Loan:</strong> 5 Days</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">account_balance</span>
+<span class="truncate"><strong class="font-medium text-on-surface">Custodian:</strong> Bio Dept Stockroom</span>
+</div>
+</div>
+<div class="pt-2 flex items-center justify-between">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-container font-label-sm text-label-sm font-semibold text-primary">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+                    Condition: Lab Certified
+                  </span>
+<span class="inline-flex items-center gap-1 text-[11px] font-label-sm text-on-surface-variant font-medium">
+                    Calibration 2024
+                  </span>
+</div>
+</div>
+</div>
+<div class="p-5 pt-0">
+<button class="borrow-modal-trigger w-full py-2.5 rounded-lg bg-surface-container text-on-surface hover:bg-surface-container-high font-label-lg text-label-lg transition-colors flex items-center justify-center gap-2" data-approval="true" data-custodian="Bio Dept Stockroom" data-location="Bio Sciences Bldg 402" data-max="5 Days" data-title="Binocular Compound Microscope 40X-1000X LED">
+<span class="material-symbols-outlined text-[18px]">assignment_turned_in</span>
+<span>Request Department Review</span>
+</button>
+</div>
+</article>
+</div>
+</section>
+<!-- Campus Sharing Guidelines & Protocol Section -->
+<section class="bg-gradient-to-br from-surface-container-low via-surface-container to-surface-container-low rounded-xl p-6 sm:p-8 space-y-6">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="space-y-1">
+<div class="inline-flex items-center gap-1.5 font-label-sm text-label-sm text-secondary font-semibold uppercase tracking-wider">
+<span class="material-symbols-outlined text-[18px]">policy</span>
+              Campus Commons Standard
+            </div>
+<h3 class="font-headline-md text-headline-md font-bold text-on-surface">
+              Campus Sharing Guidelines &amp; Code of Care
+            </h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              CampusShare is a zero-cost academic trust circle governed by Apex State University Student Senate bylaws.
+            </p>
+</div>
+<div class="flex items-center gap-3">
+<span class="px-3 py-1.5 rounded-full bg-surface-container-lowest font-label-sm text-label-sm font-semibold text-primary shadow-sm flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-secondary">verified_user</span>
+              100% Non-Monetary
+            </span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Rule 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm space-y-2">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary font-bold font-headline-sm">
+              01
+            </div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Free of Charge Borrowing</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              No deposit fees, rental costs, or monetary exchange permitted. Resources are communal academic assets.
+            </p>
+</div>
+<!-- Rule 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm space-y-2">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary font-bold font-headline-sm">
+              02
+            </div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Institutional ID Required</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Check-outs require active Apex ASU Student or Faculty single sign-on verification via student portal credentials.
+            </p>
+</div>
+<!-- Rule 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm space-y-2">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary font-bold font-headline-sm">
+              03
+            </div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Inspect Before Return</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Log item condition and take high-resolution check-in photos upon pickup and return to maintain community accountability.
+            </p>
+</div>
+<!-- Rule 4 -->
+<div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm space-y-2">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-secondary font-bold font-headline-sm">
+              04
+            </div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Locker Station Code Drop-off</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Utilize any of the 6 campus-wide automated smart locker hubs with one-time SMS passcodes for contact-free handover.
+            </p>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- Interactive Borrow Request Modal Dialog (Level 3 Elevation) -->
+<div class="fixed inset-0 z-50 hidden flex items-center justify-center p-4" id="borrowModal">
+<!-- Backdrop blur scrim -->
+<div class="absolute inset-0 bg-inverse-surface/45 backdrop-blur-sm transition-opacity" id="modalScrim"></div>
+<!-- Modal container -->
+<div class="relative bg-surface-container-lowest rounded-2xl max-w-lg w-full p-6 sm:p-8 shadow-2xl space-y-6 z-10 animate-in fade-in zoom-in-95 duration-200">
+<div class="flex items-start justify-between">
+<div class="space-y-1">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-secondary-container/50 text-on-secondary-container font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">school</span> Institutional Loan Request
+          </div>
+<h3 class="font-headline-md text-headline-md font-bold text-on-surface pt-1" id="modalResourceTitle">
+            Resource Request
+          </h3>
+</div>
+<button class="p-1 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" id="closeModalBtn">
+<span class="material-symbols-outlined text-[24px]">close</span>
+</button>
+</div>
+<!-- Item Meta summary -->
+<div class="bg-surface-container-low rounded-xl p-4 space-y-2.5">
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-on-surface-variant">Locker / Pickup Bay:</span>
+<span class="font-semibold text-on-surface" id="modalLocation">SciTech Library Locker #14</span>
+</div>
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-on-surface-variant">Asset Custodian:</span>
+<span class="font-semibold text-on-surface" id="modalCustodian">Prof. David Vance</span>
+</div>
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-on-surface-variant">Maximum Loan Window:</span>
+<span class="font-semibold text-secondary" id="modalMaxLoan">14 Days</span>
+</div>
+</div>
+<!-- Borrow Timeline preview -->
+<div class="space-y-2">
+<label class="font-label-md text-label-md font-semibold text-on-surface">Borrow Lifecycle Hand-off</label>
+<div class="flex items-center justify-between pt-1">
+<div class="flex flex-col items-center">
+<div class="w-7 h-7 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-bold text-[12px]">1</div>
+<span class="text-[11px] font-label-sm text-on-surface-variant mt-1">Submit</span>
+</div>
+<div class="flex-1 h-0.5 bg-secondary mx-2"></div>
+<div class="flex-col items-center flex">
+<div class="w-7 h-7 rounded-full bg-surface-container text-on-surface-variant flex items-center justify-center font-bold text-[12px]">2</div>
+<span class="text-[11px] font-label-sm text-on-surface-variant mt-1">Custodian Match</span>
+</div>
+<div class="flex-1 h-0.5 bg-surface-container mx-2"></div>
+<div class="flex-col items-center flex">
+<div class="w-7 h-7 rounded-full bg-surface-container text-on-surface-variant flex items-center justify-center font-bold text-[12px]">3</div>
+<span class="text-[11px] font-label-sm text-on-surface-variant mt-1">Locker Code</span>
+</div>
+</div>
+</div>
+<!-- Student Purpose Statement Note -->
+<div class="space-y-2">
+<label class="font-label-md text-label-md font-semibold text-on-surface" for="borrowReason">
+          Intended Academic Purpose or Course ID
+        </label>
+<textarea class="w-full p-3 rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-2 focus:ring-secondary transition-all resize-none" id="borrowReason" placeholder="e.g. Preparing for CHEM 302 Midterm Exam or Final Robotics Project Lab..." rows="2"></textarea>
+</div>
+<!-- Confirmation CTA -->
+<div class="flex items-center justify-end gap-3 pt-2">
+<button class="px-4 py-2.5 rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container transition-colors" id="cancelModalBtn">
+          Cancel
+        </button>
+<button class="px-5 py-2.5 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg font-semibold transition-colors flex items-center gap-2 shadow-sm" id="confirmBorrowBtn">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+          Confirm Free Reservation
+        </button>
+</div>
+</div>
+</div>
+<!-- Client-side Interactive Filtering Script -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('resourceSearchInput');
+      const clearSearchBtn = document.getElementById('clearSearchBtn');
+      const availToggle = document.getElementById('availToggle');
+      const conditionFilter = document.getElementById('conditionFilter');
+      const deptButtons = document.querySelectorAll('.dept-filter-btn');
+      const categoryCards = document.querySelectorAll('.category-card');
+      const cards = document.querySelectorAll('.resource-item');
+
+      let currentDept = 'all';
+
+      function applyFilters() {
+        const query = (searchInput.value || '').trim().toLowerCase();
+        const onlyAvail = availToggle.checked;
+        const condition = conditionFilter.value;
+
+        cards.forEach(card => {
+          const cardText = card.textContent.toLowerCase();
+          const cardDept = card.getAttribute('data-dept') || '';
+          const cardAvail = card.getAttribute('data-avail') === 'true';
+          const cardCondition = card.getAttribute('data-condition') || '';
+
+          const matchesQuery = query === '' || cardText.includes(query);
+          const matchesDept = currentDept === 'all' || cardDept.toLowerCase().includes(currentDept.toLowerCase());
+          const matchesAvail = !onlyAvail || cardAvail;
+          const matchesCondition = condition === 'any' || cardCondition.toLowerCase().includes(condition.toLowerCase());
+
+          if (matchesQuery && matchesDept && matchesAvail && matchesCondition) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+      }
+
+      // Search Inputs
+      searchInput.addEventListener('input', applyFilters);
+      clearSearchBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        applyFilters();
+      });
+
+      // Toggles
+      availToggle.addEventListener('change', applyFilters);
+      conditionFilter.addEventListener('change', applyFilters);
+
+      // Dept Buttons
+      deptButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          deptButtons.forEach(b => {
+            b.classList.remove('bg-primary', 'text-on-primary', 'shadow-sm');
+            b.classList.add('bg-surface-container', 'text-on-surface');
+          });
+          btn.classList.add('bg-primary', 'text-on-primary', 'shadow-sm');
+          btn.classList.remove('bg-surface-container', 'text-on-surface');
+
+          currentDept = btn.getAttribute('data-dept');
+          applyFilters();
+        });
+      });
+
+      // Category buttons quick query
+      categoryCards.forEach(card => {
+        card.addEventListener('click', () => {
+          const cat = card.getAttribute('data-category');
+          if (cat === 'books') searchInput.value = 'Textbook';
+          else if (cat === 'electronics') searchInput.value = 'Oscilloscope';
+          else if (cat === 'laboratory') searchInput.value = 'Microscope';
+          else if (cat === 'robotics') searchInput.value = 'Arduino';
+          else if (cat === 'sports') searchInput.value = 'Basketball';
+          else if (cat === 'media') searchInput.value = 'Camera';
+          applyFilters();
+        });
+      });
+
+      // Modal Handling
+      const modal = document.getElementById('borrowModal');
+      const modalScrim = document.getElementById('modalScrim');
+      const closeModalBtn = document.getElementById('closeModalBtn');
+      const cancelModalBtn = document.getElementById('cancelModalBtn');
+      const confirmBorrowBtn = document.getElementById('confirmBorrowBtn');
+
+      const modalTitle = document.getElementById('modalResourceTitle');
+      const modalLocation = document.getElementById('modalLocation');
+      const modalCustodian = document.getElementById('modalCustodian');
+      const modalMaxLoan = document.getElementById('modalMaxLoan');
+
+      document.querySelectorAll('.borrow-modal-trigger').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const title = btn.getAttribute('data-title');
+          const loc = btn.getAttribute('data-location');
+          const cust = btn.getAttribute('data-custodian');
+          const max = btn.getAttribute('data-max');
+
+          modalTitle.textContent = title;
+          modalLocation.textContent = loc;
+          modalCustodian.textContent = cust;
+          modalMaxLoan.textContent = max;
+
+          modal.classList.remove('hidden');
+        });
+      });
+
+      function closeModal() {
+        modal.classList.add('hidden');
+      }
+
+      modalScrim.addEventListener('click', closeModal);
+      closeModalBtn.addEventListener('click', closeModal);
+      cancelModalBtn.addEventListener('click', closeModal);
+
+      confirmBorrowBtn.addEventListener('click', () => {
+        confirmBorrowBtn.innerHTML = '<span class="material-symbols-outlined animate-spin text-[18px]">progress_activity</span> Reserving Locker...';
+        setTimeout(() => {
+          confirmBorrowBtn.innerHTML = '<span class="material-symbols-outlined text-[18px]">check_circle</span> Reserved! Code Sent';
+          confirmBorrowBtn.classList.remove('bg-primary');
+          confirmBorrowBtn.classList.add('bg-secondary', 'text-on-secondary');
+          setTimeout(() => {
+            closeModal();
+            confirmBorrowBtn.innerHTML = '<span class="material-symbols-outlined text-[18px]">verified</span> Confirm Free Reservation';
+            confirmBorrowBtn.classList.add('bg-primary');
+            confirmBorrowBtn.classList.remove('bg-secondary', 'text-on-secondary');
+          }, 1500);
+        }, 800);
+      });
+    });
+  </script>
+</div></main><footer class="w-full bg-surface-container-low mt-space-xl"><div class="max-w-7xl mx-auto px-margin py-space-xl"><div class="flex flex-col md:flex-row items-center justify-between gap-space-md pb-space-lg mb-space-lg"><div class="flex items-center gap-space-sm text-secondary"><span class="material-symbols-outlined text-[24px]">eco</span><span class="font-label-lg text-label-lg font-semibold text-on-surface">Sustainability Impact: <span class="text-secondary font-bold">4,820 items shared</span> • <span class="text-secondary font-bold">18.4 tons CO2 saved</span></span></div><div class="flex flex-wrap items-center gap-space-md text-on-surface-variant font-label-sm text-label-sm"><div class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-primary">lock</span><span>Locker Hub: North Student Commons (24/7)</span></div><div class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-primary">local_library</span><span>Library Station: Main Desk Bay 3</span></div></div></div><div class="flex flex-col md:flex-row items-center justify-between gap-space-md pt-space-md"><div class="flex items-center gap-space-sm text-on-surface-variant font-body-sm text-body-sm"><span class="font-semibold text-on-surface">CampusShare</span><span>•</span><span>Apex State University Academic Commons Initiative</span><span>•</span><span>Institutional Support: commons@apex.edu</span></div><div class="flex flex-wrap items-center gap-space-lg text-on-surface-variant font-label-sm text-label-sm"><a class="hover:text-on-surface transition-colors" href="#">Academic Honesty &amp; Fair Use</a><a class="hover:text-on-surface transition-colors" href="#">Campus Safety &amp; Escort</a><a class="hover:text-on-surface transition-colors" href="#">Community Guidelines</a></div></div></div></footer></body></html>

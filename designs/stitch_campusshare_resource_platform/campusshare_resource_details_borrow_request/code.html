@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-surface-variant": "#444651", "on-error-container": "#93000a", "tertiary-container": "#364154", "secondary-container": "#86f2e4", "surface-variant": "#d3e4fe", "surface-dim": "#cbdbf5", "inverse-primary": "#b6c4ff", "primary-fixed": "#dce1ff", "surface": "#f8f9ff", "tertiary-fixed-dim": "#bcc7de", "on-primary-fixed-variant": "#264191", "tertiary-fixed": "#d8e3fb", "on-tertiary": "#ffffff", "primary": "#00236f", "on-error": "#ffffff", "on-secondary-fixed-variant": "#005049", "inverse-on-surface": "#eaf1ff", "tertiary": "#202b3d", "on-primary": "#ffffff", "error-container": "#ffdad6", "surface-container-highest": "#d3e4fe", "on-secondary": "#ffffff", "on-background": "#0b1c30", "on-primary-container": "#90a8ff", "on-tertiary-fixed": "#111c2d", "surface-container": "#e5eeff", "secondary-fixed": "#89f5e7", "surface-tint": "#4059aa", "surface-container-high": "#dce9ff", "secondary-fixed-dim": "#6bd8cb", "on-secondary-container": "#006f66", "on-tertiary-container": "#a2adc4", "error": "#ba1a1a", "inverse-surface": "#213145", "on-secondary-fixed": "#00201d", "on-surface": "#0b1c30", "surface-container-low": "#eff4ff", "on-primary-fixed": "#00164e", "on-tertiary-fixed-variant": "#3c475a", "outline-variant": "#c5c5d3", "secondary": "#006a61", "surface-bright": "#f8f9ff", "background": "#f8f9ff", "primary-container": "#1e3a8a", "outline": "#757682", "primary-fixed-dim": "#b6c4ff", "surface-container-lowest": "#ffffff" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-xs": "0.25rem", "gutter": "1.5rem", "space-sm": "0.5rem", "space-xl": "2rem", "space-lg": "1.5rem", "margin-mobile": "1rem", "margin": "2rem", "space-md": "1rem", "gutter-mobile": "1rem" }, "fontFamily": { "headline-sm": ["Plus Jakarta Sans"], "label-md": ["Inter"], "label-sm": ["Inter"], "label-lg": ["Inter"], "headline-md": ["Plus Jakarta Sans"], "display-lg-mobile": ["Plus Jakarta Sans"], "body-sm": ["Inter"], "display-lg": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "body-lg": ["Inter"], "headline-lg-mobile": ["Plus Jakarta Sans"], "body-md": ["Inter"] }, "fontSize": { "headline-sm": ["16px", { "lineHeight": "24px", "fontWeight": "600" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.03em", "fontWeight": "500" }], "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }], "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "headline-lg": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.015em", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }], "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 z-50 bg-surface-container-lowest/95 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 max-w-7xl mx-auto px-margin flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md"><a class="flex items-center gap-space-sm" data-path="dashboard" href="#"><img alt="CampusShare Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XLSjgLSqSjRpIQbHocA7ilX2PkY44CR-39FxlX4XHYhfY0Y0yrHsMQvp5VWWkWnszZDE-Du9x5gxUGEe5iYBrp1tLaZrVyiBij_juQGmesjVcLuXewUG2Mns_gGt5MWAaqO4zswkLzQrehCiM8uD7XMgIjmOZBCILapnsxgLFeqYAEY4PDZrJQP5DLfYxnvNT0vxgHTbnWudQa0XLiRBF-xnDO0m2LcU3Ij8JMfXeXkjLVgAU0R5T6BxPS"/><span class="font-headline-md text-headline-md text-primary font-bold tracking-tight">CampusShare</span></a><div class="hidden xl:flex items-center gap-space-xs bg-surface-container-low px-space-sm py-1 rounded-full text-on-surface-variant"><span class="material-symbols-outlined text-secondary text-[16px]">school</span><span class="font-label-sm text-label-sm font-medium">Apex State University • North Campus</span><span class="inline-block w-2 h-2 rounded-full bg-secondary ml-1" title="Campus Hub Open"></span></div></div><nav class="hidden lg:flex items-center gap-space-xs" data-active-classes="bg-primary text-on-primary font-label-lg rounded-lg"><a class="px-space-md py-space-sm font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low rounded-lg transition-colors" data-path="dashboard" href="#">Explore Catalog</a><a class="px-space-md py-space-sm font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low rounded-lg transition-colors" data-path="requests" href="#">My Borrowings &amp; Lending</a><a class="px-space-md py-space-sm font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low rounded-lg transition-colors" data-path="add-resource" href="#">Add Resource</a><a class="px-space-md py-space-sm font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low rounded-lg transition-colors" data-path="admin-portal" href="#">Admin Portal</a></nav><div class="flex items-center gap-space-sm"><button aria-label="Search Catalog" class="flex items-center gap-space-xs px-space-sm py-1.5 rounded-lg bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" type="button"><span class="material-symbols-outlined text-[18px]">search</span><span class="hidden sm:inline font-label-sm text-label-sm">Search (Cmd+K)</span></button><div class="hidden md:flex items-center gap-1 px-space-sm py-1 rounded-full bg-secondary-container/40 text-on-secondary-container"><span class="material-symbols-outlined text-[16px]">verified</span><span class="font-label-sm text-label-sm font-semibold">Institutional Verified</span></div><div class="relative"><button aria-label="Notifications" class="p-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors relative" type="button"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-1 right-1 w-4 h-4 bg-error text-on-error rounded-full flex items-center justify-center font-label-sm text-[10px] font-bold leading-none">3</span></button></div><a class="flex items-center gap-space-sm pl-space-xs py-1 pr-space-sm rounded-full hover:bg-surface-container-low transition-colors" data-path="profile" href="#"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjyAWUuuTM7MAGT31-16880CtvR3nnEEcjnk6ZHztdo8E7xucy8Bo8Tv2XQ3G-KRWMT82fmgs9IrYIHuguDX5fmiaqgWKnSrZlSALm7z8UO0Ugkumy0h7XZxX-HIq0e1qt88YhbsC3rOs-Z21-6Mo-8tIXV49w17Fb2_CDF8ARIY1MW3nZPfcxED-zIEl4R-TReyLHVntUNHHZvrnQ2eUXKqXKUK91Hv5KX6RCJIZTVMaXLYY0hSDwJg"/><div class="hidden 2xl:flex flex-col text-left"><span class="font-label-md text-label-md text-on-surface">Elena Rostova</span><span class="font-label-sm text-label-sm text-on-surface-variant">Engineering Dept</span></div></a></div></div></header><main class="w-full pt-16 bg-surface min-h-[calc(100vh-16rem)]"><div class="flex flex-col w-full">
+<div class="w-full max-w-7xl mx-auto px-margin py-space-lg">
+<!-- Breadcrumb & Top Inventory Status Bar -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm mb-space-lg">
+<nav aria-label="Breadcrumb" class="flex items-center flex-wrap gap-2 text-on-surface-variant font-label-md text-label-md">
+<a class="hover:text-primary transition-colors" href="#">Catalog</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Electronic Devices &amp; Lab Gear</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Oscilloscopes</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-on-surface font-semibold bg-surface-container px-2 py-0.5 rounded">Asset #EQ-8842</span>
+</nav>
+<div class="flex items-center gap-space-sm">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px] text-secondary">verified_user</span>
+          Calibrated Sept 2024
+        </span>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container/40 text-on-secondary-container font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+          Academic Commons Certified
+        </span>
+</div>
+</div>
+<!-- Main Content Split (60% / 40%) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-start">
+<!-- Left Column (60% = 7 cols) -->
+<section class="lg:col-span-7 flex flex-col gap-space-xl">
+<!-- Asset Title & Primary Identification -->
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-2 mb-1">
+<span class="px-2.5 py-0.5 rounded bg-primary/10 text-primary font-label-sm text-label-sm font-semibold tracking-wide uppercase">Departmental Loan</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm">Apex Robotics &amp; Mechatronics Lab</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight">
+            Rigol DS1054Z 50MHz 4-Channel Digital Oscilloscope with 4 Probes &amp; Calibration Cert
+          </h1>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            Official departmental equipment available to junior &amp; senior engineering cohorts for circuit debugging, waveform analysis, and senior capstone projects.
+          </p>
+</div>
+<!-- Gallery Section -->
+<div class="flex flex-col gap-space-sm">
+<div class="relative w-full aspect-[16/10] bg-surface-container rounded-xl overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover transition-opacity duration-300" data-alt="Front view photograph of a modern Rigol digital four channel oscilloscope powered on, displaying crisp multicolor electrical waveform traces on the color LCD screen. Resting on an orderly university engineering lab workbench with test leads, probes, and an institutional property tag label." id="main-gallery-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYYvZv94fNj-lats7Gv2yXKEjYdDHKIscIPyLV57G1SJj7nF9wvuh9i6SfQJYO4E5gjXY_quppNextTA4zPoXOddwmWj_47g-JaFtWCxIACy0tW6GNYWfTZfCOfPntJOmCF81nb3xmlLxCStNQ6hfgXearXPlIRYLe-UTL7GZy_5gjToT8DBcj5kUzCwtgEHb579Zyy3efNkYRwVIgtxMvMgCjCKwOMm0_tRjnfG3vVdxWwvwMzJ3BGg"/>
+<div class="absolute top-4 left-4 flex gap-2">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface/90 backdrop-blur-md shadow-sm text-on-surface font-label-sm text-label-sm font-semibold">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+                North MakerSpace Station
+              </span>
+</div>
+<div class="absolute bottom-4 right-4 bg-tertiary/80 backdrop-blur-md text-on-tertiary px-2.5 py-1 rounded font-label-sm text-label-sm">
+              Photo 1 of 4: Bench Setup
+            </div>
+</div>
+<!-- Thumbnails -->
+<div class="grid grid-cols-4 gap-space-sm">
+<button class="group relative aspect-[4/3] rounded-lg overflow-hidden bg-surface-container ring-2 ring-primary transition-all" onclick="selectThumbnail(this, 'Front bench setup of Rigol 4-channel oscilloscope showing crisp LCD display and rotary dials in university lab setting')" type="button">
+<img class="w-full h-full object-cover" data-alt="Front bench setup of Rigol 4-channel oscilloscope showing crisp LCD display and rotary dials in university lab setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6jL8-4ZGictpjkZrAtEuNU_wLb1gCXxk8hKh6iDA4wsDJDXlK2b6YOivmE9R-MP1T7hS1TrQ3vZwAGNUgwRenesmRMyZTF6zaFDcUVMnlRlEVW3p19kEZcUuWNfJb9nlRHDSx0A-8CO3CrQOmBjBueQ057Eq4OKGQ3LiItrwbUQPqVh154i4srcVv1_Hz1IVpWJTR6IrfIVzdJAzes-go7G0kVDkbj4NgywGr8nqceqY-n1r8b8pzhg"/>
+<div class="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors"></div>
+</button>
+<button class="group relative aspect-[4/3] rounded-lg overflow-hidden bg-surface-container hover:ring-2 hover:ring-primary/50 transition-all opacity-80 hover:opacity-100" onclick="selectThumbnail(this, 'Macro view of the 4 calibrated 150MHz oscilloscope probes neatly coiled inside protective hard shell padded case')" type="button">
+<img class="w-full h-full object-cover" data-alt="Macro view of the 4 calibrated 150MHz oscilloscope probes neatly coiled inside protective hard shell padded case" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiuEM-QKNZT-KluOidrXBpeWyvJ7i-SqvUXyRlrIU9xe_ZyBLhLsUFLEDQOG1CupGZwQvS1h4LkKu5wlMGTMKP_4GQyFqlWAO3bBPKK9_4U9EoK1KF-0zv9WzC4PaWUbPjhMKC8DFHQW7vpw7WbLioN8YhAzrfm1iG08e4kwxCrFvZf4KH0E3aLX8Dre4Y9WrU3G5W3iQQQRNecMRBvrwyMSeA2mbFP8xML7xYBbP0OlrepGs9ytoMgg"/>
+</button>
+<button class="group relative aspect-[4/3] rounded-lg overflow-hidden bg-surface-container hover:ring-2 hover:ring-primary/50 transition-all opacity-80 hover:opacity-100" onclick="selectThumbnail(this, 'Rear panel of Rigol digital oscilloscope showing USB interface connection, pass fail BNC trigger, and official university asset tag sticker EQ-8842')" type="button">
+<img class="w-full h-full object-cover" data-alt="Rear panel of Rigol digital oscilloscope showing USB interface connection, pass fail BNC trigger, and official university asset tag sticker EQ-8842" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJVaDSxFRVWqDiB8eKz0CJKOwhtY8a5lHTiYvzeZZSlwzlTLi3GAp6bSCumigfs6BuidJ6RtQfjdZ16axZHMk5kbAT7Ex5_sruKcQs9o_BKVFQmY79OcnM0eI89snVy3lwexDTG_ZrdTREeADlRuKofZ9srWh8BQAewrWn_IDP0VV0RIDoi7Tjq7mer56F-vKET58B_rTn5NZkeqEeiqVcOvzjp1M04FvSSbTXhvj71TJT2dGy-bkR_A"/>
+</button>
+<button class="group relative aspect-[4/3] rounded-lg overflow-hidden bg-surface-container hover:ring-2 hover:ring-primary/50 transition-all opacity-80 hover:opacity-100" onclick="selectThumbnail(this, 'Hard shell reinforced carrying transit case open on desk with molded foam slots containing oscilloscope unit and accessories')" type="button">
+<img class="w-full h-full object-cover" data-alt="Hard shell reinforced carrying transit case open on desk with molded foam slots containing oscilloscope unit and accessories" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrETGnGrYKZgfx-B8BSux16XVA-LnrQAcb2yco_-rJxQ0ys2eOcFmw624uuYSeO_pCwSiv_EzRx-xLRrE69mdFpiitlqq0980ptPj8zv3txjmy4FVEqrlNZwR02MALipHMzcnrsNBlxYnrgNjnQtwfxjY_el0MlBjlKTPVhuqPZKUsDcNHwGzwPa4Igc5ZnunzvIchqaOJUZ-kZ373B06E00jnCZ-bEeXbTL9e5mT5c1xRL8HHgf8e4Q"/>
+</button>
+</div>
+</div>
+<!-- Specifications Table & Included Kit -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[22px]">memory</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Technical Specifications &amp; Hardware Kit</h2>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">SPEC-REV 2024.3</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm">
+<div class="flex flex-col p-3 rounded-lg bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Analog Channels</span>
+<span class="font-body-md text-body-md text-on-surface font-semibold mt-0.5">4 Independent Isolated Channels</span>
+</div>
+<div class="flex flex-col p-3 rounded-lg bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Rated Bandwidth</span>
+<span class="font-body-md text-body-md text-on-surface font-semibold mt-0.5">50 MHz (Firmware Rev 00.04)</span>
+</div>
+<div class="flex flex-col p-3 rounded-lg bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Real-Time Sample Rate</span>
+<span class="font-body-md text-body-md text-on-surface font-semibold mt-0.5">1 GSa/s (Single Channel) / 250 MSa/s</span>
+</div>
+<div class="flex flex-col p-3 rounded-lg bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Memory Depth</span>
+<span class="font-body-md text-body-md text-on-surface font-semibold mt-0.5">12 Mpts standard / 24 Mpts ultra</span>
+</div>
+</div>
+<div class="p-3 rounded-lg bg-surface-container-low flex flex-col gap-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Verified Included Accessories:</span>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-on-surface font-body-sm text-body-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[16px]">check_circle</span>
+<span>4x 150MHz Switchable 1X/10X Probes</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[16px]">check_circle</span>
+<span>Grounded AC Power Supply Cord (3-prong)</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[16px]">check_circle</span>
+<span>USB Host to Device Interconnect Cable</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[16px]">check_circle</span>
+<span>Custom Molded Hard Shell Transit Case</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Curatorial Description & Academic Context -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-sm">
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[22px]">info</span>
+            Curator Notes &amp; Community Context
+          </h2>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            Maintained by the Robotics &amp; Automation Student Society for junior/senior capstone design work and lab course projects. Inspected and calibrated Sept 2024. Available for enrolled STEM students and engineering faculty.
+          </p>
+<div class="mt-2 flex flex-wrap gap-2">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-surface-container font-label-sm text-label-sm text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-primary">school</span>
+              Open to ENGR 300+ &amp; Faculty
+            </span>
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-surface-container font-label-sm text-label-sm text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-primary">bolt</span>
+              ESD Sensitive Handling Required
+            </span>
+</div>
+</div>
+<!-- Hand-off Location & Schedule -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[22px]">location_on</span>
+              Pickup &amp; Return Hand-off Station
+            </h2>
+<span class="font-label-sm text-label-sm text-secondary font-semibold flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary"></span> Monitor On Duty
+            </span>
+</div>
+<div class="flex flex-col sm:flex-row gap-space-md items-start sm:items-center p-3.5 rounded-lg bg-surface-container-low">
+<div class="p-2.5 rounded-lg bg-primary-container text-on-primary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[24px]">home_repair_service</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg font-semibold text-on-surface">North Campus MakerSpace • Room 204</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">East Bench #4 (Check in at Front Help Desk counter)</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+                Mon-Fri 9:00 AM - 7:00 PM with Lab Monitor check-in
+              </span>
+</div>
+</div>
+<!-- Location Map View -->
+<div class="w-full h-44 rounded-lg bg-surface-container overflow-hidden shadow-inner relative flex items-center justify-center text-center p-4" data-location="North Campus MakerSpace Room 204, Apex State University" style="">
+<div class="bg-surface/90 backdrop-blur-md px-4 py-2 rounded-lg shadow-sm text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">map</span>
+<span class="font-label-md text-label-md font-semibold">North Engineering Quad • Level 2 Maker Wing</span>
+</div>
+</div>
+</div>
+<!-- Institutional Lending Policies -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-sm">
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[22px]">policy</span>
+            Institutional Lending Policies
+          </h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm mt-1">
+<div class="flex items-start gap-2.5 p-3 rounded-lg bg-surface-container-low">
+<span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">save_as</span>
+<div>
+<span class="font-label-md text-label-md font-semibold text-on-surface block">Free Institutional Loan</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">100% free peer equipment sharing funded by ASU Student Academic Fees.</span>
+</div>
+</div>
+<div class="flex items-start gap-2.5 p-3 rounded-lg bg-surface-container-low">
+<span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">calendar_month</span>
+<div>
+<span class="font-label-md text-label-md font-semibold text-on-surface block">Max 7-Day Loan Window</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Eligible for 1 renewal cycle if no pending reservation queue exists.</span>
+</div>
+</div>
+<div class="flex items-start gap-2.5 p-3 rounded-lg bg-surface-container-low">
+<span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">badge</span>
+<div>
+<span class="font-label-md text-label-md font-semibold text-on-surface block">Campus ID Scan at Pickup</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Active Apex State student or faculty smartcard tap required at desk.</span>
+</div>
+</div>
+<div class="flex items-start gap-2.5 p-3 rounded-lg bg-surface-container-low">
+<span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">restart_alt</span>
+<div>
+<span class="font-label-md text-label-md font-semibold text-on-surface block">Access Accountability</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Late returns or damaged components temporarily place hold on campus borrowing.</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Right Column: Borrow Action Panel (40% = 5 cols) -->
+<aside class="lg:col-span-5 sticky top-20 flex flex-col gap-space-md">
+<div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-md flex flex-col gap-space-md">
+<!-- Availability Status Banner -->
+<div class="flex items-center justify-between p-3 rounded-xl bg-secondary-container/30 text-on-secondary-container">
+<div class="flex items-center gap-2">
+<span class="relative flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-secondary"></span>
+</span>
+<span class="font-label-lg text-label-lg font-bold tracking-tight">AVAILABLE FOR BORROWING</span>
+</div>
+<span class="font-label-sm text-label-sm font-medium">Ready in MakerSpace</span>
+</div>
+<!-- Custodian / Lab Owner Identity -->
+<div class="flex items-center justify-between p-3 rounded-xl bg-surface-container-low">
+<div class="flex items-center gap-3">
+<div class="w-11 h-11 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-headline-sm">
+                RC
+              </div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-label-lg text-label-lg font-bold text-on-surface">Robotics Club</span>
+<span class="material-symbols-outlined text-secondary text-[16px]" title="Institutional Verified">verified</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Apex Engineering Society</span>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<div class="flex items-center text-on-surface font-label-md text-label-md font-bold">
+<span class="material-symbols-outlined text-[16px] text-amber-500 fill-current">star</span>
+<span class="ml-0.5">4.9</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">58 successful loans</span>
+</div>
+</div>
+<!-- Loan Request Configuration Form -->
+<form class="flex flex-col gap-space-md mt-1" id="borrowForm" onsubmit="event.preventDefault(); openConfirmationModal();">
+<!-- Dates Selection Grid -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md font-semibold text-on-surface flex items-center justify-between">
+<span>Select Borrow Window</span>
+<span class="text-on-surface-variant font-normal">Max duration: 7 days</span>
+</label>
+<div class="grid grid-cols-2 gap-2">
+<div class="flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Borrow Date</span>
+<div class="relative">
+<input class="w-full bg-surface-container-low text-on-surface font-label-md text-label-md p-2.5 rounded-lg outline-none focus:ring-2 focus:ring-secondary transition-all" id="borrowDate" onchange="updateDuration()" type="date" value="2024-10-24"/>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Return Date</span>
+<div class="relative">
+<input class="w-full bg-surface-container-low text-on-surface font-label-md text-label-md p-2.5 rounded-lg outline-none focus:ring-2 focus:ring-secondary transition-all" id="returnDate" onchange="updateDuration()" type="date" value="2024-10-30"/>
+</div>
+</div>
+</div>
+<!-- Dynamic Duration Pill -->
+<div class="mt-1 flex items-center justify-between px-3 py-1.5 rounded-lg bg-surface-container text-on-surface font-label-sm text-label-sm">
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-secondary">timelapse</span>
+<span class="font-semibold text-secondary" id="durationNotice">6 days (Within 7-day limit)</span>
+</span>
+<span class="text-on-surface-variant">Grace: 2 hrs</span>
+</div>
+</div>
+<!-- Purpose / Course Usage Field -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md font-semibold text-on-surface flex items-center justify-between" for="courseSelect">
+<span>Course &amp; Project Affiliation</span>
+<span class="text-on-surface-variant text-[11px]">Academic Check</span>
+</label>
+<div class="relative">
+<select class="w-full bg-surface-container-low text-on-surface font-body-md text-body-md p-2.5 rounded-lg outline-none focus:ring-2 focus:ring-secondary appearance-none cursor-pointer" id="courseSelect">
+<option selected="">ENGR 402: Senior Capstone Embedded Systems</option>
+<option>EE 310: Microelectronic Circuits Lab</option>
+<option>ME 445: Autonomous Mechatronics Project</option>
+<option>PHYS 250: Intermediate Physics Instrumentation</option>
+<option>Independent Research / Faculty Supervised Thesis</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-3 text-[18px] text-on-surface-variant pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Intended Usage Details -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md font-semibold text-on-surface" for="purposeNotes">
+                Brief Scope of Work
+              </label>
+<textarea class="w-full bg-surface-container-low text-on-surface font-body-sm text-body-sm p-2.5 rounded-lg outline-none focus:ring-2 focus:ring-secondary resize-none" id="purposeNotes" placeholder="e.g., Debugging PWM motor controller signal harmonics and measuring SPI line clock skew..." rows="2">Analyzing SPI bus arbitration and sensor response times on our robotic arm breakout PCB.</textarea>
+</div>
+<!-- Mutual Agreements Checkboxes -->
+<div class="flex flex-col gap-2 pt-1">
+<label class="flex items-start gap-2.5 cursor-pointer group">
+<input checked="" class="mt-1 w-4 h-4 rounded text-primary focus:ring-secondary accent-primary cursor-pointer" required="" type="checkbox"/>
+<span class="font-body-sm text-body-sm text-on-surface-variant group-hover:text-on-surface leading-tight">
+                  I agree to handle this lab equipment responsibly and follow North MakerSpace campus safety protocols.
+                </span>
+</label>
+<label class="flex items-start gap-2.5 cursor-pointer group">
+<input checked="" class="mt-1 w-4 h-4 rounded text-primary focus:ring-secondary accent-primary cursor-pointer" required="" type="checkbox"/>
+<span class="font-body-sm text-body-sm text-on-surface-variant group-hover:text-on-surface leading-tight">
+                  I understand late returns or missing kit items will temporarily pause my campus borrowing privileges.
+                </span>
+</label>
+</div>
+<!-- Primary Non-Transactional CTA -->
+<button class="w-full mt-2 py-3.5 px-4 rounded-xl bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg font-bold shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2" type="submit">
+<span class="material-symbols-outlined text-[20px]">assignment_turned_in</span>
+              Submit Free Borrow Request
+            </button>
+</form>
+<!-- Secondary Actions -->
+<div class="grid grid-cols-2 gap-2 pt-1">
+<button class="flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-sm text-label-sm font-semibold transition-colors" onclick="showToast('Connecting with Robotics Club Lead (S. Vance, ME \'25)...')" type="button">
+<span class="material-symbols-outlined text-[16px] text-primary">chat</span>
+              Message Coordinator
+            </button>
+<button class="flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-sm text-label-sm font-semibold transition-colors" onclick="toggleScheduleFlyout()" type="button">
+<span class="material-symbols-outlined text-[16px] text-primary">event_available</span>
+              View Calendar
+            </button>
+</div>
+<!-- Institutional Guarantee Note -->
+<div class="flex items-center gap-2 p-2.5 rounded-lg bg-surface-container-low text-on-surface-variant text-[12px] leading-tight">
+<span class="material-symbols-outlined text-secondary text-[18px] shrink-0">shield</span>
+<span>Covered under Apex Institutional Commons Accidental Damage Pool. Zero deposit required.</span>
+</div>
+</div>
+<!-- Hand-off Progression Indicator Mini-Card -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-2">
+<span class="font-label-sm text-label-sm font-bold text-on-surface uppercase tracking-wider">Borrowing Lifecycle</span>
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-[11px] pt-1">
+<div class="flex flex-col items-center gap-1">
+<span class="w-6 h-6 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-bold text-[11px]">1</span>
+<span class="font-medium text-on-surface">Request</span>
+</div>
+<div class="h-0.5 flex-1 bg-secondary mx-1"></div>
+<div class="flex flex-col items-center gap-1">
+<span class="w-6 h-6 rounded-full bg-surface-container text-on-surface flex items-center justify-center font-bold text-[11px]">2</span>
+<span>Approval</span>
+</div>
+<div class="h-0.5 flex-1 bg-surface-container mx-1"></div>
+<div class="flex flex-col items-center gap-1">
+<span class="w-6 h-6 rounded-full bg-surface-container text-on-surface flex items-center justify-center font-bold text-[11px]">3</span>
+<span>Pickup &amp; Scan</span>
+</div>
+<div class="h-0.5 flex-1 bg-surface-container mx-1"></div>
+<div class="flex flex-col items-center gap-1">
+<span class="w-6 h-6 rounded-full bg-surface-container text-on-surface flex items-center justify-center font-bold text-[11px]">4</span>
+<span>Return</span>
+</div>
+</div>
+</div>
+</aside>
+</div>
+<!-- Bottom Section: Similar Resources in Electrical Engineering -->
+<section class="mt-space-xl pt-space-lg flex flex-col gap-space-md">
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+<div>
+<span class="font-label-sm text-label-sm text-secondary font-bold uppercase tracking-wider">Related Instruments</span>
+<h2 class="font-headline-md text-headline-md text-on-surface font-bold">Similar Resources in Electrical Engineering</h2>
+</div>
+<a class="text-primary hover:underline font-label-md text-label-md font-semibold flex items-center gap-1" href="#">
+          Explore all 24 EE instruments <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<!-- Card 1: Logic Analyzer -->
+<article class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between gap-space-md">
+<div class="flex flex-col gap-space-sm">
+<div class="relative w-full aspect-[16/10] bg-surface-container rounded-lg overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Saleae USB 8-channel digital logic analyzer metal enclosure resting on a clean university laboratory bench with multicolored wire jumpers attached to an embedded processor test circuit." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIMtJS34vmbjLip4g2xceh9azTnH5mi5g4ra_Z_A59A8kX6uUUPndepxroDszcqiz_Mx-Gjdp7Fxx20ny_l3CSNqS4UpSJP9WCHf8ZnXol691KYB-hzkXqFbGQVvZxSxYXfHzXEvpbcXR4CpiQ_0W8LPRfF3qLqLk1E8uMoYxpizm9cLMG6dthlWRsVaYQXKBsRbd7ze4tQ0F5wV4hJUusXRvB_zlGkP4rC58tyq0OzBLKxkedBYdvVw"/>
+<span class="absolute top-2.5 left-2.5 inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface/90 backdrop-blur text-on-surface font-label-sm text-[11px] font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                Available
+              </span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">ASSET #EQ-9104 • EE Dept</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold line-clamp-1">
+                Saleae Logic Pro 8 USB Digital Analyzer
+              </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+                8-channel logic probe with automated SPI, I2C, CAN, and UART protocol decoding suite. Includes wire harnesses.
+              </p>
+</div>
+</div>
+<div class="flex items-center justify-between pt-2">
+<div class="flex items-center gap-1 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">location_on</span>
+<span>East Hall 112</span>
+</div>
+<a class="px-3 py-1.5 rounded-lg bg-surface-container hover:bg-primary hover:text-on-primary text-on-surface font-label-sm text-label-sm font-semibold transition-colors" href="#">
+              Borrow Resource
+            </a>
+</div>
+</article>
+<!-- Card 2: Function Generator -->
+<article class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between gap-space-md">
+<div class="flex flex-col gap-space-sm">
+<div class="relative w-full aspect-[16/10] bg-surface-container rounded-lg overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Modern dual channel arbitrary function generator on electronics test rack with glowing frequency readout and output BNC connectors plugged in, high tech collegiate electronics lab." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDcfdDQyzcZdNGbPe91N1t-i10JmmAgNdjo6oYM9M1xvWxjJFxElFfZBYRBD5jMbueYOHwqj60mS1CVasmS5UHOUROPvjSmS75bHYfnZZ-VjKbMrG0mnT0TbWuJBza6jDydWjUc5OpP9CNcUlHeRHQHAOZrAPffgod_lTmBQdWAwU87Bvfe-85TPA-jqr1mbME0iXaaDBEH8m1hfQHLCACcD5DxvM0App6F0FkEIKlVwOOu0xYbTGqAA"/>
+<span class="absolute top-2.5 left-2.5 inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface/90 backdrop-blur text-on-surface font-label-sm text-[11px] font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                Available
+              </span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">ASSET #EQ-7712 • BioEng Society</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold line-clamp-1">
+                Siglent SDG2042X 40MHz Arbitrary Waveform Gen
+              </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+                Dual-channel pulse &amp; sine synthesis with TrueArb point-by-point technology. Tested for biosensor stimulation.
+              </p>
+</div>
+</div>
+<div class="flex items-center justify-between pt-2">
+<div class="flex items-center gap-1 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">location_on</span>
+<span>MakerSpace Rm 204</span>
+</div>
+<a class="px-3 py-1.5 rounded-lg bg-surface-container hover:bg-primary hover:text-on-primary text-on-surface font-label-sm text-label-sm font-semibold transition-colors" href="#">
+              Borrow Resource
+            </a>
+</div>
+</article>
+<!-- Card 3: Bench Power Supply -->
+<article class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between gap-space-md">
+<div class="flex flex-col gap-space-sm">
+<div class="relative w-full aspect-[16/10] bg-surface-container rounded-lg overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Triple output programmable DC bench power supply with clear LED volt and ampere displays, banana plugs, and safety shrouded laboratory leads connected." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLDIpVkEySm5IQKBkbTfRUjx_93IPuvPQdrfP_K0MUFAhsHovkED1g51g0NS6hOK63Nct8a5hWZytv3tS4cP8gId9tGYt_0BwLyL0PiqM0yQQ82qIokZEPlj5wHpbV4CZGavpsm_StTAfko7EEBUpniH9P-R4_3ik6xQKgmsAALbZbRY-ojETKpgpRlDRJHpktrNMFmMoso4oSLKhZFvgdC513pzLGl5r0g-WUS84ZJYIatiogNaUl0w"/>
+<span class="absolute top-2.5 left-2.5 inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface/90 backdrop-blur text-on-surface font-label-sm text-[11px] font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                Hold Placed (Free Oct 28)
+              </span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">ASSET #EQ-6302 • Solar Racing Team</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold line-clamp-1">
+                Korad KA3005P Triple-Output Programmable DC Supply
+              </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+                30V 5A precision regulated voltage supply with overvoltage protection and isolated grounds.
+              </p>
+</div>
+</div>
+<div class="flex items-center justify-between pt-2">
+<div class="flex items-center gap-1 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">location_on</span>
+<span>Solar Bay, West Annex</span>
+</div>
+<a class="px-3 py-1.5 rounded-lg bg-surface-container hover:bg-primary hover:text-on-primary text-on-surface font-label-sm text-label-sm font-semibold transition-colors" href="#">
+              Place Next Hold
+            </a>
+</div>
+</article>
+</div>
+</section>
+</div>
+<!-- Borrow Request Modal Sheet (Overlay) -->
+<div class="fixed inset-0 z-50 bg-tertiary/60 backdrop-blur-sm hidden items-center justify-center p-4" id="requestModal">
+<div class="bg-surface-container-lowest rounded-2xl max-w-lg w-full p-space-xl shadow-2xl flex flex-col gap-space-md animate-in fade-in zoom-in duration-200">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-container/50 text-secondary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[24px]">verified</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Confirm Institutional Loan</h3>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Asset #EQ-8842 • Rigol DS1054Z</span>
+</div>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface p-1 rounded-lg" onclick="closeConfirmationModal()" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-xl flex flex-col gap-2">
+<div class="flex justify-between font-label-sm text-label-sm">
+<span class="text-on-surface-variant">Borrower:</span>
+<span class="text-on-surface font-semibold">Elena Rostova (ID: ASU-89412)</span>
+</div>
+<div class="flex justify-between font-label-sm text-label-sm">
+<span class="text-on-surface-variant">Affiliated Course:</span>
+<span class="text-on-surface font-semibold" id="modalCourse">ENGR 402: Senior Capstone</span>
+</div>
+<div class="flex justify-between font-label-sm text-label-sm">
+<span class="text-on-surface-variant">Loan Period:</span>
+<span class="text-on-surface font-semibold" id="modalPeriod">Oct 24, 2024 → Oct 30, 2024 (6 Days)</span>
+</div>
+<div class="flex justify-between font-label-sm text-label-sm">
+<span class="text-on-surface-variant">Pickup Desk:</span>
+<span class="text-on-surface font-semibold">North MakerSpace Rm 204</span>
+</div>
+<div class="flex justify-between font-label-sm text-label-sm">
+<span class="text-on-surface-variant">Total Rental Fee:</span>
+<span class="text-secondary font-bold">$0.00 (Academic Commons Free Share)</span>
+</div>
+</div>
+<div class="p-3 rounded-lg bg-surface-container text-on-surface-variant font-body-sm text-body-sm flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">info</span>
+<span>Once confirmed, the Robotics Club custodian will receive immediate notice to stage the instrument at MakerSpace Bench #4. Please present your Student ID to check out.</span>
+</div>
+<div class="flex items-center gap-space-sm pt-2">
+<button class="flex-1 py-2.5 px-4 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-label-lg text-label-lg font-semibold transition-colors" onclick="closeConfirmationModal()" type="button">
+          Cancel
+        </button>
+<button class="flex-1 py-2.5 px-4 rounded-xl bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg font-bold shadow-md transition-all flex items-center justify-center gap-1.5" onclick="completeRequest()" type="button">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+          Confirm &amp; Reserve
+        </button>
+</div>
+</div>
+</div>
+<!-- Toast Notification element -->
+<div class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none bg-tertiary text-on-tertiary px-4 py-3 rounded-xl shadow-xl flex items-center gap-2.5 max-w-md" id="toastNotification">
+<span class="material-symbols-outlined text-secondary text-[20px]" id="toastIcon">check_circle</span>
+<span class="font-body-sm text-body-sm" id="toastMessage">Request submitted successfully!</span>
+</div>
+<!-- Inline Micro-Interactions Script -->
+<script>
+    function selectThumbnail(buttonEl, altDescription) {
+      const mainImg = document.getElementById('main-gallery-img');
+      if (mainImg) {
+        mainImg.style.opacity = '0.3';
+        setTimeout(() => {
+          mainImg.setAttribute('data-alt', altDescription);
+          mainImg.style.opacity = '1';
+        }, 150);
+      }
+      
+      const thumbButtons = buttonEl.parentElement.querySelectorAll('button');
+      thumbButtons.forEach(btn => {
+        btn.classList.remove('ring-2', 'ring-primary');
+        btn.classList.add('opacity-80');
+      });
+      buttonEl.classList.remove('opacity-80');
+      buttonEl.classList.add('ring-2', 'ring-primary');
+    }
+
+    function updateDuration() {
+      const borrowInput = document.getElementById('borrowDate');
+      const returnInput = document.getElementById('returnDate');
+      const notice = document.getElementById('durationNotice');
+
+      if (!borrowInput.value || !returnInput.value) return;
+
+      const d1 = new Date(borrowInput.value);
+      const d2 = new Date(returnInput.value);
+      const diffTime = d2 - d1;
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+      if (diffDays <= 0) {
+        notice.textContent = 'Invalid date sequence';
+        notice.className = 'font-semibold text-error';
+      } else if (diffDays > 7) {
+        notice.textContent = `${diffDays} days (Exceeds 7-day limit)`;
+        notice.className = 'font-semibold text-error';
+      } else {
+        notice.textContent = `${diffDays} days (Within 7-day limit)`;
+        notice.className = 'font-semibold text-secondary';
+      }
+    }
+
+    function openConfirmationModal() {
+      const borrowDate = document.getElementById('borrowDate').value;
+      const returnDate = document.getElementById('returnDate').value;
+      const course = document.getElementById('courseSelect').value;
+
+      document.getElementById('modalCourse').textContent = course;
+      document.getElementById('modalPeriod').textContent = `${borrowDate} → ${returnDate}`;
+      
+      const modal = document.getElementById('requestModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeConfirmationModal() {
+      const modal = document.getElementById('requestModal');
+      modal.classList.remove('flex');
+      modal.classList.add('hidden');
+    }
+
+    function completeRequest() {
+      closeConfirmationModal();
+      showToast('Borrow reservation locked! Confirmation sent to elena.r@apex.edu.');
+    }
+
+    function toggleScheduleFlyout() {
+      showToast('Loading full MakerSpace bench equipment roster for October...');
+    }
+
+    function showToast(message, isError = false) {
+      const toast = document.getElementById('toastNotification');
+      const toastMsg = document.getElementById('toastMessage');
+      const toastIcon = document.getElementById('toastIcon');
+
+      toastMsg.textContent = message;
+      toastIcon.textContent = isError ? 'error' : 'task_alt';
+
+      toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+        toast.classList.remove('translate-y-0', 'opacity-100');
+      }, 4200);
+    }
+  </script>
+</div></main><footer class="w-full bg-surface-container-low mt-space-xl"><div class="max-w-7xl mx-auto px-margin py-space-xl"><div class="flex flex-col md:flex-row items-center justify-between gap-space-md pb-space-lg mb-space-lg"><div class="flex items-center gap-space-sm text-secondary"><span class="material-symbols-outlined text-[24px]">eco</span><span class="font-label-lg text-label-lg font-semibold text-on-surface">Sustainability Impact: <span class="text-secondary font-bold">4,820 items shared</span> • <span class="text-secondary font-bold">18.4 tons CO2 saved</span></span></div><div class="flex flex-wrap items-center gap-space-md text-on-surface-variant font-label-sm text-label-sm"><div class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-primary">lock</span><span>Locker Hub: North Student Commons (24/7)</span></div><div class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-primary">local_library</span><span>Library Station: Main Desk Bay 3</span></div></div></div><div class="flex flex-col md:flex-row items-center justify-between gap-space-md pt-space-md"><div class="flex items-center gap-space-sm text-on-surface-variant font-body-sm text-body-sm"><span class="font-semibold text-on-surface">CampusShare</span><span>•</span><span>Apex State University Academic Commons Initiative</span><span>•</span><span>Institutional Support: commons@apex.edu</span></div><div class="flex flex-wrap items-center gap-space-lg text-on-surface-variant font-label-sm text-label-sm"><a class="hover:text-on-surface transition-colors" href="#">Academic Honesty &amp; Fair Use</a><a class="hover:text-on-surface transition-colors" href="#">Campus Safety &amp; Escort</a><a class="hover:text-on-surface transition-colors" href="#">Community Guidelines</a></div></div></div></footer></body></html>

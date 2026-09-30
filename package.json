@@ -1,0 +1,21 @@
+{
+  "name": "community-resource-exchange-platform",
+  "version": "1.0.0",
+  "description": "CampusShare: Community Resource Borrowing and Lending Platform for Educational Institutions",
+  "private": true,
+  "scripts": {
+    "server": "npm --prefix backend run dev",
+    "client": "npm --prefix frontend run dev",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "start": "npm --prefix backend start",
+    "test": "npm --prefix backend test",
+    "build": "npm --prefix frontend run build",
+    "seed": "npm --prefix backend run seed",
+    "install:all": "npm install && npm --prefix backend install && npm --prefix frontend install"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  },
+  "author": "CampusShare Engineering Team",
+  "license": "ISC"
+}
