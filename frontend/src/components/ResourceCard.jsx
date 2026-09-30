@@ -15,8 +15,7 @@ const ResourceCard = ({ resource, onSelect }) => {
       user._id === resource.steward ||
       user.email === resource.steward.email);
 
-  const defaultImage =
-    'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80';
+  const defaultImage = '/resource-placeholder.svg';
   const displayImage = resource.images && resource.images.length > 0 ? resource.images[0] : defaultImage;
 
   return (
@@ -28,6 +27,10 @@ const ResourceCard = ({ resource, onSelect }) => {
           alt={resource.title}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
           loading="lazy"
+          onError={(e) => {
+            e.currentTarget.onerror = null;
+            e.currentTarget.src = '/resource-placeholder.svg';
+          }}
         />
 
         {/* Availability Status Badge (Top-Left) */}
@@ -105,10 +108,14 @@ const ResourceCard = ({ resource, onSelect }) => {
             <img
               src={
                 resource.steward?.avatarUrl ||
-                'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80'
+                '/avatar-placeholder.svg'
               }
               alt={resource.steward?.name || 'Steward'}
               className="w-7 h-7 rounded-full object-cover ring-1 ring-slate-200"
+              onError={(e) => {
+                e.currentTarget.onerror = null;
+                e.currentTarget.src = '/avatar-placeholder.svg';
+              }}
             />
             <div className="flex flex-col min-w-0">
               <span className="text-xs font-semibold text-slate-800 truncate">
@@ -126,12 +133,16 @@ const ResourceCard = ({ resource, onSelect }) => {
             className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-colors shadow-sm flex items-center gap-1 whitespace-nowrap ${
               isSteward
                 ? 'bg-blue-50 hover:bg-blue-100 text-primary border border-blue-200'
+                : isBorrowed
+                ? 'bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300'
                 : 'bg-primary hover:bg-slate-900 text-white'
             }`}
           >
-            <span>{isSteward ? 'Manage Listing' : 'Borrow Resource'}</span>
+            <span>
+              {isSteward ? 'Manage Listing' : isBorrowed ? 'Checked Out' : 'Borrow Resource'}
+            </span>
             <span className="material-symbols-outlined text-[14px]">
-              {isSteward ? 'tune' : 'arrow_forward'}
+              {isSteward ? 'tune' : isBorrowed ? 'lock' : 'arrow_forward'}
             </span>
           </button>
         </div>

@@ -220,10 +220,14 @@ const MyLoansView = ({ onSelectResource, onOpenAddResource }) => {
                           <img
                             src={
                               req.resource?.images?.[0] ||
-                              'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80'
+                              '/resource-placeholder.svg'
                             }
                             alt=""
                             className="w-12 h-12 rounded-lg object-cover border border-slate-200"
+                            onError={(e) => {
+                              e.currentTarget.onerror = null;
+                              e.currentTarget.src = '/resource-placeholder.svg';
+                            }}
                           />
                           <div>
                             <h3 className="font-headline font-bold text-sm text-slate-900">
@@ -387,10 +391,14 @@ const MyLoansView = ({ onSelectResource, onOpenAddResource }) => {
                           <img
                             src={
                               req.resource?.images?.[0] ||
-                              'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80'
+                              '/resource-placeholder.svg'
                             }
                             alt=""
                             className="w-12 h-12 rounded-lg object-cover border border-slate-200"
+                            onError={(e) => {
+                              e.currentTarget.onerror = null;
+                              e.currentTarget.src = '/resource-placeholder.svg';
+                            }}
                           />
                           <div>
                             <h3 className="font-headline font-bold text-sm text-slate-900">
@@ -511,10 +519,14 @@ const MyLoansView = ({ onSelectResource, onOpenAddResource }) => {
                         <img
                           src={
                             res.images?.[0] ||
-                            'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80'
+                            '/resource-placeholder.svg'
                           }
                           alt=""
                           className="w-full h-full object-cover"
+                          onError={(e) => {
+                            e.currentTarget.onerror = null;
+                            e.currentTarget.src = '/resource-placeholder.svg';
+                          }}
                         />
                         <div className="absolute top-2.5 left-2.5">
                           <span

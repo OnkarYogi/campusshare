@@ -317,6 +317,10 @@ const AddResourceModal = ({ isOpen, onClose, onResourceAdded }) => {
                       src={formData.imageUrl}
                       alt="Preview"
                       className="w-full h-full object-cover"
+                      onError={(e) => {
+                        e.currentTarget.onerror = null;
+                        e.currentTarget.src = '/resource-placeholder.svg';
+                      }}
                     />
                   </div>
                 )}

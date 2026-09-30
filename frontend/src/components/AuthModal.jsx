@@ -79,19 +79,19 @@ const AuthModal = ({ isOpen, onClose }) => {
               onClick={() => handleQuick('steward')}
               className="py-1 px-2 rounded bg-white hover:bg-primary hover:text-white border border-blue-200 font-medium transition-colors"
             >
-              👩‍🔬 Elena (Steward)
+              👩‍🔬 Ananya (Steward)
             </button>
             <button
               onClick={() => handleQuick('borrower')}
               className="py-1 px-2 rounded bg-white hover:bg-primary hover:text-white border border-blue-200 font-medium transition-colors"
             >
-              👨‍🎓 Marcus (Borrower)
+              👨‍🎓 Rohan (Borrower)
             </button>
             <button
               onClick={() => handleQuick('faculty')}
               className="py-1 px-2 rounded bg-white hover:bg-primary hover:text-white border border-blue-200 font-medium transition-colors"
             >
-              🔬 Dr. Chen (Faculty)
+              🔬 Dr. Joshi (Faculty)
             </button>
             <button
               onClick={() => handleQuick('admin')}

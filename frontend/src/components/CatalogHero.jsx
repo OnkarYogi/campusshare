@@ -15,7 +15,7 @@ const CatalogHero = ({ totalListings = 1420 }) => {
         <div className="max-w-2xl space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary-container/20 text-[#89f5e7] text-xs font-semibold uppercase tracking-wider backdrop-blur-sm border border-secondary/30">
             <span className="inline-block w-2 h-2 rounded-full bg-[#89f5e7] animate-pulse" />
-            Fall Semester Active Circle • Apex State University
+            Academic Year Active Circle • MIT World Peace University, Pune
           </div>
 
           <h1 className="font-headline text-3xl sm:text-4xl font-extrabold tracking-tight text-white">

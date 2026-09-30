@@ -23,16 +23,17 @@ const seedDatabaseInternal = async () => {
 
   console.log('[Seeder] Creating demo users...');
 
+  // Demo Steward — engineering student who lists equipment
   const elena = await User.create({
-    name: 'Elena Rostova',
+    name: 'Ananya Kulkarni',
     email: 'elena.rostova@campus.edu',
     password: 'Password123!',
     role: 'student',
-    department: 'Robotics & Mechatronics Lab',
-    campusId: 'ENG-8492',
+    department: 'Electronics & Mechatronics Lab',
+    campusId: 'MIT-ENG-8492',
     avatarUrl:
       'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
-    bio: 'Senior Engineering Cohort researcher specializing in embedded systems and circuit design.',
+    bio: 'Final year Electronics student specialising in embedded systems and IoT at MIT-WPU.',
     isVerified: true,
     trustScore: 4.9,
     totalCompletedLoans: 14,
@@ -40,16 +41,17 @@ const seedDatabaseInternal = async () => {
     averageRating: 4.9,
   });
 
+  // Demo Borrower — CS student who borrows equipment
   const marcus = await User.create({
-    name: 'Marcus Vance',
+    name: 'Rohan Deshmukh',
     email: 'marcus.vance@campus.edu',
     password: 'Password123!',
     role: 'student',
-    department: 'Computer Science',
-    campusId: 'CS-9104',
+    department: 'Computer Engineering',
+    campusId: 'MIT-CS-9104',
     avatarUrl:
       'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=400&q=80',
-    bio: 'Junior CS major working on autonomous navigation algorithms.',
+    bio: 'Third year CS student working on autonomous navigation and ML projects.',
     isVerified: true,
     trustScore: 4.8,
     totalCompletedLoans: 6,
@@ -57,16 +59,17 @@ const seedDatabaseInternal = async () => {
     averageRating: 4.8,
   });
 
+  // Demo Faculty
   const drChen = await User.create({
-    name: 'Dr. Evelyn Chen',
+    name: 'Dr. Priya Joshi',
     email: 'dr.chen@campus.edu',
     password: 'Password123!',
     role: 'faculty',
-    department: 'Biology & Chemistry Dept',
-    campusId: 'FAC-4011',
+    department: 'Applied Sciences & Chemistry',
+    campusId: 'MIT-FAC-4011',
     avatarUrl:
       'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80',
-    bio: 'Faculty advisor for undergraduate biochemistry laboratory research.',
+    bio: 'Faculty advisor for undergraduate biochemistry and materials science laboratory research at MIT-WPU.',
     isVerified: true,
     trustScore: 5.0,
     totalCompletedLoans: 22,
@@ -74,16 +77,17 @@ const seedDatabaseInternal = async () => {
     averageRating: 5.0,
   });
 
+  // Demo Club Coordinator
   const club = await User.create({
-    name: 'Campus Robotics Club',
+    name: 'MIT-WPU Robotics Club',
     email: 'robotics.club@campus.edu',
     password: 'Password123!',
     role: 'club_coordinator',
-    department: 'Mechanical Eng',
-    campusId: 'CLUB-0042',
+    department: 'Mechanical & Robotics Eng',
+    campusId: 'MIT-CLUB-0042',
     avatarUrl:
       'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=400&q=80',
-    bio: 'Shared robotics and rapid prototyping pool for campus makers.',
+    bio: 'Shared robotics and rapid prototyping resource pool for all MIT-WPU campus makers.',
     isVerified: true,
     trustScore: 4.9,
     totalCompletedLoans: 35,
@@ -91,16 +95,17 @@ const seedDatabaseInternal = async () => {
     averageRating: 4.9,
   });
 
+  // Admin
   const admin = await User.create({
-    name: 'Campus System Administrator',
+    name: 'MIT-WPU System Administrator',
     email: 'admin@campus.edu',
     password: 'AdminPass123!',
     role: 'admin',
     department: 'Campus IT & Resource Services',
-    campusId: 'ADMIN-001',
+    campusId: 'MIT-ADMIN-001',
     avatarUrl:
       'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80',
-    bio: 'Overseeing institutional resource sharing safety and compliance.',
+    bio: 'Overseeing MIT-WPU institutional resource sharing safety and compliance.',
     isVerified: true,
     trustScore: 5.0,
   });
@@ -114,8 +119,8 @@ const seedDatabaseInternal = async () => {
     category: 'electronics',
     identifiers: 'Asset #EQ-8842 • Serial #DS1ZA18420041',
     condition: 'like_new',
-    department: 'Robotics & Mechatronics Lab',
-    location: 'North MakerSpace Station • Room 204',
+    department: 'Electronics & Mechatronics Lab',
+    location: 'MIT-WPU MakerSpace • Lab Wing B, Room 204',
     maxLoanDurationDays: 7,
     steward: elena._id,
     status: 'available',
@@ -132,14 +137,14 @@ const seedDatabaseInternal = async () => {
   });
 
   const r2 = await Resource.create({
-    title: 'Campbell Biology 11th Edition (Hardcover Reference Edition)',
+    title: 'Atkins Physical Chemistry 11th Edition (International Edition)',
     description:
-      'Comprehensive standard biology curriculum textbook containing full-color cellular diagrams, genetics chapters, and biochemical reaction guides. Pristine condition with zero highlighting.',
+      'Comprehensive physical chemistry curriculum textbook covering quantum mechanics, thermodynamics, and spectroscopy. Pristine condition with zero highlighting. Ideal for B.Tech Chemistry and Applied Sciences coursework.',
     category: 'textbooks',
-    identifiers: 'ISBN 978-0134093413',
+    identifiers: 'ISBN 978-0198769866',
     condition: 'like_new',
-    department: 'Biology & Chem',
-    location: 'Mudd Library • Reserve Desk Floor 2',
+    department: 'Applied Sciences & Chemistry',
+    location: 'MIT-WPU Central Library • Reserve Desk, Floor 2',
     maxLoanDurationDays: 14,
     steward: drChen._id,
     status: 'available',
@@ -147,21 +152,21 @@ const seedDatabaseInternal = async () => {
       'https://images.unsplash.com/photo-1532012164546-f432f2e3777f?auto=format&fit=crop&w=800&q=80',
     ],
     specifications: [
-      { label: 'Edition', value: '11th Global Edition' },
-      { label: 'Publisher', value: 'Pearson' },
-      { label: 'Pages', value: '1488 Pages' },
+      { label: 'Edition', value: '11th International Edition' },
+      { label: 'Publisher', value: 'Oxford University Press' },
+      { label: 'Pages', value: '1008 Pages' },
     ],
   });
 
   const r3 = await Resource.create({
     title: 'Sony Alpha 7 IV Mirrorless 4K Camera + FE 28-70mm OSS Lens Kit',
     description:
-      '33MP full-frame hybrid production camera for documentary filmmaking, departmental research capture, and student portfolio recording. Includes 2 high-capacity batteries and 128GB V90 SD card.',
+      '33MP full-frame hybrid production camera for documentary filmmaking, departmental research capture, and student portfolio recording. Includes 2 high-capacity batteries and 128GB V90 SD card. Available for MIT-WPU Media Cell projects.',
     category: 'electronics',
     identifiers: 'Tag #MED-2044',
     condition: 'like_new',
-    department: 'Film & Media',
-    location: 'Media Arts Center • Equipment Cage Room 12',
+    department: 'Media & Communication',
+    location: 'MIT-WPU Media Lab • Equipment Cage, Room 12',
     maxLoanDurationDays: 3,
     steward: club._id,
     status: 'available',
@@ -178,12 +183,12 @@ const seedDatabaseInternal = async () => {
   const r4 = await Resource.create({
     title: 'TI-Nspire CX II CAS Color Graphing Calculator with Rechargeable Battery',
     description:
-      'Computer Algebra System calculator authorized for AP Calculus, Linear Algebra, and Engineering Thermodynamics coursework. Preloaded with institutional math packages.',
+      'Computer Algebra System calculator authorized for B.Tech Mathematics, Linear Algebra, and Engineering Thermodynamics coursework at MIT-WPU. Preloaded with institutional math packages.',
     category: 'electronics',
     identifiers: 'Serial #NSP-6021',
     condition: 'good',
-    department: 'Computer Science',
-    location: 'Science Hall 301 • Study Commons',
+    department: 'Computer Engineering',
+    location: 'MIT-WPU Science Block • Room 301, Study Commons',
     maxLoanDurationDays: 10,
     steward: marcus._id,
     status: 'available',
@@ -199,12 +204,12 @@ const seedDatabaseInternal = async () => {
   const r5 = await Resource.create({
     title: 'Arduino Mega 2560 R3 Advanced Sensor & Actuator Kit (65 Modules)',
     description:
-      'Complete microcontroller experimentation set including ultrasonic distance sensors, servo motors, stepper drivers, relay boards, OLED displays, and jumper bundle.',
+      'Complete microcontroller experimentation set including ultrasonic distance sensors, servo motors, stepper drivers, relay boards, OLED displays, and jumper bundle. Perfect for MIT-WPU Robotics Club projects and B.Tech project prototyping.',
     category: 'project_kits',
     identifiers: 'Kit #ROB-K21',
     condition: 'good',
-    department: 'Robotics & Mechatronics Lab',
-    location: 'North MakerSpace • Workbench Locker 5',
+    department: 'Mechanical & Robotics Eng',
+    location: 'MIT-WPU MakerSpace • Workbench Locker 5',
     maxLoanDurationDays: 14,
     steward: club._id,
     status: 'available',
@@ -220,12 +225,12 @@ const seedDatabaseInternal = async () => {
   const r6 = await Resource.create({
     title: 'Mitutoyo 500-196-30 Advanced Digital Vernier Caliper (0-6" / 0.01mm)',
     description:
-      'High-precision AOS electromagnetic induction sensor vernier caliper for CNC machining, 3D printing tolerance checks, and physical prototype verification.',
+      'High-precision AOS electromagnetic induction sensor vernier caliper for CNC machining, 3D printing tolerance checks, and physical prototype verification. Used in MIT-WPU Precision Manufacturing Lab.',
     category: 'lab_gear',
     identifiers: 'Tool Tag #MECH-109',
     condition: 'like_new',
-    department: 'Mechanical Eng',
-    location: 'Precision Machine Shop • Tool Room A',
+    department: 'Mechanical & Robotics Eng',
+    location: 'MIT-WPU Precision Lab • Tool Room A',
     maxLoanDurationDays: 5,
     steward: elena._id,
     status: 'available',
@@ -243,12 +248,12 @@ const seedDatabaseInternal = async () => {
     startDate: new Date(Date.now() - 10 * 24 * 3600 * 1000),
     endDate: new Date(Date.now() - 3 * 24 * 3600 * 1000),
     durationDays: 7,
-    purpose: 'Senior capstone frequency response measurements.',
+    purpose: 'Senior capstone frequency response measurements for IoT gateway project.',
     status: 'returned',
     approvedAt: new Date(Date.now() - 10 * 24 * 3600 * 1000),
     borrowedAt: new Date(Date.now() - 10 * 24 * 3600 * 1000),
     returnedAt: new Date(Date.now() - 3 * 24 * 3600 * 1000),
-    handoverNotes: 'Inspected 4 probes in presence of borrower.',
+    handoverNotes: 'Inspected 4 probes in presence of borrower at MIT-WPU MakerSpace.',
     returnNotes: 'Returned cleanly with all probe clips accounted for.',
     borrowerRated: true,
     stewardRated: true,
@@ -262,7 +267,7 @@ const seedDatabaseInternal = async () => {
     role: 'borrower_to_steward',
     rating: 5,
     reviewText:
-      'Elena was awesome to coordinate with! The Rigol oscilloscope was in top shape with all probes neatly organized.',
+      'Ananya was great to coordinate with! The Rigol oscilloscope was in top shape with all probes neatly organized. Highly recommend borrowing from her.',
   });
 
   await Rating.create({
@@ -273,7 +278,7 @@ const seedDatabaseInternal = async () => {
     role: 'steward_to_borrower',
     rating: 5,
     reviewText:
-      'Marcus returned the oscilloscope right on time and in perfect working order. Great campus borrower!',
+      'Rohan returned the oscilloscope right on time and in perfect working order. Great MIT-WPU campus borrower!',
   });
 
   console.log('[Seeder] Database populated successfully.');

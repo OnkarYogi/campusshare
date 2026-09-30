@@ -32,10 +32,12 @@ const ResourceDetailsModal = ({
   const images =
     resource.images && resource.images.length > 0
       ? resource.images
-      : ['https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80'];
+      : ['/resource-placeholder.svg'];
 
   const isSteward = user && resource.steward && (user._id === resource.steward._id || user.id === resource.steward._id || user.email === resource.steward.email);
   const isAvailable = resource.status === 'available';
+  const isRequested = resource.status === 'requested';
+  const isBorrowed = resource.status === 'borrowed';
 
   // Calculate days
   const start = new Date(startDate);
@@ -52,6 +54,11 @@ const ResourceDetailsModal = ({
 
     if (isSteward) {
       setError('You cannot borrow your own resource (SRS Rule 5.5).');
+      return;
+    }
+
+    if (isBorrowed) {
+      setError('This resource is currently checked out and unavailable for new requests.');
       return;
     }
 
@@ -160,6 +167,10 @@ const ResourceDetailsModal = ({
                     src={images[selectedPhotoIndex] || images[0]}
                     alt={resource.title}
                     className="w-full h-full object-cover transition-opacity duration-200"
+                    onError={(e) => {
+                      e.currentTarget.onerror = null;
+                      e.currentTarget.src = '/resource-placeholder.svg';
+                    }}
                   />
                   <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-2.5 py-1 rounded-full text-xs font-semibold text-slate-800 shadow-sm flex items-center gap-1.5">
                     <span className="material-symbols-outlined text-secondary text-[16px]">location_on</span>
@@ -181,7 +192,15 @@ const ResourceDetailsModal = ({
                             : 'border-slate-200 opacity-70 hover:opacity-100'
                         }`}
                       >
-                        <img src={img} alt="Thumb" className="w-full h-full object-cover" />
+                        <img
+                          src={img}
+                          alt="Thumb"
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            e.currentTarget.onerror = null;
+                            e.currentTarget.src = '/resource-placeholder.svg';
+                          }}
+                        />
                       </button>
                     ))}
                   </div>
@@ -239,10 +258,14 @@ const ResourceDetailsModal = ({
                 <img
                   src={
                     resource.steward?.avatarUrl ||
-                    'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80'
+                    '/avatar-placeholder.svg'
                   }
                   alt={resource.steward?.name || 'Steward'}
                   className="w-12 h-12 rounded-full object-cover ring-2 ring-primary/20"
+                  onError={(e) => {
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = '/avatar-placeholder.svg';
+                  }}
                 />
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-1.5">
@@ -284,9 +307,21 @@ const ResourceDetailsModal = ({
                   </div>
                 )}
 
-                {!isAvailable && (
+                {isBorrowed && (
+                  <div className="p-3.5 rounded-lg bg-slate-100 border border-slate-300 text-xs text-slate-700 font-medium space-y-1">
+                    <div className="flex items-center gap-1.5 font-bold text-slate-800">
+                      <span className="material-symbols-outlined text-[16px] text-slate-500">lock</span>
+                      <span>Currently Checked Out</span>
+                    </div>
+                    <p>
+                      This resource is currently checked out by a verified campus borrower. In accordance with institutional borrowing policies, new borrowing requests cannot be accepted until this item has been returned and verified by the steward.
+                    </p>
+                  </div>
+                )}
+
+                {isRequested && (
                   <div className="p-3 rounded-lg bg-amber-50 border border-amber-200 text-xs text-amber-800 font-medium">
-                    This resource currently has pending holds or is in custody. You may still submit a request to reserve next in queue.
+                    This resource currently has a pending request under review by the steward. You may submit a request while it remains unapproved.
                   </div>
                 )}
 
@@ -391,9 +426,10 @@ const ResourceDetailsModal = ({
                         <input
                           type="date"
                           required
+                          disabled={isBorrowed}
                           value={startDate}
                           onChange={(e) => setStartDate(e.target.value)}
-                          className="w-full bg-slate-50 border border-slate-300 rounded-lg px-2.5 py-1.5 text-xs text-slate-800 focus:bg-white focus:outline-none focus:ring-1 focus:ring-secondary"
+                          className="w-full bg-slate-50 border border-slate-300 rounded-lg px-2.5 py-1.5 text-xs text-slate-800 focus:bg-white focus:outline-none focus:ring-1 focus:ring-secondary disabled:bg-slate-100 disabled:text-slate-400"
                         />
                       </div>
 
@@ -404,9 +440,10 @@ const ResourceDetailsModal = ({
                         <input
                           type="date"
                           required
+                          disabled={isBorrowed}
                           value={endDate}
                           onChange={(e) => setEndDate(e.target.value)}
-                          className="w-full bg-slate-50 border border-slate-300 rounded-lg px-2.5 py-1.5 text-xs text-slate-800 focus:bg-white focus:outline-none focus:ring-1 focus:ring-secondary"
+                          className="w-full bg-slate-50 border border-slate-300 rounded-lg px-2.5 py-1.5 text-xs text-slate-800 focus:bg-white focus:outline-none focus:ring-1 focus:ring-secondary disabled:bg-slate-100 disabled:text-slate-400"
                         />
                       </div>
                     </div>
@@ -422,28 +459,44 @@ const ResourceDetailsModal = ({
                       <textarea
                         rows={3}
                         required
-                        placeholder="Explain coursework, experiment, or capstone need..."
+                        disabled={isBorrowed}
+                        placeholder={
+                          isBorrowed
+                            ? 'Resource is currently checked out...'
+                            : 'Explain coursework, experiment, or capstone need...'
+                        }
                         value={purpose}
                         onChange={(e) => setPurpose(e.target.value)}
-                        className="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-xs text-slate-800 focus:bg-white focus:outline-none focus:ring-1 focus:ring-secondary"
+                        className="w-full bg-slate-50 border border-slate-300 rounded-lg p-2.5 text-xs text-slate-800 focus:bg-white focus:outline-none focus:ring-1 focus:ring-secondary disabled:bg-slate-100 disabled:text-slate-400"
                       />
                     </div>
 
                     <div className="pt-2">
-                      <button
-                        type="submit"
-                        disabled={loading || !!successMsg}
-                        className="w-full py-2.5 px-4 rounded-lg bg-primary hover:bg-slate-900 text-white font-bold text-xs transition-colors shadow-sm flex items-center justify-center gap-1.5 disabled:opacity-50"
-                      >
-                        {loading ? (
-                          'Submitting Request...'
-                        ) : (
-                          <>
-                            <span className="material-symbols-outlined text-[16px]">send</span>
-                            Request to Borrow
-                          </>
-                        )}
-                      </button>
+                      {isBorrowed ? (
+                        <button
+                          type="button"
+                          disabled
+                          className="w-full py-2.5 px-4 rounded-lg bg-slate-200 text-slate-500 font-bold text-xs cursor-not-allowed flex items-center justify-center gap-1.5"
+                        >
+                          <span className="material-symbols-outlined text-[16px]">lock</span>
+                          Currently Unavailable / Checked Out
+                        </button>
+                      ) : (
+                        <button
+                          type="submit"
+                          disabled={loading || !!successMsg}
+                          className="w-full py-2.5 px-4 rounded-lg bg-primary hover:bg-slate-900 text-white font-bold text-xs transition-colors shadow-sm flex items-center justify-center gap-1.5 disabled:opacity-50"
+                        >
+                          {loading ? (
+                            'Submitting Request...'
+                          ) : (
+                            <>
+                              <span className="material-symbols-outlined text-[16px]">send</span>
+                              Request to Borrow
+                            </>
+                          )}
+                        </button>
+                      )}
                     </div>
 
                     <p className="text-[10px] text-slate-400 text-center">

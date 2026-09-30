@@ -212,4 +212,159 @@ describe('Borrowing Workflow Engine (SRS 4.4 & Business Rules 5.5)', () => {
     const finalRes = await Resource.findById(testResource._id);
     expect(finalRes.status).toBe('available');
   });
+
+  it('SRS 4.4 & 5.5: Multiple requests on same resource — approving one auto-rejects competing requests, marks resource checked out, and prevents subsequent approval', async () => {
+    // Register second borrower (User C)
+    const borrower2 = await User.create({
+      name: 'Ananya Kulkarni',
+      email: 'ananya@campus.edu',
+      password: 'Password123!',
+      role: 'student',
+      isVerified: true,
+    });
+
+    const b2Login = await request(app).post('/api/auth/login').send({
+      email: 'ananya@campus.edu',
+      password: 'Password123!',
+    });
+    const borrower2Token = b2Login.body.token;
+
+    const start = new Date(Date.now() + 24 * 3600 * 1000);
+    const end = new Date(Date.now() + 5 * 24 * 3600 * 1000);
+
+    // 1. Borrower 1 (User B) submits request A
+    const reqA = await request(app)
+      .post('/api/borrow')
+      .set('Authorization', `Bearer ${borrowerToken}`)
+      .send({
+        resourceId: testResource._id,
+        startDate: start.toISOString(),
+        endDate: end.toISOString(),
+        purpose: 'Robotics sensor calibration',
+      });
+    expect(reqA.status).toBe(201);
+    expect(reqA.body.borrowRequest.status).toBe('pending');
+    const requestAId = reqA.body.borrowRequest._id;
+
+    // 2. Borrower 2 (User C) submits request B on same resource
+    const reqB = await request(app)
+      .post('/api/borrow')
+      .set('Authorization', `Bearer ${borrower2Token}`)
+      .send({
+        resourceId: testResource._id,
+        startDate: start.toISOString(),
+        endDate: end.toISOString(),
+        purpose: 'Microcontroller lab assignment',
+      });
+    expect(reqB.status).toBe(201);
+    expect(reqB.body.borrowRequest.status).toBe('pending');
+    const requestBId = reqB.body.borrowRequest._id;
+
+    // Verify both requests are pending in database
+    const reqADoc = await BorrowRequest.findById(requestAId);
+    const reqBDoc = await BorrowRequest.findById(requestBId);
+    expect(reqADoc.status).toBe('pending');
+    expect(reqBDoc.status).toBe('pending');
+
+    // 3. Steward approves Request A
+    const approveA = await request(app)
+      .patch(`/api/borrow/${requestAId}/approve`)
+      .set('Authorization', `Bearer ${stewardToken}`);
+    expect(approveA.status).toBe(200);
+    expect(approveA.body.request.status).toBe('approved');
+
+    // 4. Verify resource immediately became 'borrowed' (checked out)
+    const resourceAfterApproval = await Resource.findById(testResource._id);
+    expect(resourceAfterApproval.status).toBe('borrowed');
+
+    // 5. Verify Request B was automatically rejected and preserved in database
+    const reqBAfter = await BorrowRequest.findById(requestBId);
+    expect(reqBAfter.status).toBe('rejected');
+    expect(reqBAfter.rejectionReason).toContain('Another request was approved');
+
+    // 6. Attempt to approve Request B afterward must be rejected by backend
+    const approveB = await request(app)
+      .patch(`/api/borrow/${requestBId}/approve`)
+      .set('Authorization', `Bearer ${stewardToken}`);
+    expect(approveB.status).toBe(400);
+    expect(approveB.body.message).toContain('Cannot approve request with current status: rejected');
+
+    // 7. Attempt to create a NEW borrow request for the checked-out resource must be rejected
+    const newReqOnBorrowed = await request(app)
+      .post('/api/borrow')
+      .set('Authorization', `Bearer ${borrowerToken}`)
+      .send({
+        resourceId: testResource._id,
+        startDate: start.toISOString(),
+        endDate: end.toISOString(),
+        purpose: 'Late request attempt',
+      });
+    expect(newReqOnBorrowed.status).toBe(400);
+    expect(newReqOnBorrowed.body.message).toContain('currently checked out and unavailable');
+
+    // 8. Public catalog: resource must NOT appear in "availableNow" search
+    const availableRes = await request(app)
+      .get('/api/resources')
+      .query({ availableNow: 'true' });
+    const availableIds = availableRes.body.resources.map((r) => r._id.toString());
+    expect(availableIds).not.toContain(testResource._id.toString());
+
+    // 9. Return the resource: steward collects and confirms return
+    await request(app)
+      .patch(`/api/borrow/${requestAId}/collect`)
+      .set('Authorization', `Bearer ${stewardToken}`)
+      .send({ handoverNotes: 'Handed over' });
+
+    const returnRes = await request(app)
+      .patch(`/api/borrow/${requestAId}/return`)
+      .set('Authorization', `Bearer ${stewardToken}`)
+      .send({ returnNotes: 'All items returned intact' });
+    expect(returnRes.status).toBe(200);
+
+    // 10. Verify resource is available again and can be requested
+    const resourceAfterReturn = await Resource.findById(testResource._id);
+    expect(resourceAfterReturn.status).toBe('available');
+
+    const newReqAfterReturn = await request(app)
+      .post('/api/borrow')
+      .set('Authorization', `Bearer ${borrower2Token}`)
+      .send({
+        resourceId: testResource._id,
+        startDate: start.toISOString(),
+        endDate: end.toISOString(),
+        purpose: 'Requesting now that resource is returned and available',
+      });
+    expect(newReqAfterReturn.status).toBe(201);
+    expect(newReqAfterReturn.body.borrowRequest.status).toBe('pending');
+  });
+
+  it('SRS 5.5: Concurrent approval race-condition guard prevents duplicate borrower assignment', async () => {
+    // Create pending request
+    const start = new Date(Date.now() + 24 * 3600 * 1000);
+    const end = new Date(Date.now() + 5 * 24 * 3600 * 1000);
+
+    const reqRes = await request(app)
+      .post('/api/borrow')
+      .set('Authorization', `Bearer ${borrowerToken}`)
+      .send({
+        resourceId: testResource._id,
+        startDate: start.toISOString(),
+        endDate: end.toISOString(),
+        purpose: 'Concurrency test request',
+      });
+    const requestId = reqRes.body.borrowRequest._id;
+
+    // Simulate another concurrent process just set the resource status to 'borrowed'
+    await Resource.findByIdAndUpdate(testResource._id, { status: 'borrowed' });
+
+    // Attempt approval when resource status is already 'borrowed'
+    const approveRes = await request(app)
+      .patch(`/api/borrow/${requestId}/approve`)
+      .set('Authorization', `Bearer ${stewardToken}`);
+
+    // Must return 409 Conflict preventing double-approval
+    expect(approveRes.status).toBe(409);
+    expect(approveRes.body.success).toBe(false);
+    expect(approveRes.body.message).toContain('Resource was just approved for another borrower');
+  });
 });

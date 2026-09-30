@@ -64,7 +64,7 @@ const Navbar = ({ activeTab, setActiveTab, onOpenAuth, onOpenAddResource }) => {
 
           <div className="hidden xl:flex items-center gap-1.5 bg-surface-container-low px-3 py-1 rounded-full text-on-surface-variant text-xs font-medium">
             <span className="material-symbols-outlined text-secondary text-[16px]">school</span>
-            <span>Apex State University • North Campus</span>
+            <span>MIT World Peace University • Pune Campus</span>
             <span className="inline-block w-2 h-2 rounded-full bg-secondary ml-1" title="Campus Hub Active" />
           </div>
         </div>
@@ -216,10 +216,14 @@ const Navbar = ({ activeTab, setActiveTab, onOpenAuth, onOpenAddResource }) => {
                 <img
                   src={
                     user.avatarUrl ||
-                    'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80'
+                    '/avatar-placeholder.svg'
                   }
                   alt={user.name}
                   className="w-8 h-8 rounded-full object-cover ring-2 ring-primary/20"
+                  onError={(e) => {
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = '/avatar-placeholder.svg';
+                  }}
                 />
                 <div className="hidden sm:flex flex-col text-left">
                   <span className="text-xs font-bold text-slate-900 leading-tight">
@@ -257,7 +261,7 @@ const Navbar = ({ activeTab, setActiveTab, onOpenAuth, onOpenAddResource }) => {
                         }}
                         className="text-left px-2 py-1 rounded hover:bg-slate-100 text-slate-700 font-medium"
                       >
-                        Elena (Steward)
+                        Ananya (Steward)
                       </button>
                       <button
                         onClick={() => {
@@ -266,7 +270,7 @@ const Navbar = ({ activeTab, setActiveTab, onOpenAuth, onOpenAddResource }) => {
                         }}
                         className="text-left px-2 py-1 rounded hover:bg-slate-100 text-slate-700 font-medium"
                       >
-                        Marcus (Borrower)
+                        Rohan (Borrower)
                       </button>
                       <button
                         onClick={() => {
@@ -275,7 +279,7 @@ const Navbar = ({ activeTab, setActiveTab, onOpenAuth, onOpenAddResource }) => {
                         }}
                         className="text-left px-2 py-1 rounded hover:bg-slate-100 text-slate-700 font-medium"
                       >
-                        Dr. Chen (Faculty)
+                        Dr. Joshi (Faculty)
                       </button>
                       <button
                         onClick={() => {

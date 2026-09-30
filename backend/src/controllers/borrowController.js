@@ -37,6 +37,14 @@ const createBorrowRequest = async (req, res, next) => {
       });
     }
 
+    // SRS Business Rule: Cannot submit a request for a resource that is already checked out
+    if (resource.status === 'borrowed') {
+      return res.status(400).json({
+        success: false,
+        message: 'This resource is currently checked out and unavailable for new requests.',
+      });
+    }
+
     // SRS Business Rule: Cannot borrow your own resource
     if (resource.steward.toString() === req.user._id.toString()) {
       return res.status(400).json({
@@ -189,11 +197,59 @@ const approveRequest = async (req, res, next) => {
       });
     }
 
+    // RACE-CONDITION GUARD: Atomically mark the resource as 'borrowed' ONLY IF it is not already
+    // borrowed. This prevents two concurrent approvals from both succeeding.
+    const updatedResource = await Resource.findOneAndUpdate(
+      { _id: request.resource._id, status: { $ne: 'borrowed' } },
+      { $set: { status: 'borrowed' } },
+      { new: true }
+    );
+
+    if (!updatedResource) {
+      return res.status(409).json({
+        success: false,
+        message: 'Resource was just approved for another borrower. Request cannot be approved.',
+      });
+    }
+
+    // Approve this request
     request.status = 'approved';
     request.approvedAt = new Date();
     await request.save();
 
-    // Notify Borrower
+    // Auto-reject all OTHER pending requests for this resource to preserve history
+    const otherPending = await BorrowRequest.find({
+      resource: request.resource._id,
+      status: 'pending',
+      _id: { $ne: request._id },
+    }).select('_id borrower');
+
+    if (otherPending.length > 0) {
+      const otherIds = otherPending.map((r) => r._id);
+      await BorrowRequest.updateMany(
+        { _id: { $in: otherIds } },
+        {
+          $set: {
+            status: 'rejected',
+            rejectionReason: 'Another request was approved for this resource.',
+          },
+        }
+      );
+
+      // Notify each rejected borrower
+      const notifDocs = otherPending.map((r) => ({
+        recipient: r.borrower,
+        sender: req.user._id,
+        type: 'request_rejected',
+        title: 'Borrow Request Declined',
+        message: `Your request for "${request.resource.title}" was declined: Another request was approved for this resource.`,
+        resource: request.resource._id,
+        request: r._id,
+      }));
+      await Notification.insertMany(notifDocs);
+    }
+
+    // Notify approved Borrower
     await Notification.create({
       recipient: request.borrower._id,
       sender: req.user._id,
@@ -368,7 +424,7 @@ const collectResource = async (req, res, next) => {
     if (handoverNotes) request.handoverNotes = handoverNotes;
     await request.save();
 
-    // Update resource state
+    // Resource is already 'borrowed' from approval step; ensure consistency
     await Resource.findByIdAndUpdate(request.resource._id, { status: 'borrowed' });
 
     // Notify Borrower
