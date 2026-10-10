@@ -17,5 +17,5 @@
     "concurrently": "^9.1.2"
   },
   "author": "CampusShare Engineering Team",
-  "license": "ISC"
+  "license": "MIT"
 }
