@@ -38,8 +38,12 @@ const borrowRequestSchema = new mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ['pending', 'approved', 'rejected', 'borrowed', 'returned', 'cancelled'],
+      enum: ['pending', 'approved', 'rejected', 'borrowed', 'return_requested', 'returned', 'cancelled'],
       default: 'pending',
+    },
+    returnRequestedAt: {
+      type: Date,
+      default: null,
     },
     rejectionReason: {
       type: String,

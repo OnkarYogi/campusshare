@@ -56,12 +56,13 @@ export const resourceService = {
 
 export const borrowService = {
   createRequest: (data) => api.post('/borrow', data),
-  getMyRequests: () => api.get('/borrow/my-requests'),
-  getIncomingRequests: () => api.get('/borrow/incoming'),
+  getMyRequests: (params) => api.get('/borrow/my-requests', { params }),
+  getIncomingRequests: (params) => api.get('/borrow/incoming', { params }),
   approveRequest: (id) => api.patch(`/borrow/${id}/approve`),
   rejectRequest: (id, data) => api.patch(`/borrow/${id}/reject`, data),
   cancelRequest: (id) => api.patch(`/borrow/${id}/cancel`),
   collectResource: (id, data) => api.patch(`/borrow/${id}/collect`, data),
+  requestReturn: (id) => api.patch(`/borrow/${id}/request-return`),
   confirmReturn: (id, data) => api.patch(`/borrow/${id}/return`, data),
 };
 

@@ -8,6 +8,7 @@ const {
   rejectRequest,
   cancelRequest,
   collectResource,
+  requestReturn,
   confirmReturn,
 } = require('../controllers/borrowController');
 const { auth, requireVerified } = require('../middleware/auth');
@@ -19,6 +20,7 @@ router.patch('/:id/approve', auth, approveRequest);
 router.patch('/:id/reject', auth, rejectRequest);
 router.patch('/:id/cancel', auth, cancelRequest);
 router.patch('/:id/collect', auth, collectResource);
+router.patch('/:id/request-return', auth, requestReturn);
 router.patch('/:id/return', auth, confirmReturn);
 
 module.exports = router;

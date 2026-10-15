@@ -49,11 +49,20 @@ npm test -- --coverage
 
 | Test Suite File | Coverage Target | Key Scenarios Tested |
 |---|---|---|
+| `tests/emailAndTransaction.test.js` | Email Alerts & Transaction Separation | Borrow/approve/reject/return email triggers, SMTP fault tolerance, in-app notifications, ongoing vs completed separation, state tampering guards. |
 | `tests/auth.test.js` | Auth & Profile Engine | Registration, domain checks, password hashing, JWT login, profile update. |
 | `tests/resource.test.js` | Resource Catalog | Listing creation, query filtering, search by keyword, ownership update guard. |
 | `tests/borrow.test.js` | Borrowing Lifecycle | Request submission, self-borrowing rejection, 3-borrow quota, approval, collection, return. |
 | `tests/rating.test.js` | Ratings & Trust Score | Post-return rating submission, unreturned block, trust score recalculation. |
 | `tests/admin.test.js` | Governance & RBAC | Admin route protection, user verification, suspension, resource moderation. |
+
+---
+
+## 📖 Viva & Demonstration Documents
+
+- **Step-by-step Manual Test Cases**: [`docs/MANUAL_TEST_CASES.md`](MANUAL_TEST_CASES.md)
+- **Testing Concepts Explained**: [`docs/TESTING_EXPLAINED.md`](TESTING_EXPLAINED.md)
+- **Selenium IDE Guide**: [`selenium/SELENIUM_IDE_GUIDE.md`](../selenium/SELENIUM_IDE_GUIDE.md)
 
 ---
 

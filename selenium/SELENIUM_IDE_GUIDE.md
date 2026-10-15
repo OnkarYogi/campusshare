@@ -1,7 +1,8 @@
-# Selenium IDE 4.0.1-beta.14 Test Automation Guide
-**Project:** Community Resource Exchange Platform (MIT World Peace University, Pune)  
-**Artifact:** `selenium/community-resource-exchange.side`  
-**Test Runner Target:** Selenium IDE 4.0.1-beta.14 (Windows)  
+# Selenium IDE Test Automation Guide
+**Project:** CampusShare — Community Resource Exchange Platform (MIT World Peace University, Pune)  
+**Primary Viva Suite:** `selenium/campusshare-viva-suite.side` (Recommended for viva presentation)  
+**Comprehensive Suite:** `selenium/community-resource-exchange.side` (Full 10-test regression backup)  
+**Test Runner Target:** Selenium IDE 4.x / Web Extension  
 
 ---
 
@@ -12,7 +13,7 @@
 | **Frontend Application** | `http://localhost:5173` | React.js + Vite Web Application |
 | **Backend REST API** | `http://localhost:5000` | Node.js + Express + Mongoose API server |
 | **API Base Endpoint** | `http://localhost:5000/api` | REST endpoints for auth, resources, borrow, ratings |
-| **Selenium IDE Base URL** | `http://localhost:5173` | Configured directly in `community-resource-exchange.side` |
+| **Selenium IDE Base URL** | `http://localhost:5173` | Configured directly in both `.side` project files |
 
 ### Step 1: Start Backend API Server
 Open PowerShell in the project directory:
@@ -36,7 +37,19 @@ Before running the automated test suite, ensure the database is reset to the det
 cd "c:\Community Resource Exchange Platform\backend"
 npm run seed
 ```
-This populates all 7 student/faculty/club accounts, initial resource listings, and specific test conditions (such as unverified user status, active borrowing quotas, and unreturned item holds).
+This populates all student/faculty/club accounts, initial resource listings, and specific test conditions (such as unverified user status, active borrowing quotas, and unreturned item holds).
+
+---
+
+## 2. Which Suite Should I Use for the Viva?
+
+1. **Recommended for Viva Demonstration**:  
+   👉 `selenium/campusshare-viva-suite.side`  
+   Contains the 6 key test cases (Login, Invalid Login, Real-time Search, Ongoing Transactions Separation, Completed Transactions Separation, and Unverified User Guard). Executes fast, is easy to explain, and directly showcases the teacher's required improvements.
+
+2. **Comprehensive 10-Test Suite (Backup)**:  
+   👉 `selenium/community-resource-exchange.side`  
+   Contains all 10 original test cases covering quotas, self-borrowing, resource withdrawal guards, and post-return ratings. Keep this as reference or extended testing evidence.
 
 ---
 

@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Node.js Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)](package.json)
-[![Tests Passing](https://img.shields.io/badge/tests-29%20passed-success.svg)](docs/TESTING.md)
+[![Tests Passing](https://img.shields.io/badge/tests-37%20passed-success.svg)](docs/TESTING.md)
 [![Frontend](https://img.shields.io/badge/frontend-React%2018%20%2B%20Vite-61DAFB.svg)](frontend/package.json)
 [![Backend](https://img.shields.io/badge/backend-Express%20%2B%20MongoDB-green.svg)](backend/package.json)
 
@@ -16,20 +16,20 @@
 
 - [The Problem](#-the-problem)
 - [Major Features](#-major-features)
+- [Email Notification System & SMTP Setup](#-email-notification-system--smtp-setup)
+- [Ongoing vs. Completed Transactions Separation](#-ongoing-vs-completed-transactions-separation)
 - [User Roles & Access Control](#-user-roles--access-control)
 - [Technology Stack](#-technology-stack)
 - [System Architecture](#-system-architecture)
-- [Repository Directory Structure](#-repository-directory-structure)
-- [Prerequisites](#-prerequisites)
 - [Installation & Setup](#-installation--setup)
 - [Environment Configuration](#-environment-configuration)
 - [Database Startup, Seeding & In-Memory Fallback](#-database-startup-seeding--in-memory-fallback)
 - [Running the Application](#-running-the-application)
-- [Automated Testing](#-automated-testing)
-- [Selenium IDE Test Automation Suite](#-selenium-ide-test-automation-suite)
+- [Automated Testing (37 Tests Passing)](#-automated-testing-37-tests-passing)
+- [Manual Test Cases & Viva Guide](#-manual-test-cases--viva-guide)
+- [Selenium IDE Test Automation Suites](#-selenium-ide-test-automation-suites)
 - [Demo Credentials](#-demo-credentials)
 - [Troubleshooting & Common Issues](#-troubleshooting--common-issues)
-- [Known Limitations & Future Roadmap](#-known-limitations--future-roadmap)
 - [Security & Contributing](#-security--contributing)
 - [License](#-license)
 
@@ -53,13 +53,82 @@ Existing solutions (e-commerce platforms, classified boards) fail in academic en
 - **Institutional Domain Authentication**: Mandatory validation of educational email domains (`.edu`, `.ac.in`, `campus.edu`).
 - **Academic Resource Catalog**: Live search, category filtering (Lab Equipment, Books, Electronics, Project Kits, Creative Gear, Sports), and department-based tagging.
 - **Resource Lifecycle Engine**: Complete state machine handling listings:
-  `available` ➔ `requested` ➔ `approved` ➔ `borrowed` ➔ `returned`.
+  `available` ➔ `requested` ➔ `approved` ➔ `borrowed` ➔ `return_requested` ➔ `returned`.
+- **External Email Notifications**: Real emails dispatched to registered academic accounts via Nodemailer & SMTP for all critical loan milestones.
+- **Transaction Separation**: Visual and functional segregation of active **Ongoing Transactions** from verified **Completed Transactions**.
 - **Withdrawal & Custodial Safety**: Stewards can edit or withdraw listings; deletion is strictly guarded against resources with active requests or ongoing loans.
 - **Quota & Anti-Hoarding Protection**: Borrowers are capped at a maximum of 3 concurrent active loans.
 - **Anti-Self-Borrowing Rule**: Stewards cannot submit borrow requests for their own listings.
 - **Peer Ratings & Trust Scoring**: Reciprocal 1–5 star reviews and feedback unlocked exclusively after return confirmation, calculating a weighted dynamic trust score.
 - **Administrative Governance Portal**: System KPIs, institutional user verification, disciplinary suspension controls, and immutable audit logs.
-- **In-App Notification Center**: Real-time alerts for request submissions, approvals, handoff collections, and return receipts.
+- **In-App Notification Center**: Real-time alerts for request submissions, approvals, handoff collections, cancellations, and return receipts.
+
+---
+
+## 📧 Email Notification System & SMTP Setup
+
+CampusShare features a dual notification architecture:
+1. **In-App Notifications**: Real-time bell alerts inside the web navigation bar, marked read/unread.
+2. **External Email Notifications**: Automated branded HTML and plain-text emails sent to the recipient's institutional email address.
+
+### Supported Workflow Events:
+| Event | Trigger | Recipient | Email Subject Line |
+|---|---|---|---|
+| **Borrow Request** | Borrower submits a request | Resource Owner (Steward) | `[CampusShare] New Borrow Request: <Resource Title>` |
+| **Request Approved** | Steward approves the loan | Borrower | `[CampusShare] Request Approved: <Resource Title>` |
+| **Request Declined** | Steward declines or competing request approved | Borrower | `[CampusShare] Request Update: <Resource Title>` |
+| **Request Cancelled**| Borrower cancels pending request | Resource Owner (Steward) | `[CampusShare] Borrow Request Cancelled: <Resource Title>` |
+| **Item Handover** | Steward marks item collected | Borrower | `[CampusShare] Resource Handed Over: <Resource Title>` |
+| **Return Initiated** | Borrower initiates return handback | Resource Owner (Steward) | `[CampusShare] Return Initiated: <Resource Title>` |
+| **Return Confirmed** | Steward confirms receipt and completes loan | Borrower | `[CampusShare] Return Confirmed — Transaction Completed: <Resource Title>` |
+
+### How to Configure SMTP for a Live Demonstration:
+In `backend/.env`, configure your SMTP credentials:
+
+```env
+# Enable email sending (set 'false' to use in-app notifications only)
+EMAIL_ENABLED=true
+
+# SMTP Server Details (Example: Gmail SMTP)
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_SECURE=false
+
+# Your sender account credentials
+SMTP_USER=your_email@gmail.com
+
+# For Gmail: Generate a 16-character App Password at:
+# https://myaccount.google.com/apppasswords
+SMTP_PASS=your_16_char_app_password
+
+# Sender display name
+EMAIL_FROM="CampusShare Notifications <no-reply@campusshare.edu>"
+```
+
+> **Testing Without Live SMTP**: When SMTP credentials are not supplied or `EMAIL_ENABLED=false`, CampusShare runs in safe local mode: it logs clear console messages (`[Email Service] (SMTP not configured) Skipped real email...`), delivers all in-app notifications, and guarantees that database transactions are never interrupted or rolled back. In automated test mode (`NODE_ENV=test`), emails are captured in an in-memory test collector without making external network calls.
+
+---
+
+## 🔄 Ongoing vs. Completed Transactions Separation
+
+CampusShare cleanly separates transactions in both the backend database and the frontend UI (`MyLoansView.jsx`):
+
+### 1. Ongoing Transactions (Active)
+Includes transactions that still require an action or are currently in physical custody:
+- **Pending Requests**: Awaiting steward approval or decline.
+- **Approved Requests**: Ready for pickup at the campus location.
+- **Currently Borrowed**: In borrower custody with due return dates.
+- **Return Initiated**: Handed back by borrower, awaiting steward condition inspection and confirmation.
+
+### 2. Completed Transactions (Finalized)
+Includes transactions strictly after the owner confirms the return:
+- Verified physical return of the item.
+- Resource catalog availability automatically restored.
+- Total completed loan counts incremented for both participants.
+- Reciprocal peer ratings and reviews unlocked.
+
+### 3. Cancelled & Declined Archive
+Cancelled and declined requests are archived in a separate closed history view, ensuring they are never conflated with successfully completed exchanges.
 
 ---
 
@@ -76,114 +145,12 @@ Existing solutions (e-commerce platforms, classified boards) fail in academic en
 
 ## 💻 Technology Stack
 
-### Frontend
-- **Framework**: [React 18](https://react.dev/) + [Vite](https://vitejs.dev/)
-- **Styling**: [Tailwind CSS 3.4](https://tailwindcss.com/)
-- **Design System**: *Academic Exchange* UI tokens (Collegiate Navy `#1E3A8A`, Emerald `#0D9488`, Slate `#0F172A`)
-- **Icons**: [Lucide React](https://lucide.dev/)
-- **HTTP Client**: [Axios](https://axios-http.com/)
-
-### Backend
-- **Runtime & Framework**: [Node.js](https://nodejs.org/) (v18+) + [Express.js 4](https://expressjs.com/)
-- **Database & ODM**: [MongoDB](https://www.mongodb.com/) + [Mongoose 8](https://mongoosejs.com/)
-- **In-Memory Database**: [mongodb-memory-server](https://github.com/nodkz/mongodb-memory-server) (automated testing & offline fallback)
-- **Authentication**: JSON Web Tokens ([jsonwebtoken](https://github.com/auth0/node-jsonwebtoken)) + [bcryptjs](https://github.com/dcodeIO/bcrypt.js)
-- **Validation & Logging**: [express-validator](https://express-validator.github.io/) + [Morgan](https://github.com/expressjs/morgan)
-
----
-
-## 🧱 System Architecture
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                 React.js Frontend (Vite)                    │
-│  - Port 5173                                                │
-│  - Academic Exchange UI System                              │
-│  - Catalog Dashboard, Add Resource Wizard, Hand-off Flow    │
-│  - Admin Governance & User Trust Profiles                   │
-└──────────────────────────────┬──────────────────────────────┘
-                               │ REST API (JSON / Bearer JWT)
-┌──────────────────────────────▼──────────────────────────────┐
-│                 Node.js / Express Backend                   │
-│  - Port 5000                                                │
-│  - Authentication & RBAC (Student, Faculty, Club, Admin)    │
-│  - State Machine & Concurrency Guards                       │
-│  - Trust Score Calculation Engine & Audit Logging           │
-└──────────────────────────────┬──────────────────────────────┘
-                               │ Mongoose ODM
-┌──────────────────────────────▼──────────────────────────────┐
-│                    MongoDB Database                         │
-│  - Primary: Local mongod (mongodb://localhost:27017)        │
-│  - Cloud: MongoDB Atlas cluster                             │
-│  - Fallback / Test: MongoMemoryServer (Zero-config)         │
-└─────────────────────────────────────────────────────────────┘
-```
-
----
-
-## 📂 Repository Directory Structure
-
-```
-├── .gitignore                         # Complete ignore rules for env, builds, logs, dependencies
-├── .env.example                       # Root environment variables configuration template
-├── package.json                       # Root workspace orchestrator
-├── package-lock.json                  # Root lockfile
-├── README.md                          # Main repository documentation (this file)
-├── CONTRIBUTING.md                    # Guidelines for contributors
-├── LICENSE                            # MIT License
-├── BUILD_STATE.md                     # Build milestones and verification dashboard
-├── PROJECT_HANDOFF.md                 # Technical orientation and invariant rules
-├── SRS_Community_Resource_Platform_Final.docx # IEEE SRS Specification Document
-├── docs/
-│   ├── MODULE_GUIDE.md                # Architectural breakdown of all system modules
-│   ├── API_DOCUMENTATION.md           # REST API endpoints, schemas, and status codes
-│   ├── TESTING.md                     # QA strategy, test matrices, and execution steps
-│   └── diagrams/                      # System diagrams (Activity, Class, DFDs, Sequence, Use Case)
-├── designs/
-│   └── stitch_campusshare_resource_platform/
-│       ├── academic_exchange/DESIGN.md# Design tokens, color palette, typography specs
-│       ├── campusshare_logo/          # Official SVG brand assets
-│       ├── campusshare_main_dashboard_resource_catalog/
-│       ├── campusshare_add_resource_to_directory/
-│       └── campusshare_resource_details_borrow_request/
-├── selenium/
-│   ├── community-resource-exchange.side # Selenium IDE 4.0.1 test suite (10 test cases)
-│   └── SELENIUM_IDE_GUIDE.md          # Comprehensive runner guide for automated browser tests
-├── backend/                           # Node.js / Express REST API
-│   ├── .env.example                   # Backend environment template
-│   ├── package.json                   # Backend dependencies & test scripts
-│   ├── src/
-│   │   ├── config/db.js               # Dual-mode DB connector (Local MongoDB + In-Memory fallback)
-│   │   ├── controllers/               # Auth, Borrow, Resource, Rating, Admin handlers
-│   │   ├── middleware/                # JWT auth, verification checks, RBAC, error handling
-│   │   ├── models/                    # User, Resource, BorrowRequest, Rating, AuditLog, Notification
-│   │   ├── routes/                    # Express routing definitions
-│   │   ├── utils/                     # Trust score math, database seeder
-│   │   └── server.js                  # Express app entrypoint & health check
-│   └── tests/                         # Jest test suites (auth, admin, borrow, rating, resource)
-└── frontend/                          # React + Vite client
-    ├── .env.example                   # Frontend environment template
-    ├── package.json                   # Frontend dependencies & build scripts
-    ├── index.html                     # HTML root template with fonts
-    ├── vite.config.js                 # Vite bundler configuration
-    ├── tailwind.config.js             # Tailwind CSS tokens & theme setup
-    └── src/
-        ├── components/                # Modular UI components matching Stitch design
-        ├── context/                   # Global AuthContext & state management
-        ├── services/api.js            # Axios client with JWT interceptor
-        └── App.jsx                    # Core routing and view manager
-```
-
----
-
-## ⚙️ Prerequisites
-
-- **Node.js**: `v18.0.0` or higher (tested and verified on Node.js v20.x and v25.x).
-- **npm**: `v9.0.0` or higher.
-- **MongoDB** *(Optional for local dev)*:
-  - Local MongoDB Community Server running on `mongodb://localhost:27017`, **OR**
-  - MongoDB Atlas connection string.
-  - *If MongoDB is not installed locally, CampusShare automatically falls back to an embedded in-memory MongoDB runner during development and testing.*
+- **Frontend**: [React 18](https://react.dev/) + [Vite](https://vitejs.dev/) + [Tailwind CSS 3.4](https://tailwindcss.com/) + [Lucide React](https://lucide.dev/) + [Axios](https://axios-http.com/)
+- **Backend**: [Node.js](https://nodejs.org/) (v18+) + [Express.js 4](https://expressjs.com/) + [Mongoose 8](https://mongoosejs.com/)
+- **Email Engine**: [Nodemailer](https://nodemailer.com/) (Configurable SMTP with non-blocking async dispatch)
+- **Database**: [MongoDB](https://www.mongodb.com/) + [MongoMemoryServer](https://github.com/nodkz/mongodb-memory-server) (offline fallback)
+- **Security**: JWT authentication + bcryptjs password hashing + express-validator
+- **Testing**: Jest + Supertest + Selenium IDE
 
 ---
 
@@ -191,157 +158,115 @@ Existing solutions (e-commerce platforms, classified boards) fail in academic en
 
 1. **Clone the Repository**:
    ```bash
-   git clone <repository-url>
-   cd "Community Resource Exchange Platform"
+   git clone https://github.com/OnkarYogi/campusshare.git
+   cd campusshare
    ```
 
 2. **Install Dependencies**:
-   Install root orchestration, backend, and frontend packages with a single command:
    ```bash
    npm run install:all
+   ```
+
+3. **Seed Database State**:
+   ```bash
+   npm run seed
    ```
 
 ---
 
 ## 🔐 Environment Configuration
 
-CampusShare provides template `.env.example` files. Create local `.env` files for both backend and frontend:
-
-### 1. Root / Backend Environment (`backend/.env`)
-Copy the template:
+CampusShare provides `.env.example` templates in the root and `backend/` directories. Copy the template:
 ```bash
 cp backend/.env.example backend/.env
 ```
-Default configuration values:
+
+Key environment variables:
 ```env
 PORT=5000
 NODE_ENV=development
 MONGODB_URI=mongodb://localhost:27017/campusshare
-JWT_SECRET=super_secret_campusshare_jwt_key_academic_exchange
+JWT_SECRET=replace_with_secure_random_key_32_bytes
 JWT_EXPIRES_IN=7d
-CORS_ORIGIN=http://localhost:5173
 ALLOWED_EMAIL_DOMAINS=.edu,.ac.in,.org,campus.edu
-```
+CORS_ORIGIN=http://localhost:5173
 
-> **Security Note**: In a production environment, generate a cryptographically strong 32-byte secret using Node.js:
-> ```bash
-> node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
-> ```
-
-### 2. Frontend Environment (`frontend/.env`)
-Copy the template:
-```bash
-cp frontend/.env.example frontend/.env
-```
-Content:
-```env
-VITE_API_BASE_URL=http://localhost:5000/api
+# Email / SMTP Settings
+EMAIL_ENABLED=true
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_SECURE=false
+SMTP_USER=your_email@gmail.com
+SMTP_PASS=your_app_password
+EMAIL_FROM="CampusShare Notifications <no-reply@campusshare.edu>"
 ```
 
 ---
 
 ## 🗄️ Database Startup, Seeding & In-Memory Fallback
 
-### Persistent MongoDB Setup
-If you have MongoDB running locally, ensure the service is active:
-```bash
-# Verify MongoDB service status (Windows)
-net start MongoDB
-```
-
-### Automatic In-Memory Fallback
-If no local MongoDB daemon is detected on port 27017, the backend automatically boots a portable **`MongoMemoryServer`** instance in development mode.
-- **Advantage**: Zero external dependencies required to immediately explore, run, and test the platform.
-- **Behavior Note**: In-memory data persists during the running process. Restarting the backend process initializes a fresh in-memory database and automatically seeds it.
-
-### Seeding Demo Data
-To populate the database with realistic academic resources (Rigol Oscilloscope, Campbell Biology, Sony Alpha 7 IV Kit, Arduino Mega Kits) and verified institutional accounts:
-```bash
-npm run seed
-```
+- **Automatic In-Memory Runner**: If no local MongoDB is running on port 27017, the application automatically boots an embedded portable in-memory MongoDB instance. No external database installation is required to run the project.
+- **Persistent MongoDB**: If a local daemon is running, it connects to `mongodb://localhost:27017/campusshare`.
+- **Reset Database**: Run `npm run seed` at any time to restore realistic demo accounts, active loan states, and catalog equipment.
 
 ---
 
 ## 🖥️ Running the Application
 
-### Option A: Concurrent Development (Recommended)
-Launch both backend (`http://localhost:5000`) and frontend (`http://localhost:5173`) concurrently:
+Launch both backend and frontend concurrently:
 ```bash
 npm run dev
 ```
 
-### Option B: Separate Terminal Windows
-1. **Terminal 1 - Backend Server**:
-   ```bash
-   npm run server
-   ```
-   *Health Check*: Open [http://localhost:5000/api/health](http://localhost:5000/api/health) to confirm the server status.
-
-2. **Terminal 2 - Frontend Client**:
-   ```bash
-   npm run client
-   ```
-   *Access Client*: Open [http://localhost:5173](http://localhost:5173) in your web browser.
+- **Frontend Application**: [http://localhost:5173](http://localhost:5173)
+- **Backend API Server**: [http://localhost:5000](http://localhost:5000)
+- **API Health Check**: [http://localhost:5000/api/health](http://localhost:5000/api/health)
 
 ---
 
-## 🧪 Automated Testing
+## 🧪 Automated Testing (37 Tests Passing)
 
-CampusShare includes an automated test suite powered by **Jest**, **Supertest**, and **mongodb-memory-server**.
-
-To execute the test suite:
+To execute all backend test suites:
 ```bash
 npm test
 ```
+Or directly inside `backend/`:
+```bash
+cd backend
+npm test
+```
 
-### Test Suite Summary (29 Tests Passing)
-| Test Suite | Coverage Area | Status |
+### Test Suites Breakdown (6 Suites, 37 Tests):
+| Test Suite File | Coverage Target | Tests |
 | :--- | :--- | :--- |
-| `tests/auth.test.js` | Domain validation, registration, password hashing, JWT authentication, user profile updates | 7 Passed |
-| `tests/resource.test.js` | Resource listing creation, keyword/department filtering, updates, withdrawal flow, deletion safety | 7 Passed |
-| `tests/borrow.test.js` | Anti-self-borrowing, verification guard, 3-loan quota, lifecycle handoffs, competing request resolution | 7 Passed |
-| `tests/rating.test.js` | Post-return review requirement, trust score recalculation engine, duplicate rating prevention | 3 Passed |
-| `tests/admin.test.js` | Admin RBAC protection, platform metrics, user verification, suspension guards, audit trail logging | 5 Passed |
-
-To run backend tests with coverage report:
-```bash
-npm --prefix backend test -- --coverage
-```
-
-To run frontend production build verification:
-```bash
-npm run build
-```
+| `tests/emailAndTransaction.test.js` | Borrow email triggers, approval/rejection emails, SMTP fault tolerance, in-app notifications, ongoing vs completed separation, state tampering guards | 8 Passed |
+| `tests/borrow.test.js` | Complete borrow lifecycle, 3-loan quota, self-borrowing block, race-condition approval guard, competing request rejection | 7 Passed |
+| `tests/resource.test.js` | Catalog creation, keyword search, category filters, withdrawal flow, active request deletion safety | 7 Passed |
+| `tests/auth.test.js` | Institutional domain verification, registration, password hashing, JWT login, profile updates | 7 Passed |
+| `tests/admin.test.js` | Role-based access control, metrics dashboard, user verification, suspension guards, audit logging | 5 Passed |
+| `tests/rating.test.js` | Post-return rating requirement, trust score calculation, duplicate review prevention | 3 Passed |
 
 ---
 
-## 🤖 Selenium IDE Test Automation Suite
+## 📖 Manual Test Cases & Viva Guide
 
-CampusShare includes an end-to-end browser automation suite created in **Selenium IDE 4.0.1-beta.14**.
+For project defense and viva demonstrations:
+- **Manual Test Cases**: [`docs/MANUAL_TEST_CASES.md`](docs/MANUAL_TEST_CASES.md) (8 structured test cases with preconditions, test data, steps, expected and actual results).
+- **Testing Concepts Explained**: [`docs/TESTING_EXPLAINED.md`](docs/TESTING_EXPLAINED.md) (Plain-language explanations of test cases, pass/fail criteria, black-box vs. white-box testing, Selenium execution, and mock email rationale).
 
-### Deliverables:
-- **Project File**: `selenium/community-resource-exchange.side`
-- **Execution Guide**: [`selenium/SELENIUM_IDE_GUIDE.md`](selenium/SELENIUM_IDE_GUIDE.md)
+---
 
-### Included Selenium Test Cases:
-1. **BB-01**: User Login & Session Persistence
-2. **BB-02**: Catalog Search & Filter Functionality
-3. **BB-03**: Create New Resource Listing
-4. **BB-04**: Borrow Request Submission Lifecycle
-5. **BB-05**: Steward Request Approval & Collection
-6. **WB-01**: Unverified Account Access Barrier (Negative)
-7. **WB-02**: Self-Borrowing Invariant Prevention (Negative)
-8. **WB-03**: Maximum Active Loan Quota Rejection (Negative)
-9. **WB-04**: Unreturned Transaction Rating Block (Negative)
-10. **WB-05**: Active Loan Resource Deletion Guard (Negative)
+## 🤖 Selenium IDE Test Automation Suites
 
-### Running Selenium IDE Tests:
-1. Ensure both backend and frontend servers are running (`npm run dev`).
-2. Reset seed state: `npm run seed`.
-3. Open Google Chrome with the **Selenium IDE** extension installed.
-4. Open `selenium/community-resource-exchange.side`.
-5. Set test execution speed to *Normal* and run the `CampusShare Master Test Suite`.
-6. Consult [selenium/SELENIUM_IDE_GUIDE.md](selenium/SELENIUM_IDE_GUIDE.md) for full troubleshooting steps and locator details.
+Two Selenium IDE project files are provided in `selenium/`:
+
+1. **`selenium/campusshare-viva-suite.side` (Recommended for Viva)**:
+   - Streamlined, rapid 6-test suite designed for live presentation.
+   - Tests: Valid Login, Invalid Login, Real-time Search, Ongoing Transactions Separation, Completed Transactions Separation, and Unverified User Guard.
+2. **`selenium/community-resource-exchange.side` (Comprehensive Backup)**:
+   - Complete 10-test suite covering full boundary and invariant tests.
+
+*Detailed execution instructions and locator references are in [`selenium/SELENIUM_IDE_GUIDE.md`](selenium/SELENIUM_IDE_GUIDE.md).*
 
 ---
 
@@ -349,15 +274,15 @@ CampusShare includes an end-to-end browser automation suite created in **Seleniu
 
 All seeded accounts belong to the academic domain `campus.edu`:
 
-| Role / Persona | Name | Email | Password | Access & Capabilities |
+| Role | Name | Email | Password | Primary Demo Use |
 | :--- | :--- | :--- | :--- | :--- |
-| **Demo Steward** | Ananya Kulkarni | `elena.rostova@campus.edu` | `Password123!` | Manages lab equipment, approves loan requests, confirms returns. |
-| **Demo Borrower** | Rohan Deshmukh | `marcus.vance@campus.edu` | `Password123!` | Borrows items, tracks active loans, submits ratings. |
-| **Faculty Member** | Dr. Priya Joshi | `dr.chen@campus.edu` | `Password123!` | Chemistry/Applied Sciences lab resource steward. |
-| **Club Coordinator**| MIT-WPU Robotics Club| `robotics.club@campus.edu` | `Password123!` | Prototyping kits, camera equipment, shared maker tools. |
-| **Administrator** | System Administrator | `admin@campus.edu` | `AdminPass123!` | System KPIs, user verification, suspensions, moderation. |
-| **Unverified Student**| Aarav Sharma | `aarav.sharma@campus.edu` | `Password123!` | Demonstrates unverified access barriers (WB-01). |
-| **Max Quota Student**| Aditya Patil | `aditya.patil@campus.edu` | `Password123!` | Demonstrates 3-loan active quota enforcement (WB-03). |
+| **Demo Borrower** | Rohan Deshmukh | `marcus.vance@campus.edu` | `Password123!` | Submitting borrow requests, ongoing loans, ratings |
+| **Demo Steward** | Ananya Kulkarni | `elena.rostova@campus.edu` | `Password123!` | Approving requests, confirming collections & returns |
+| **Faculty Member** | Dr. Priya Joshi | `dr.chen@campus.edu` | `Password123!` | Chemistry lab equipment steward |
+| **Club Coordinator** | MIT-WPU Robotics Club | `robotics.club@campus.edu` | `Password123!` | Shared maker tools, camera kit |
+| **Unverified Student** | Aarav Sharma | `aarav.sharma@campus.edu` | `Password123!` | Demonstrating unverified borrowing barrier |
+| **Max Quota Borrower** | Aditya Patil | `aditya.patil@campus.edu` | `Password123!` | Demonstrating 3-loan maximum quota limit |
+| **Administrator** | System Administrator | `admin@campus.edu` | `AdminPass123!` | Governance portal, user verification, moderation |
 
 ---
 
@@ -365,28 +290,18 @@ All seeded accounts belong to the academic domain `campus.edu`:
 
 | Symptom | Probable Cause | Resolution |
 | :--- | :--- | :--- |
-| `connect ECONNREFUSED 127.0.0.1:27017` | Local MongoDB daemon is offline. | The backend will automatically fall back to `MongoMemoryServer`. If persistent local data is required, start MongoDB via `net start MongoDB` or configure `MONGODB_URI` in `backend/.env`. |
-| Port `5000` or `5173` already in use | Previous Node.js process still running. | Terminate the process using the port (`netstat -ano \| findstr :5000`) or edit `PORT` in `backend/.env`. |
-| `Registration requires a valid institutional email` | Attempting to sign up with public email domains (e.g., `@gmail.com`). | Use an approved educational domain suffix (e.g. `@campus.edu`, `.edu`, `.ac.in`), or add your domain to `ALLOWED_EMAIL_DOMAINS` in `backend/.env`. |
-| `Cannot borrow own resource` error | Attempting to borrow an item listed by the logged-in user. | This is intentional (SRS Section 5.5). Switch to a borrower account (`marcus.vance@campus.edu`) to request items. |
-| `Borrowing limit exceeded` error | User currently has 3 active loans (`approved` or `borrowed`). | Return an existing item before requesting new equipment (SRS Section 5.5). |
-
----
-
-## 🔮 Known Limitations & Future Roadmap
-
-- **Multi-Campus Federation**: Current deployment models assume a single institution campus. Multi-tenant partitioning by campus subdomain is slated for a future release.
-- **Physical QR Code Handoffs**: Currently, physical collection and returns are confirmed via dashboard button controls. Future updates plan to integrate mobile camera QR code scanning for instantaneous physical verification.
-- **Push Notification Service**: In-app notifications are currently database-polled; integration with WebSockets (Socket.io) or Web Push is planned.
-- **Automated Email Transports**: Email domain verification uses token generation. SMTP integration (e.g., Nodemailer with institutional SMTP relays) can be connected via environment variables.
+| `[Email Service] (SMTP not configured) Skipped real email...` | SMTP credentials not set in `.env`. | This is normal during local dev. In-app notifications still work. To send real emails, set `SMTP_HOST`, `SMTP_USER`, and `SMTP_PASS` in `backend/.env`. |
+| `connect ECONNREFUSED 127.0.0.1:27017` | Local MongoDB is offline. | The backend automatically boots in-memory MongoDB. For persistent data, start MongoDB service or update `MONGODB_URI`. |
+| `Registration requires a valid institutional email` | Public email domain used (e.g. `@gmail.com`). | Use `.edu`, `.ac.in`, `.org`, or `campus.edu`, or add your domain to `ALLOWED_EMAIL_DOMAINS`. |
+| `Business Rule Violation: Cannot borrow your own resource` | Steward attempted to borrow own listing. | Intentional SRS 5.5 rule. Log in as a different user (e.g., `marcus.vance@campus.edu`) to borrow. |
 
 ---
 
 ## 🛡️ Security & Contributing
 
-- **Security Audits**: The repository is audited for sensitive information. No real credentials, production API keys, or private database dumps are tracked.
-- **Secret Management**: Always keep actual `.env` files out of Git tracking.
-- **Contributions**: Please read [CONTRIBUTING.md](CONTRIBUTING.md) for pull request workflows, coding standards, and testing procedures.
+- No production credentials, real email passwords, or private database keys are tracked in Git.
+- Always keep actual `.env` files out of Git tracking.
+- Contributions and PR standards are documented in [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ---
 

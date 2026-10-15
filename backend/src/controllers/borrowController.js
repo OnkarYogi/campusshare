@@ -3,6 +3,7 @@ const Resource = require('../models/Resource');
 const User = require('../models/User');
 const Notification = require('../models/Notification');
 const AuditLog = require('../models/AuditLog');
+const emailService = require('../services/emailService');
 
 // @desc    Submit a new borrow request
 // @route   POST /api/borrow
@@ -117,6 +118,16 @@ const createBorrowRequest = async (req, res, next) => {
       .populate('resource', 'title category identifiers images location')
       .populate('steward', 'name email department avatarUrl trustScore');
 
+    // Email notification for the Steward (guaranteed non-blocking, non-fatal)
+    if (populated && populated.steward) {
+      await emailService.sendBorrowRequestEmail({
+        steward: populated.steward,
+        borrower: req.user,
+        resource,
+        borrowRequest,
+      });
+    }
+
     res.status(201).json({
       success: true,
       message: 'Borrow request submitted successfully.',
@@ -127,12 +138,27 @@ const createBorrowRequest = async (req, res, next) => {
   }
 };
 
-// @desc    Get borrow requests submitted by current user
+// Helper to resolve transaction scope filter
+const buildStatusFilter = (scope) => {
+  if (scope === 'ongoing') {
+    return { status: { $in: ['pending', 'approved', 'borrowed', 'return_requested'] } };
+  }
+  if (scope === 'completed') {
+    return { status: 'returned' };
+  }
+  if (scope === 'closed') {
+    return { status: { $in: ['cancelled', 'rejected'] } };
+  }
+  return {};
+};
+
+// @desc    Get borrow requests submitted by current user (supports ?scope=ongoing|completed|closed)
 // @route   GET /api/borrow/my-requests
 // @access  Private
 const getMyBorrowRequests = async (req, res, next) => {
   try {
-    const requests = await BorrowRequest.find({ borrower: req.user._id })
+    const query = { borrower: req.user._id, ...buildStatusFilter(req.query.scope) };
+    const requests = await BorrowRequest.find(query)
       .populate('resource', 'title category identifiers images location status maxLoanDurationDays')
       .populate('steward', 'name email department avatarUrl trustScore')
       .sort({ createdAt: -1 });
@@ -140,6 +166,7 @@ const getMyBorrowRequests = async (req, res, next) => {
     res.status(200).json({
       success: true,
       count: requests.length,
+      scope: req.query.scope || 'all',
       requests,
     });
   } catch (error) {
@@ -147,12 +174,13 @@ const getMyBorrowRequests = async (req, res, next) => {
   }
 };
 
-// @desc    Get requests received for resources stewarded by current user
+// @desc    Get requests received for resources stewarded by current user (supports ?scope=ongoing|completed|closed)
 // @route   GET /api/borrow/incoming
 // @access  Private
 const getIncomingRequests = async (req, res, next) => {
   try {
-    const requests = await BorrowRequest.find({ steward: req.user._id })
+    const query = { steward: req.user._id, ...buildStatusFilter(req.query.scope) };
+    const requests = await BorrowRequest.find(query)
       .populate('resource', 'title category identifiers images location status')
       .populate('borrower', 'name email department avatarUrl trustScore campusId')
       .sort({ createdAt: -1 });
@@ -160,6 +188,7 @@ const getIncomingRequests = async (req, res, next) => {
     res.status(200).json({
       success: true,
       count: requests.length,
+      scope: req.query.scope || 'all',
       requests,
     });
   } catch (error) {
@@ -174,7 +203,7 @@ const approveRequest = async (req, res, next) => {
   try {
     const request = await BorrowRequest.findById(req.params.id)
       .populate('resource')
-      .populate('borrower', 'name');
+      .populate('borrower', 'name email department');
 
     if (!request) {
       return res.status(404).json({
@@ -236,7 +265,7 @@ const approveRequest = async (req, res, next) => {
         }
       );
 
-      // Notify each rejected borrower
+      // Notify each rejected borrower in-app
       const notifDocs = otherPending.map((r) => ({
         recipient: r.borrower,
         sender: req.user._id,
@@ -247,9 +276,24 @@ const approveRequest = async (req, res, next) => {
         request: r._id,
       }));
       await Notification.insertMany(notifDocs);
+
+      // Notify auto-rejected borrowers via email (non-fatal)
+      const otherBorrowerUsers = await User.find({ _id: { $in: otherPending.map((r) => r.borrower) } }).select('name email');
+      for (const r of otherPending) {
+        const otherUser = otherBorrowerUsers.find((u) => u._id.toString() === r.borrower.toString());
+        if (otherUser && otherUser.email) {
+          await emailService.sendRequestRejectedEmail({
+            steward: req.user,
+            borrower: otherUser,
+            resource: request.resource,
+            borrowRequest: r,
+            rejectionReason: 'Another request was approved for this resource.',
+          });
+        }
+      }
     }
 
-    // Notify approved Borrower
+    // Notify approved Borrower in-app
     await Notification.create({
       recipient: request.borrower._id,
       sender: req.user._id,
@@ -259,6 +303,16 @@ const approveRequest = async (req, res, next) => {
       resource: request.resource._id,
       request: request._id,
     });
+
+    // Notify approved Borrower via email (non-fatal)
+    if (request.borrower && request.borrower.email) {
+      await emailService.sendRequestApprovedEmail({
+        steward: req.user,
+        borrower: request.borrower,
+        resource: request.resource,
+        borrowRequest: request,
+      });
+    }
 
     await AuditLog.create({
       user: req.user._id,
@@ -284,7 +338,9 @@ const approveRequest = async (req, res, next) => {
 const rejectRequest = async (req, res, next) => {
   try {
     const { rejectionReason } = req.body;
-    const request = await BorrowRequest.findById(req.params.id).populate('resource');
+    const request = await BorrowRequest.findById(req.params.id)
+      .populate('resource')
+      .populate('borrower', 'name email department');
 
     if (!request) {
       return res.status(404).json({
@@ -318,9 +374,9 @@ const rejectRequest = async (req, res, next) => {
       }
     }
 
-    // Notify Borrower
+    // In-app Notification for Borrower
     await Notification.create({
-      recipient: request.borrower,
+      recipient: request.borrower._id || request.borrower,
       sender: req.user._id,
       type: 'request_rejected',
       title: 'Borrow Request Declined',
@@ -328,6 +384,17 @@ const rejectRequest = async (req, res, next) => {
       resource: request.resource._id,
       request: request._id,
     });
+
+    // Email notification for Borrower
+    if (request.borrower && request.borrower.email) {
+      await emailService.sendRequestRejectedEmail({
+        steward: req.user,
+        borrower: request.borrower,
+        resource: request.resource,
+        borrowRequest: request,
+        rejectionReason: request.rejectionReason,
+      });
+    }
 
     res.status(200).json({
       success: true,
@@ -344,7 +411,9 @@ const rejectRequest = async (req, res, next) => {
 // @access  Private (Borrower)
 const cancelRequest = async (req, res, next) => {
   try {
-    const request = await BorrowRequest.findById(req.params.id);
+    const request = await BorrowRequest.findById(req.params.id)
+      .populate('resource')
+      .populate('steward', 'name email');
 
     if (!request) {
       return res.status(404).json({
@@ -372,12 +441,35 @@ const cancelRequest = async (req, res, next) => {
 
     // Revert resource to available if no other active requests
     const activeOthers = await BorrowRequest.countDocuments({
-      resource: request.resource,
+      resource: request.resource._id || request.resource,
       status: { $in: ['pending', 'approved', 'borrowed'] },
     });
 
     if (activeOthers === 0) {
-      await Resource.findByIdAndUpdate(request.resource, { status: 'available' });
+      await Resource.findByIdAndUpdate(request.resource._id || request.resource, { status: 'available' });
+    }
+
+    // In-app notification for the Steward
+    if (request.steward) {
+      await Notification.create({
+        recipient: request.steward._id || request.steward,
+        sender: req.user._id,
+        type: 'request_cancelled',
+        title: 'Borrow Request Cancelled',
+        message: `${req.user.name} cancelled their borrow request for "${request.resource?.title || 'resource'}".`,
+        resource: request.resource?._id || request.resource,
+        request: request._id,
+      });
+
+      // Email notification for the Steward (non-fatal)
+      if (request.steward.email) {
+        await emailService.sendRequestCancelledEmail({
+          steward: request.steward,
+          borrower: req.user,
+          resource: request.resource,
+          borrowRequest: request,
+        });
+      }
     }
 
     res.status(200).json({
@@ -396,7 +488,9 @@ const cancelRequest = async (req, res, next) => {
 const collectResource = async (req, res, next) => {
   try {
     const { handoverNotes } = req.body;
-    const request = await BorrowRequest.findById(req.params.id).populate('resource');
+    const request = await BorrowRequest.findById(req.params.id)
+      .populate('resource')
+      .populate('borrower', 'name email department');
 
     if (!request) {
       return res.status(404).json({
@@ -427,9 +521,9 @@ const collectResource = async (req, res, next) => {
     // Resource is already 'borrowed' from approval step; ensure consistency
     await Resource.findByIdAndUpdate(request.resource._id, { status: 'borrowed' });
 
-    // Notify Borrower
+    // Notify Borrower in-app
     await Notification.create({
-      recipient: request.borrower,
+      recipient: request.borrower._id || request.borrower,
       sender: req.user._id,
       type: 'borrowed',
       title: 'Resource Picked Up',
@@ -437,6 +531,17 @@ const collectResource = async (req, res, next) => {
       resource: request.resource._id,
       request: request._id,
     });
+
+    // Notify Borrower via email (non-fatal)
+    if (request.borrower && request.borrower.email) {
+      await emailService.sendHandoverEmail({
+        steward: req.user,
+        borrower: request.borrower,
+        resource: request.resource,
+        borrowRequest: request,
+        handoverNotes,
+      });
+    }
 
     await AuditLog.create({
       user: req.user._id,
@@ -456,13 +561,89 @@ const collectResource = async (req, res, next) => {
   }
 };
 
+// @desc    Initiate return of a borrowed item (Borrower)
+// @route   PATCH /api/borrow/:id/request-return
+// @access  Private (Borrower)
+const requestReturn = async (req, res, next) => {
+  try {
+    const request = await BorrowRequest.findById(req.params.id)
+      .populate('resource')
+      .populate('steward', 'name email department');
+
+    if (!request) {
+      return res.status(404).json({
+        success: false,
+        message: 'Borrow request not found.',
+      });
+    }
+
+    if (request.borrower.toString() !== req.user._id.toString()) {
+      return res.status(403).json({
+        success: false,
+        message: 'Only the borrower can initiate a return for this item.',
+      });
+    }
+
+    if (request.status !== 'borrowed') {
+      return res.status(400).json({
+        success: false,
+        message: `Cannot initiate return for item with status: "${request.status}". Only currently borrowed items can be returned.`,
+      });
+    }
+
+    request.status = 'return_requested';
+    request.returnRequestedAt = new Date();
+    await request.save();
+
+    // In-app notification for the Steward
+    await Notification.create({
+      recipient: request.steward._id,
+      sender: req.user._id,
+      type: 'return_requested',
+      title: 'Return Initiated',
+      message: `${req.user.name} has initiated the return for "${request.resource.title}". Please inspect and confirm the return.`,
+      resource: request.resource._id,
+      request: request._id,
+    });
+
+    // Audit log
+    await AuditLog.create({
+      user: req.user._id,
+      action: 'BORROW_RETURN_INITIATED',
+      targetType: 'BorrowRequest',
+      targetId: request._id.toString(),
+      ip: req.ip || '',
+    });
+
+    // Email notification for Steward (non-fatal)
+    if (request.steward && request.steward.email) {
+      await emailService.sendReturnInitiatedEmail({
+        steward: request.steward,
+        borrower: req.user,
+        resource: request.resource,
+        borrowRequest: request,
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: 'Return initiated successfully. Waiting for steward confirmation.',
+      request,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 // @desc    Confirm item returned and complete transaction (SRS 4.4, 5.5)
 // @route   PATCH /api/borrow/:id/return
 // @access  Private (Resource Steward)
 const confirmReturn = async (req, res, next) => {
   try {
     const { returnNotes } = req.body;
-    const request = await BorrowRequest.findById(req.params.id).populate('resource');
+    const request = await BorrowRequest.findById(req.params.id)
+      .populate('resource')
+      .populate('borrower', 'name email department');
 
     if (!request) {
       return res.status(404).json({
@@ -479,10 +660,10 @@ const confirmReturn = async (req, res, next) => {
       });
     }
 
-    if (request.status !== 'borrowed') {
+    if (request.status !== 'borrowed' && request.status !== 'return_requested') {
       return res.status(400).json({
         success: false,
-        message: 'Only items currently in "borrowed" state can be confirmed as returned.',
+        message: 'Only items currently in "borrowed" or "return_requested" state can be confirmed as returned.',
       });
     }
 
@@ -495,12 +676,12 @@ const confirmReturn = async (req, res, next) => {
     await Resource.findByIdAndUpdate(request.resource._id, { status: 'available' });
 
     // Increment completed loan tallies for both users
-    await User.findByIdAndUpdate(request.borrower, { $inc: { totalCompletedLoans: 1 } });
+    await User.findByIdAndUpdate(request.borrower._id || request.borrower, { $inc: { totalCompletedLoans: 1 } });
     await User.findByIdAndUpdate(request.steward, { $inc: { totalCompletedLoans: 1 } });
 
-    // Notify Borrower to leave a rating
+    // Notify Borrower to leave a rating in-app
     await Notification.create({
-      recipient: request.borrower,
+      recipient: request.borrower._id || request.borrower,
       sender: req.user._id,
       type: 'returned',
       title: 'Return Confirmed',
@@ -508,6 +689,17 @@ const confirmReturn = async (req, res, next) => {
       resource: request.resource._id,
       request: request._id,
     });
+
+    // Notify Borrower via email that transaction is completed (non-fatal)
+    if (request.borrower && request.borrower.email) {
+      await emailService.sendReturnConfirmedEmail({
+        steward: req.user,
+        borrower: request.borrower,
+        resource: request.resource,
+        borrowRequest: request,
+        returnNotes,
+      });
+    }
 
     await AuditLog.create({
       user: req.user._id,
@@ -535,5 +727,6 @@ module.exports = {
   rejectRequest,
   cancelRequest,
   collectResource,
+  requestReturn,
   confirmReturn,
 };

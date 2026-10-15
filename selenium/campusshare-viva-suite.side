@@ -1,0 +1,475 @@
+{
+  "id": "e812fa48-7bf3-4df4-a82a-9e19d779f001",
+  "version": "2.0",
+  "name": "CampusShare - Simple Viva Demonstration Suite",
+  "url": "http://localhost:5173",
+  "tests": [
+    {
+      "id": "a1b2c3d4-0001-4000-8000-000000000001",
+      "name": "TC-01 Valid Login",
+      "commands": [
+        {
+          "id": "c1-01",
+          "command": "open",
+          "target": "/",
+          "value": ""
+        },
+        {
+          "id": "c1-02",
+          "command": "setWindowSize",
+          "target": "1280x800",
+          "value": ""
+        },
+        {
+          "id": "c1-03",
+          "command": "click",
+          "target": "css=[data-testid=\"navbar-signin\"]",
+          "value": ""
+        },
+        {
+          "id": "c1-04",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"login-email\"]",
+          "value": "5000"
+        },
+        {
+          "id": "c1-05",
+          "command": "type",
+          "target": "css=[data-testid=\"login-email\"]",
+          "value": "marcus.vance@campus.edu"
+        },
+        {
+          "id": "c1-06",
+          "command": "type",
+          "target": "css=[data-testid=\"login-password\"]",
+          "value": "Password123!"
+        },
+        {
+          "id": "c1-07",
+          "command": "click",
+          "target": "css=[data-testid=\"login-submit\"]",
+          "value": ""
+        },
+        {
+          "id": "c1-08",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"navbar-user-name\"]",
+          "value": "5000"
+        },
+        {
+          "id": "c1-09",
+          "command": "assertText",
+          "target": "css=[data-testid=\"navbar-user-name\"]",
+          "value": "Rohan Deshmukh"
+        },
+        {
+          "id": "c1-10",
+          "command": "click",
+          "target": "css=[data-testid=\"navbar-user-menu\"]",
+          "value": ""
+        },
+        {
+          "id": "c1-11",
+          "command": "click",
+          "target": "css=[data-testid=\"navbar-signout\"]",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "id": "a1b2c3d4-0002-4000-8000-000000000002",
+      "name": "TC-02 Invalid Login",
+      "commands": [
+        {
+          "id": "c2-01",
+          "command": "open",
+          "target": "/",
+          "value": ""
+        },
+        {
+          "id": "c2-02",
+          "command": "click",
+          "target": "css=[data-testid=\"navbar-signin\"]",
+          "value": ""
+        },
+        {
+          "id": "c2-03",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"login-email\"]",
+          "value": "5000"
+        },
+        {
+          "id": "c2-04",
+          "command": "type",
+          "target": "css=[data-testid=\"login-email\"]",
+          "value": "marcus.vance@campus.edu"
+        },
+        {
+          "id": "c2-05",
+          "command": "type",
+          "target": "css=[data-testid=\"login-password\"]",
+          "value": "WrongPassword999!"
+        },
+        {
+          "id": "c2-06",
+          "command": "click",
+          "target": "css=[data-testid=\"login-submit\"]",
+          "value": ""
+        },
+        {
+          "id": "c2-07",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"auth-error-alert\"]",
+          "value": "5000"
+        },
+        {
+          "id": "c2-08",
+          "command": "assertElementPresent",
+          "target": "css=[data-testid=\"auth-error-alert\"]",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "id": "a1b2c3d4-0003-4000-8000-000000000003",
+      "name": "TC-03 Resource Search",
+      "commands": [
+        {
+          "id": "c3-01",
+          "command": "open",
+          "target": "/",
+          "value": ""
+        },
+        {
+          "id": "c3-02",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"catalog-search-input\"]",
+          "value": "5000"
+        },
+        {
+          "id": "c3-03",
+          "command": "type",
+          "target": "css=[data-testid=\"catalog-search-input\"]",
+          "value": "Physical Chemistry"
+        },
+        {
+          "id": "c3-04",
+          "command": "pause",
+          "target": "500",
+          "value": ""
+        },
+        {
+          "id": "c3-05",
+          "command": "assertElementPresent",
+          "target": "css=[data-testid=\"resource-card\"]",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "id": "a1b2c3d4-0004-4000-8000-000000000004",
+      "name": "TC-04 Ongoing Transactions Separation",
+      "commands": [
+        {
+          "id": "c4-01",
+          "command": "open",
+          "target": "/",
+          "value": ""
+        },
+        {
+          "id": "c4-02",
+          "command": "click",
+          "target": "css=[data-testid=\"navbar-signin\"]",
+          "value": ""
+        },
+        {
+          "id": "c4-03",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"login-email\"]",
+          "value": "5000"
+        },
+        {
+          "id": "c4-04",
+          "command": "type",
+          "target": "css=[data-testid=\"login-email\"]",
+          "value": "marcus.vance@campus.edu"
+        },
+        {
+          "id": "c4-05",
+          "command": "type",
+          "target": "css=[data-testid=\"login-password\"]",
+          "value": "Password123!"
+        },
+        {
+          "id": "c4-06",
+          "command": "click",
+          "target": "css=[data-testid=\"login-submit\"]",
+          "value": ""
+        },
+        {
+          "id": "c4-07",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"navbar-user-name\"]",
+          "value": "5000"
+        },
+        {
+          "id": "c4-08",
+          "command": "click",
+          "target": "css=[data-testid=\"navbar-tab-loans\"]",
+          "value": ""
+        },
+        {
+          "id": "c4-09",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"tab-ongoing\"]",
+          "value": "5000"
+        },
+        {
+          "id": "c4-10",
+          "command": "click",
+          "target": "css=[data-testid=\"tab-ongoing\"]",
+          "value": ""
+        },
+        {
+          "id": "c4-11",
+          "command": "click",
+          "target": "css=[data-testid=\"tab-outgoing\"]",
+          "value": ""
+        },
+        {
+          "id": "c4-12",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"loan-card\"]",
+          "value": "5000"
+        },
+        {
+          "id": "c4-13",
+          "command": "assertElementPresent",
+          "target": "css=[data-testid=\"loan-status-badge\"]",
+          "value": ""
+        },
+        {
+          "id": "c4-14",
+          "command": "click",
+          "target": "css=[data-testid=\"navbar-user-menu\"]",
+          "value": ""
+        },
+        {
+          "id": "c4-15",
+          "command": "click",
+          "target": "css=[data-testid=\"navbar-signout\"]",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "id": "a1b2c3d4-0005-4000-8000-000000000005",
+      "name": "TC-05 Completed Transactions Separation",
+      "commands": [
+        {
+          "id": "c5-01",
+          "command": "open",
+          "target": "/",
+          "value": ""
+        },
+        {
+          "id": "c5-02",
+          "command": "click",
+          "target": "css=[data-testid=\"navbar-signin\"]",
+          "value": ""
+        },
+        {
+          "id": "c5-03",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"login-email\"]",
+          "value": "5000"
+        },
+        {
+          "id": "c5-04",
+          "command": "type",
+          "target": "css=[data-testid=\"login-email\"]",
+          "value": "marcus.vance@campus.edu"
+        },
+        {
+          "id": "c5-05",
+          "command": "type",
+          "target": "css=[data-testid=\"login-password\"]",
+          "value": "Password123!"
+        },
+        {
+          "id": "c5-06",
+          "command": "click",
+          "target": "css=[data-testid=\"login-submit\"]",
+          "value": ""
+        },
+        {
+          "id": "c5-07",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"navbar-user-name\"]",
+          "value": "5000"
+        },
+        {
+          "id": "c5-08",
+          "command": "click",
+          "target": "css=[data-testid=\"navbar-tab-loans\"]",
+          "value": ""
+        },
+        {
+          "id": "c5-09",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"tab-completed\"]",
+          "value": "5000"
+        },
+        {
+          "id": "c5-10",
+          "command": "click",
+          "target": "css=[data-testid=\"tab-completed\"]",
+          "value": ""
+        },
+        {
+          "id": "c5-11",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"loan-card\"]",
+          "value": "5000"
+        },
+        {
+          "id": "c5-12",
+          "command": "assertText",
+          "target": "css=[data-testid=\"loan-status-badge\"]",
+          "value": "Returned & Completed"
+        },
+        {
+          "id": "c5-13",
+          "command": "click",
+          "target": "css=[data-testid=\"navbar-user-menu\"]",
+          "value": ""
+        },
+        {
+          "id": "c5-14",
+          "command": "click",
+          "target": "css=[data-testid=\"navbar-signout\"]",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "id": "a1b2c3d4-0006-4000-8000-000000000006",
+      "name": "TC-06 Unverified Student Borrowing Blocked",
+      "commands": [
+        {
+          "id": "c6-01",
+          "command": "open",
+          "target": "/",
+          "value": ""
+        },
+        {
+          "id": "c6-02",
+          "command": "click",
+          "target": "css=[data-testid=\"navbar-signin\"]",
+          "value": ""
+        },
+        {
+          "id": "c6-03",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"login-email\"]",
+          "value": "5000"
+        },
+        {
+          "id": "c6-04",
+          "command": "type",
+          "target": "css=[data-testid=\"login-email\"]",
+          "value": "aarav.sharma@campus.edu"
+        },
+        {
+          "id": "c6-05",
+          "command": "type",
+          "target": "css=[data-testid=\"login-password\"]",
+          "value": "Password123!"
+        },
+        {
+          "id": "c6-06",
+          "command": "click",
+          "target": "css=[data-testid=\"login-submit\"]",
+          "value": ""
+        },
+        {
+          "id": "c6-07",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"navbar-user-name\"]",
+          "value": "5000"
+        },
+        {
+          "id": "c6-08",
+          "command": "click",
+          "target": "css=[data-testid=\"resource-card-action\"]",
+          "value": ""
+        },
+        {
+          "id": "c6-09",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"modal-resource-title\"]",
+          "value": "5000"
+        },
+        {
+          "id": "c6-10",
+          "command": "type",
+          "target": "css=[data-testid=\"borrow-purpose\"]",
+          "value": "Attempting unverified borrowing"
+        },
+        {
+          "id": "c6-11",
+          "command": "click",
+          "target": "css=[data-testid=\"borrow-submit-btn\"]",
+          "value": ""
+        },
+        {
+          "id": "c6-12",
+          "command": "waitForElementVisible",
+          "target": "css=[data-testid=\"borrow-error\"]",
+          "value": "5000"
+        },
+        {
+          "id": "c6-13",
+          "command": "assertElementPresent",
+          "target": "css=[data-testid=\"borrow-error\"]",
+          "value": ""
+        },
+        {
+          "id": "c6-14",
+          "command": "click",
+          "target": "css=[data-testid=\"modal-close-btn\"]",
+          "value": ""
+        },
+        {
+          "id": "c6-15",
+          "command": "click",
+          "target": "css=[data-testid=\"navbar-user-menu\"]",
+          "value": ""
+        },
+        {
+          "id": "c6-16",
+          "command": "click",
+          "target": "css=[data-testid=\"navbar-signout\"]",
+          "value": ""
+        }
+      ]
+    }
+  ],
+  "suites": [
+    {
+      "id": "b1c2d3e4-0001-4000-8000-000000000001",
+      "name": "CampusShare - Viva Demonstration Suite (6 Core Tests)",
+      "persistSession": false,
+      "parallel": false,
+      "timeout": 300,
+      "tests": [
+        "a1b2c3d4-0001-4000-8000-000000000001",
+        "a1b2c3d4-0002-4000-8000-000000000002",
+        "a1b2c3d4-0003-4000-8000-000000000003",
+        "a1b2c3d4-0004-4000-8000-000000000004",
+        "a1b2c3d4-0005-4000-8000-000000000005",
+        "a1b2c3d4-0006-4000-8000-000000000006"
+      ]
+    }
+  ]
+}
