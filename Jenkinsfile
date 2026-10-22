@@ -1,4 +1,3 @@
-
 pipeline {
     agent any
 
@@ -34,8 +33,10 @@ pipeline {
             steps {
                 sh '''
                     set -eu
+
                     docker build -t ${BACKEND_IMAGE}:${BUILD_NUMBER} ./backend
                     docker build -t ${FRONTEND_IMAGE}:${BUILD_NUMBER} ./frontend
+
                     docker images | grep campusshare
                 '''
             }
@@ -65,11 +66,13 @@ pipeline {
                 sh '''
                     set -eu
 
+                    echo "Updating backend deployment..."
                     kubectl set image deployment/campusshare-backend \
-                        campusshare-backend=${BACKEND_IMAGE}:${BUILD_NUMBER}
+                        backend=${BACKEND_IMAGE}:${BUILD_NUMBER}
 
+                    echo "Updating frontend deployment..."
                     kubectl set image deployment/campusshare-frontend \
-                        campusshare-frontend=${FRONTEND_IMAGE}:${BUILD_NUMBER}
+                        frontend=${FRONTEND_IMAGE}:${BUILD_NUMBER}
                 '''
             }
         }
@@ -79,7 +82,10 @@ pipeline {
                 sh '''
                     set -eu
 
+                    echo "Waiting for backend rollout..."
                     kubectl rollout status deployment/campusshare-backend --timeout=180s
+
+                    echo "Waiting for frontend rollout..."
                     kubectl rollout status deployment/campusshare-frontend --timeout=180s
 
                     echo "Final deployment status:"
@@ -97,6 +103,7 @@ pipeline {
         success {
             echo 'CI/CD succeeded: tests passed, images transferred, and Kubernetes rollouts completed.'
         }
+
         failure {
             echo 'CI/CD failed. Review the failed stage and console logs before retrying.'
         }
